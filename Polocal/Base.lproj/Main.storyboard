@@ -120,17 +120,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2G-lN-nIz" customClass="GradientView" customModule="Polocal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzf-Ez-jI5">
-                                        <rect key="frame" x="288" y="640" width="32" height="30"/>
-                                        <state key="normal" title="right"/>
-                                        <connections>
-                                            <action selector="rightButtonTapped:" destination="giN-7n-CL4" eventType="touchUpInside" id="5Ef-rM-PO2"/>
-                                        </connections>
-                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4bp-tY-STs">
                                         <rect key="frame" x="48" y="387" width="319" height="136"/>
                                         <subviews>
-                                            <view hidden="YES" alpha="0.25" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fP-sh-Njy">
+                                            <view alpha="0.25" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fP-sh-Njy">
                                                 <rect key="frame" x="319" y="0.0" width="0.0" height="137"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -222,7 +215,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrN-6w-V47">
                                         <rect key="frame" x="48" y="164" width="319" height="204"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKQ-cJ-CCk">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKQ-cJ-CCk">
                                                 <rect key="frame" x="10" y="25" width="299" height="154"/>
                                                 <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="55"/>
                                                 <color key="textColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -248,14 +241,12 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="4bp-tY-STs" secondAttribute="bottom" constant="213" id="10z-hw-VCO"/>
                                     <constraint firstItem="hrN-6w-V47" firstAttribute="trailing" secondItem="4bp-tY-STs" secondAttribute="trailing" id="4bs-4Z-6L8"/>
-                                    <constraint firstAttribute="bottom" secondItem="Nzf-Ez-jI5" secondAttribute="bottom" constant="66" id="6Sb-v7-pS6"/>
                                     <constraint firstItem="4bp-tY-STs" firstAttribute="top" secondItem="Y2G-lN-nIz" secondAttribute="top" constant="387" id="Aa7-45-qXc"/>
                                     <constraint firstItem="hrN-6w-V47" firstAttribute="leading" secondItem="4bp-tY-STs" secondAttribute="leading" id="AyI-TE-m1C"/>
                                     <constraint firstItem="hrN-6w-V47" firstAttribute="top" secondItem="Y2G-lN-nIz" secondAttribute="top" constant="164" id="Fg0-eK-9d8"/>
                                     <constraint firstItem="4bp-tY-STs" firstAttribute="top" secondItem="hrN-6w-V47" secondAttribute="bottom" constant="19" id="JW0-Sb-p4L"/>
                                     <constraint firstItem="hrN-6w-V47" firstAttribute="leading" secondItem="Y2G-lN-nIz" secondAttribute="leading" constant="48" id="M2T-si-Maz"/>
                                     <constraint firstItem="hrN-6w-V47" firstAttribute="centerX" secondItem="Y2G-lN-nIz" secondAttribute="centerX" id="gNu-4M-wZO"/>
-                                    <constraint firstAttribute="trailing" secondItem="Nzf-Ez-jI5" secondAttribute="trailing" constant="94" id="vyW-17-ozV"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -293,6 +284,110 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nGB-wD-WNX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1195.6521739130435" y="132.88043478260872"/>
+        </scene>
+        <!--Add Post View Controller-->
+        <scene sceneID="u3h-ZU-BI2">
+            <objects>
+                <viewController id="3BQ-Ue-jRW" customClass="AddPostViewController" customModule="Polocal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X8L-Nk-IO6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uwW-XB-ThT" customClass="GradientView" customModule="Polocal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCW-Ti-R43">
+                                        <rect key="frame" x="48" y="164" width="319" height="204"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="כתוב שאלה" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Udo-XD-rm8">
+                                                <rect key="frame" x="10" y="25" width="299" height="154"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="55"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="3BQ-Ue-jRW" id="WMA-By-SPp"/>
+                                                </connections>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Udo-XD-rm8" firstAttribute="centerX" secondItem="MCW-Ti-R43" secondAttribute="centerX" id="20Q-43-dEr"/>
+                                            <constraint firstItem="Udo-XD-rm8" firstAttribute="leading" secondItem="MCW-Ti-R43" secondAttribute="leading" constant="10" id="hkn-JE-aXJ"/>
+                                            <constraint firstItem="Udo-XD-rm8" firstAttribute="centerY" secondItem="MCW-Ti-R43" secondAttribute="centerY" id="ocH-MR-D41"/>
+                                            <constraint firstItem="Udo-XD-rm8" firstAttribute="top" secondItem="MCW-Ti-R43" secondAttribute="top" constant="25" id="uBe-ZJ-yQl"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="MCW-Ti-R43" firstAttribute="top" secondItem="uwW-XB-ThT" secondAttribute="top" constant="164" id="7dx-sh-Zz2"/>
+                                    <constraint firstItem="MCW-Ti-R43" firstAttribute="leading" secondItem="uwW-XB-ThT" secondAttribute="leading" constant="48" id="GQ3-Jy-mRJ"/>
+                                    <constraint firstItem="MCW-Ti-R43" firstAttribute="centerX" secondItem="uwW-XB-ThT" secondAttribute="centerX" id="YPU-rG-HRb"/>
+                                    <constraint firstAttribute="bottom" secondItem="MCW-Ti-R43" secondAttribute="bottom" constant="368" id="vmG-PP-TMK"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" red="0.0039215686269999999" green="0.60392156860000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                        <real key="value" value="0.25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                        <real key="value" value="0.75"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRu-R0-a2X">
+                                <rect key="frame" x="147" y="425" width="124" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="2Cf-jA-GVb"/>
+                                    <constraint firstAttribute="width" constant="124" id="Iwb-vy-6DP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="39"/>
+                                <state key="normal" title="סיים">
+                                    <color key="titleColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="3BQ-Ue-jRW" eventType="touchUpInside" id="rdg-GI-dcl"/>
+                                    <action selector="signUpButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eDT-b0-zbV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uwW-XB-ThT" firstAttribute="bottom" secondItem="mrl-oL-YHP" secondAttribute="bottom" id="62q-xU-xpH"/>
+                            <constraint firstAttribute="trailing" secondItem="uwW-XB-ThT" secondAttribute="trailing" id="DXX-AD-xhO"/>
+                            <constraint firstItem="uwW-XB-ThT" firstAttribute="top" secondItem="X8L-Nk-IO6" secondAttribute="top" id="QAW-1M-aem"/>
+                            <constraint firstItem="uwW-XB-ThT" firstAttribute="leading" secondItem="X8L-Nk-IO6" secondAttribute="leading" id="qeN-Xz-Sd2"/>
+                            <constraint firstItem="uRu-R0-a2X" firstAttribute="leading" secondItem="mrl-oL-YHP" secondAttribute="leading" constant="147" id="uzm-bh-YxE"/>
+                            <constraint firstItem="uRu-R0-a2X" firstAttribute="top" secondItem="mrl-oL-YHP" secondAttribute="top" constant="405" id="wWs-uC-UQT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mrl-oL-YHP"/>
+                    </view>
+                    <connections>
+                        <outlet property="questionTextView" destination="Udo-XD-rm8" id="A7z-8c-dmG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="89X-I3-7DH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2122" y="133"/>
         </scene>
     </scenes>
 </document>

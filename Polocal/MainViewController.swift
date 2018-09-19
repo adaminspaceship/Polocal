@@ -78,8 +78,8 @@ class MainViewController: UIViewController {
         let newFalseAnswers = falseAnswers+1
         ref = Database.database().reference().child("Posts").child("blich")
         ref.child(currentPost.postID).child("answers").child("false").setValue(newFalseAnswers)
-        let sum = currentPost.falseAnswers+currentPost.trueAnswers
-        let falsePercentage = Int((Double(currentPost.falseAnswers)/Double(sum))*100)
+        let sum = newFalseAnswers+currentPost.trueAnswers
+		let falsePercentage = Int((Double(newFalseAnswers)/Double(sum))*100)
         let truePercentage = Int(100-falsePercentage)
         falsePercentageLabel.isHidden = false
         truePercentageLabel.isHidden = false
@@ -97,9 +97,9 @@ class MainViewController: UIViewController {
         let newTrueAnswers = trueAnswers+1
         ref = Database.database().reference().child("Posts").child("blich")
         ref.child(currentPost.postID).child("answers").child("true").setValue(newTrueAnswers)
-        let sum = currentPost.falseAnswers+currentPost.trueAnswers
-        let falsePercentage = Int((Double(currentPost.falseAnswers)/Double(sum))*100)
-        let truePercentage = Int(100-falsePercentage)
+        let sum = currentPost.falseAnswers+newTrueAnswers
+		let truePercentage = Int((Double(newTrueAnswers)/Double(sum))*100)
+        let falsePercentage = Int(100-truePercentage)
         truePercentageLabel.isHidden = false
         falsePercentageLabel.isHidden = false
         truePercentageLabel.text = "\(String(truePercentage))%"
@@ -127,11 +127,10 @@ class MainViewController: UIViewController {
 					}
 				}) { (complete) in
 					self.readNewPost()
-//				self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.readNewPost), userInfo: nil, repeats: false)
 				}
 				
 			}
-		}else {
+		}else if truePercentage>falsePercentage {
 			let num = 319/(100/Double(truePercentage))
 			self.trueView.isHidden = false
 			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
@@ -148,10 +147,31 @@ class MainViewController: UIViewController {
 					}
 				}){ (complete) in
 					self.readNewPost()
-//				self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.readNewPost), userInfo: nil, repeats: false)
 				}
 				
 			}
+		} else {
+			print("equals")
+			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
+				self.falseView.frame.size.width = CGFloat(160)
+				for _ in 0...160 {
+					self.trueView.frame.size.width += 1
+					self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
+				}
+			}) { (complete) in
+				sleep(2)
+				UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+					for _ in 0...160 {
+						self.falseView.frame.size.width = 0
+						self.trueView.frame.size.width -= 1
+						self.trueView.center = CGPoint(x: self.trueView.center.x+1, y: self.trueView.center.y)
+					}
+				}) { (complete) in
+					self.readNewPost()
+				}
+				
+			}
+			
 		}
 	}
     

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		70A068771F9DE96F128C13EA /* Pods_Polocal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF883AE25207F34F784976CE /* Pods_Polocal.framework */; };
 		917E615E211F6A79CFBE861A /* Pods_PolocalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2218115B8352F94B5F852DFD /* Pods_PolocalTests.framework */; };
+		996E39A12152EB9F00D9EF4B /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996E39A02152EB9F00D9EF4B /* AddPostViewController.swift */; };
 		9992801221507031006959A4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9992801121507031006959A4 /* MainViewController.swift */; };
 		99928014215080FE006959A4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99928013215080FE006959A4 /* Post.swift */; };
 		9992801621510592006959A4 /* almoni-neue-aaa-300.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9992801521510589006959A4 /* almoni-neue-aaa-300.ttf */; };
@@ -47,6 +48,7 @@
 		248805F1DA16E5FA82C60814 /* Pods-PolocalUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolocalUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PolocalUITests/Pods-PolocalUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		313B50B276BBC236382CC76E /* Pods-Polocal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Polocal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Polocal/Pods-Polocal.debug.xcconfig"; sourceTree = "<group>"; };
 		7E65170F7190FAB924376227 /* Pods-Polocal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Polocal.release.xcconfig"; path = "Pods/Target Support Files/Pods-Polocal/Pods-Polocal.release.xcconfig"; sourceTree = "<group>"; };
+		996E39A02152EB9F00D9EF4B /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		9992801121507031006959A4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		99928013215080FE006959A4 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		9992801521510589006959A4 /* almoni-neue-aaa-300.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "almoni-neue-aaa-300.ttf"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				99C9876F21505912004F36F2 /* AppDelegate.swift */,
 				99C9877121505912004F36F2 /* ViewController.swift */,
 				9992801121507031006959A4 /* MainViewController.swift */,
+				996E39A02152EB9F00D9EF4B /* AddPostViewController.swift */,
 				99C9877321505912004F36F2 /* Main.storyboard */,
 				99C987792150591A004F36F2 /* Assets.xcassets */,
 				99C9877B2150591A004F36F2 /* LaunchScreen.storyboard */,
@@ -407,6 +410,7 @@
 				99928014215080FE006959A4 /* Post.swift in Sources */,
 				99C9877021505912004F36F2 /* AppDelegate.swift in Sources */,
 				9992801221507031006959A4 /* MainViewController.swift in Sources */,
+				996E39A12152EB9F00D9EF4B /* AddPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
