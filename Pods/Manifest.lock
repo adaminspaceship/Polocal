@@ -47,6 +47,7 @@ PODS:
   - GoogleUtilities/Reachability (5.2.3):
     - GoogleUtilities/Logger
   - leveldb-library (1.20)
+  - ModernSearchBar (1.5)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -57,6 +58,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
+  - ModernSearchBar
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
@@ -69,6 +71,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - leveldb-library
+    - ModernSearchBar
     - nanopb
     - SwiftyJSON
 
@@ -81,9 +84,10 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: fc4a4c3fe0144db9313cbf443ffe62e6b1d6268c
   GoogleUtilities: 6f681e27050c5e130325e89fa0316dfca826f954
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  ModernSearchBar: 5dd19c94b1e04f1f83dd9b9950d05153ef2535e5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: ec1b549587a73951e54eb11998597378b1b86b01
+PODFILE CHECKSUM: 8f2895ad756bf009329002d0d7efbf8ae35beea0
 
 COCOAPODS: 1.5.3

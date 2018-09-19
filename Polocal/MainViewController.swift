@@ -46,6 +46,8 @@ class MainViewController: UIViewController {
 			self.questionLabel.text = currentPost.question
         }
 		
+		
+		
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,7 +69,9 @@ class MainViewController: UIViewController {
 	func readNewPost() {
         postCount -= 1
         let currentPost = Posts[postCount]
-        questionLabel.text = currentPost.question
+		UIView.animate(withDuration: 3) {
+			self.questionLabel.text = currentPost.question
+		}
         truePercentageLabel.isHidden = true
         falsePercentageLabel.isHidden = true
     }
@@ -151,7 +155,6 @@ class MainViewController: UIViewController {
 				
 			}
 		} else {
-			print("equals")
 			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
 				self.falseView.frame.size.width = CGFloat(160)
 				for _ in 0...160 {

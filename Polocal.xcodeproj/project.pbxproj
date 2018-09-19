@@ -10,6 +10,7 @@
 		70A068771F9DE96F128C13EA /* Pods_Polocal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF883AE25207F34F784976CE /* Pods_Polocal.framework */; };
 		917E615E211F6A79CFBE861A /* Pods_PolocalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2218115B8352F94B5F852DFD /* Pods_PolocalTests.framework */; };
 		996E39A12152EB9F00D9EF4B /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996E39A02152EB9F00D9EF4B /* AddPostViewController.swift */; };
+		996E39A32153071900D9EF4B /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 996E39A22153071900D9EF4B /* data.json */; };
 		9992801221507031006959A4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9992801121507031006959A4 /* MainViewController.swift */; };
 		99928014215080FE006959A4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99928013215080FE006959A4 /* Post.swift */; };
 		9992801621510592006959A4 /* almoni-neue-aaa-300.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9992801521510589006959A4 /* almoni-neue-aaa-300.ttf */; };
@@ -49,6 +50,7 @@
 		313B50B276BBC236382CC76E /* Pods-Polocal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Polocal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Polocal/Pods-Polocal.debug.xcconfig"; sourceTree = "<group>"; };
 		7E65170F7190FAB924376227 /* Pods-Polocal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Polocal.release.xcconfig"; path = "Pods/Target Support Files/Pods-Polocal/Pods-Polocal.release.xcconfig"; sourceTree = "<group>"; };
 		996E39A02152EB9F00D9EF4B /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
+		996E39A22153071900D9EF4B /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		9992801121507031006959A4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		99928013215080FE006959A4 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		9992801521510589006959A4 /* almoni-neue-aaa-300.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "almoni-neue-aaa-300.ttf"; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				99928013215080FE006959A4 /* Post.swift */,
 				99C987A2215062B9004F36F2 /* GradientView.swift */,
 				9992801521510589006959A4 /* almoni-neue-aaa-300.ttf */,
+				996E39A22153071900D9EF4B /* data.json */,
 			);
 			path = Polocal;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99C9877D2150591A004F36F2 /* LaunchScreen.storyboard in Resources */,
+				996E39A32153071900D9EF4B /* data.json in Resources */,
 				9992801621510592006959A4 /* almoni-neue-aaa-300.ttf in Resources */,
 				99C987A12150606C004F36F2 /* GoogleService-Info.plist in Resources */,
 				99C9877A2150591A004F36F2 /* Assets.xcassets in Resources */,
@@ -381,6 +385,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Polocal/Pods-Polocal-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModernSearchBar/ModernSearchBar.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -388,6 +393,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ModernSearchBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",

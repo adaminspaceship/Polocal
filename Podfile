@@ -9,6 +9,7 @@ target 'Polocal' do
 pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'SwiftyJSON', '~> 4.0'
+pod 'ModernSearchBar'
 target 'PolocalTests' do
     inherit! :search_paths
     # Pods for testing
