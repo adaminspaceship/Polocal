@@ -27,8 +27,18 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 //        schoolTextField.layer.cornerRadius = 15.0
 		var suggestionList = Array<String>()
 		
+		//Modify shadows alpha
+		self.schoolSearchBar.shadowView_alpha = 0.8
 		
+		//Modify the default icon of suggestionsView's rows
+		self.schoolSearchBar.searchImage = UIImage(named: "school")
 		
+		//Modify properties of the searchLabel
+		self.schoolSearchBar.searchLabel_font = UIFont(name: "almoni-neue-aaa-300.ttf", size: 30)
+		self.schoolSearchBar.searchLabel_textColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
+		self.schoolSearchBar.searchLabel_backgroundColor = UIColor.white
+		self.schoolSearchBar.setTextColor(color: UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0))
+		self.schoolSearchBar.suggestionsView_searchIcon_isRound = false
 		
 		if let path = Bundle.main.path(forResource: "data", ofType: "json") {
 			do {
@@ -61,9 +71,20 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 	
 	func onClickItemSuggestionsView(item: String) {
 		print("User touched this item: "+item)
+		self.schoolSearchBar.searchBarTextDidEndEditing(self.schoolSearchBar)
+		self.schoolSearchBar.text = item
 	}
 
 
 
+}
+
+public extension ModernSearchBar {
+	
+	public func setTextColor(color: UIColor) {
+		let svs = subviews.flatMap { $0.subviews }
+		guard let tf = (svs.filter { $0 is UITextField }).first as? UITextField else { return }
+		tf.textColor = color
+	}
 }
 
