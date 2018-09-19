@@ -32,7 +32,6 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 		
 		//Modify the default icon of suggestionsView's rows
 		self.schoolSearchBar.searchImage = UIImage(named: "school")
-		
 		//Modify properties of the searchLabel
 		self.schoolSearchBar.searchLabel_font = UIFont(name: "almoni-neue-aaa-300.ttf", size: 30)
 		self.schoolSearchBar.searchLabel_textColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
@@ -60,7 +59,24 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
     @IBAction func signUpButtonTapped(_ sender: Any) {
         let userDefaults = UserDefaults.standard
         let uuid = UUID().uuidString
-        ref.child(uuid).child("school").setValue(schoolTextField.text ?? "blich")
+		if let path = Bundle.main.path(forResource: "data", ofType: "json") {
+			do {
+				let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+				let jsonObj = try JSON(data: data)
+				for i in 0...707{
+					let schoolName = jsonObj[i]["name"].stringValue
+					if schoolName == selectedSchool {
+						ref.child(uuid).child("school").setValue(jsonObj[i]["semel"].stringValue)
+						userDefaults.set(jsonObj[i]["semel"].stringValue, forKey: "schoolSemel")
+					}
+				}
+			} catch let error {
+				print("parse error: \(error.localizedDescription)")
+			}
+		} else {
+			print("Invalid filename/path.")
+		}
+		
         userDefaults.set(uuid, forKey: "userID")
     }
     
@@ -69,10 +85,13 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
         // Dispose of any resources that can be recreated.
     }
 	
+	var selectedSchool = String()
+	
 	func onClickItemSuggestionsView(item: String) {
 		print("User touched this item: "+item)
 		self.schoolSearchBar.searchBarTextDidEndEditing(self.schoolSearchBar)
 		self.schoolSearchBar.text = item
+		selectedSchool = item
 	}
 
 

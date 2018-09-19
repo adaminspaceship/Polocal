@@ -29,7 +29,7 @@ class MainViewController: UIViewController {
         falsePercentageLabel.isHidden = true
         truePercentageLabel.isHidden = true
         // instead of child blich change it to user defaults uid
-        ref = Database.database().reference().child("Posts").child("blich")
+        ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
         ref.observeSingleEvent(of: .value) { (snapshot) in
             print(snapshot.childrenCount) // I got the expected number of items
             let enumerator = snapshot.children
@@ -45,9 +45,6 @@ class MainViewController: UIViewController {
 			let currentPost = self.Posts[self.postCount]
 			self.questionLabel.text = currentPost.question
         }
-		
-		
-		
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,7 +77,7 @@ class MainViewController: UIViewController {
         let currentPost = Posts[postCount]
         let falseAnswers = currentPost.falseAnswers
         let newFalseAnswers = falseAnswers+1
-        ref = Database.database().reference().child("Posts").child("blich")
+		ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
         ref.child(currentPost.postID).child("answers").child("false").setValue(newFalseAnswers)
         let sum = newFalseAnswers+currentPost.trueAnswers
 		let falsePercentage = Int((Double(newFalseAnswers)/Double(sum))*100)
@@ -99,7 +96,7 @@ class MainViewController: UIViewController {
         let currentPost = Posts[postCount]
         let trueAnswers = currentPost.trueAnswers
         let newTrueAnswers = trueAnswers+1
-        ref = Database.database().reference().child("Posts").child("blich")
+        ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
         ref.child(currentPost.postID).child("answers").child("true").setValue(newTrueAnswers)
         let sum = currentPost.falseAnswers+newTrueAnswers
 		let truePercentage = Int((Double(newTrueAnswers)/Double(sum))*100)

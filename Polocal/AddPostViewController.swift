@@ -37,7 +37,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 		let userID = userDefaults.string(forKey: "userID")
 		let uuid = UUID().uuidString
 		let time = Int(Date().timeIntervalSince1970)
-		let postRef = ref.child("Posts").child("blich").child(uuid)
+		let postRef = ref.child("Posts").child(userDefaults.string(forKey: "schoolSemel")!).child(uuid)
 		postRef.child("answers").child("false").setValue(0)
 		postRef.child("answers").child("true").setValue(0)
 		postRef.child("question").setValue(questionTextView.text ?? "nil") // if nil alert the user
