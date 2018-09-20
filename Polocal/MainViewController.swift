@@ -21,6 +21,7 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var placeholderQuestion: UIView!
 	@IBOutlet weak var falseButton: UIButton!
 	@IBOutlet weak var trueButton: UIButton!
+	@IBOutlet weak var answerView: UIView!
 	
     var Posts = [Post]()
     var postCount = -1
@@ -150,7 +151,7 @@ class MainViewController: UIViewController {
 	
 	func showPercentage(falsePercentage: Int, truePercentage: Int) {
 		if falsePercentage>truePercentage {
-			let num = 319/(100/Double(falsePercentage))
+			let num = Double(self.answerView.frame.width)/(100/Double(falsePercentage))
 			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
 				self.falseView.frame.size.width = CGFloat(num)
 			}) { (complete) in
@@ -161,7 +162,7 @@ class MainViewController: UIViewController {
                 self.checkRead(postID: currentPost.postID, greaterPerc: "false", num: num)
 			}
 		} else if truePercentage>falsePercentage {
-			let num = 324/(100/Double(truePercentage))
+			let num = Double(self.answerView.frame.width)/(100/Double(truePercentage))
 			self.trueView.isHidden = false
 			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
 				for _ in 0...Int(num) {
@@ -177,7 +178,7 @@ class MainViewController: UIViewController {
 		} else {
 			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
 				self.falseView.frame.size.width = CGFloat(162)
-				for _ in 0...162 {
+				for _ in 0...Int(self.answerView.frame.width/2) {
 					self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
 				}
 			}) { (complete) in

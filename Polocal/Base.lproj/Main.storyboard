@@ -29,13 +29,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQo-io-eMU">
-                                        <rect key="frame" x="194" y="329" width="27" height="31"/>
+                                        <rect key="frame" x="193.66666666666666" y="329" width="28" height="30"/>
                                         <color key="textColor" red="0.0039215686269999999" green="0.60392156860000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bpx-hw-OCX">
-                                        <rect key="frame" x="8" y="326" width="398" height="36"/>
+                                        <rect key="frame" x="8" y="326" width="398" height="35"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -45,7 +45,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="PYr-S7-l0t" customClass="ModernSearchBar" customModule="ModernSearchBar">
-                                        <rect key="frame" x="0.0" y="317" width="414" height="56"/>
+                                        <rect key="frame" x="0.0" y="316.66666666666669" width="414" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="הכנס בית ספר" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALZ-jz-hWl">
@@ -58,7 +58,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hh0-v2-mR4">
-                                        <rect key="frame" x="145" y="457" width="124" height="56"/>
+                                        <rect key="frame" x="145" y="456.66666666666669" width="124" height="56.000000000000057"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="124" id="HCd-Cv-ySA"/>
@@ -311,7 +311,7 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buF-xp-MVW">
-                                                        <rect key="frame" x="7" y="67" width="38" height="20.333333333333329"/>
+                                                        <rect key="frame" x="7" y="67" width="38" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="38" id="vtr-nn-pRQ"/>
                                                         </constraints>
@@ -320,7 +320,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmh-hN-eb9">
-                                                        <rect key="frame" x="233" y="65.666666666666686" width="39" height="20.333333333333329"/>
+                                                        <rect key="frame" x="233" y="66" width="39" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="39" id="8Ki-tU-OWo"/>
                                                         </constraints>
@@ -424,6 +424,7 @@
                         <viewLayoutGuide key="safeArea" id="taK-UK-5Xk"/>
                     </view>
                     <connections>
+                        <outlet property="answerView" destination="4bp-tY-STs" id="6rk-Qn-xbd"/>
                         <outlet property="falseButton" destination="uoM-S4-VJb" id="Rau-Z2-6TD"/>
                         <outlet property="falsePercentageLabel" destination="buF-xp-MVW" id="m3E-mN-Vle"/>
                         <outlet property="falseView" destination="qlT-J8-Dwx" id="yje-gJ-DHc"/>
@@ -436,7 +437,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nGB-wD-WNX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1127.2" y="-639.13043478260875"/>
+            <point key="canvasLocation" x="1126.0869565217392" y="-639.13043478260875"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="gQl-5U-7kz">
