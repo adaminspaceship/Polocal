@@ -41,8 +41,6 @@ class MainViewController: UIViewController {
                 self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: rest.key))
 				self.postCount += 1
             }
-			let currentPost = self.Posts[self.postCount]
-			self.questionLabel.text = currentPost.question
 			self.readNewPost()
 		}
     }
@@ -63,25 +61,11 @@ class MainViewController: UIViewController {
     */
 
 	func readNewPost() {
-		ref = Database.database().reference()
-		ref.child(UserDefaults.standard.string(forKey: "userID")!).child("readPosts").observeSingleEvent(of: .value) { (snapshot) in
-			for rest in snapshot.children.allObjects as! [DataSnapshot] {
-				let postID = rest.key
-				print(postID)
-				let currentPost = self.Posts[self.postCount]
-				if currentPost.postID != postID {
-					self.questionLabel.text = currentPost.question
-					self.postCount -= 1
-				}else {
-					print("already voted on...")
-					self.postCount -= 1
-					self.readNewPost()
-				}
-			}
-		}
-        truePercentageLabel.isHidden = true
-        falsePercentageLabel.isHidden = true
-    }
+		let currentPost = Posts[postCount]
+		self.questionLabel.text = currentPost.question
+		truePercentageLabel.isHidden = true
+		falsePercentageLabel.isHidden = true
+	}
     
     @IBAction func falseAnswerButtonTapped(_ sender: Any) {
         let currentPost = Posts[postCount]
@@ -98,8 +82,8 @@ class MainViewController: UIViewController {
         falsePercentageLabel.text = "\(String(falsePercentage))%"
         showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
 		didReadPost(postID: currentPost.postID, answer: "false")
+		postCount -= 1
     }
-    
     var timer = Timer()
     
     
@@ -118,6 +102,7 @@ class MainViewController: UIViewController {
         falsePercentageLabel.text = "\(String(falsePercentage))%"
 		showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
 		didReadPost(postID: currentPost.postID, answer: "true")
+		postCount -= 1
     }
 	
 	
