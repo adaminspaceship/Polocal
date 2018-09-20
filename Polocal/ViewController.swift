@@ -68,6 +68,7 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 					if schoolName == selectedSchool {
 						ref.child(uuid).child("school").setValue(jsonObj[i]["semel"].stringValue)
 						userDefaults.set(jsonObj[i]["semel"].stringValue, forKey: "schoolSemel")
+                        performSegue(withIdentifier: "toMain", sender: self)
 					}
 				}
 			} catch let error {

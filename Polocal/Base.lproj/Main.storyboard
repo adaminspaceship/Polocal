@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3BQ-Ue-jRW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="giN-7n-CL4">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -32,8 +32,8 @@
                                         <rect key="frame" x="147" y="425" width="124" height="56"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="124" id="HaB-R2-q3L"/>
-                                            <constraint firstAttribute="height" constant="56" id="add-Dn-rJQ"/>
+                                            <constraint firstAttribute="height" constant="56" id="2mz-Wz-Vod"/>
+                                            <constraint firstAttribute="width" constant="124" id="43A-cA-udB"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="39"/>
                                         <state key="normal" title="התחל">
@@ -52,7 +52,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="בחר בית ספר" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALZ-jz-hWl">
                                         <rect key="frame" x="38" y="236" width="338" height="86"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="86" id="c5d-DM-gk6"/>
+                                            <constraint firstAttribute="height" constant="86" id="WKq-fK-axs"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="68"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -64,9 +64,8 @@
                                         <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bpx-hw-OCX">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bpx-hw-OCX">
                                         <rect key="frame" x="8" y="326" width="398" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -75,22 +74,28 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="PYr-S7-l0t" customClass="ModernSearchBar" customModule="ModernSearchBar">
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="PYr-S7-l0t" customClass="ModernSearchBar" customModule="ModernSearchBar">
                                         <rect key="frame" x="0.0" y="316" width="414" height="56"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="leading" secondItem="JQo-io-eMU" secondAttribute="leading" id="6kG-8B-5sO"/>
-                                    <constraint firstItem="JQo-io-eMU" firstAttribute="top" secondItem="ALZ-jz-hWl" secondAttribute="bottom" constant="7" id="EI8-eL-SGw"/>
-                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="top" secondItem="UJx-J5-03q" secondAttribute="top" constant="236" id="Eap-KL-7og"/>
-                                    <constraint firstItem="Hh0-v2-mR4" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" constant="147" id="INn-63-KeD"/>
-                                    <constraint firstItem="Hh0-v2-mR4" firstAttribute="top" secondItem="JQo-io-eMU" secondAttribute="bottom" constant="65" id="Lmf-eV-BJG"/>
-                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="trailing" secondItem="JQo-io-eMU" secondAttribute="trailing" id="PQ1-vo-2Cv"/>
-                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="centerX" secondItem="UJx-J5-03q" secondAttribute="centerX" id="c6f-aA-EaX"/>
-                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" constant="38" id="lQx-Ve-nBD"/>
+                                    <constraint firstItem="Hh0-v2-mR4" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" constant="147" id="0jw-h6-7br"/>
+                                    <constraint firstItem="Bpx-hw-OCX" firstAttribute="top" secondItem="ALZ-jz-hWl" secondAttribute="bottom" constant="4" id="1FA-TA-8S3"/>
+                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" id="2JS-1w-ZsT"/>
+                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="centerY" secondItem="JQo-io-eMU" secondAttribute="centerY" id="9kN-R1-HFb"/>
+                                    <constraint firstItem="Bpx-hw-OCX" firstAttribute="centerY" secondItem="JQo-io-eMU" secondAttribute="centerY" id="I2R-ic-bhO"/>
+                                    <constraint firstItem="Bpx-hw-OCX" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leadingMargin" id="JO9-dg-Sak"/>
+                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="leading" secondItem="JQo-io-eMU" secondAttribute="leading" id="Og0-A5-4OL"/>
+                                    <constraint firstAttribute="trailing" secondItem="PYr-S7-l0t" secondAttribute="trailing" id="PLl-L0-w4P"/>
+                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="centerX" secondItem="Bpx-hw-OCX" secondAttribute="centerX" id="aVL-YU-Dno"/>
+                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="trailing" secondItem="JQo-io-eMU" secondAttribute="trailing" id="bxZ-Q6-dkc"/>
+                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="top" secondItem="UJx-J5-03q" secondAttribute="top" constant="236" id="byQ-ek-3Yc"/>
+                                    <constraint firstItem="JQo-io-eMU" firstAttribute="top" secondItem="ALZ-jz-hWl" secondAttribute="bottom" constant="7" id="gmi-zw-LcH"/>
+                                    <constraint firstItem="Bpx-hw-OCX" firstAttribute="centerX" secondItem="JQo-io-eMU" secondAttribute="centerX" id="i6A-1d-SmG"/>
+                                    <constraint firstItem="Hh0-v2-mR4" firstAttribute="top" secondItem="PYr-S7-l0t" secondAttribute="bottom" constant="53" id="ixq-92-3YA"/>
+                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" constant="38" id="z8o-uT-t58"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -110,16 +115,17 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="UJx-J5-03q" secondAttribute="trailing" id="TQg-1B-1kS"/>
-                            <constraint firstItem="UJx-J5-03q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="c7N-PK-Ll3"/>
-                            <constraint firstItem="UJx-J5-03q" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rIw-CM-nqh"/>
-                            <constraint firstItem="UJx-J5-03q" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="w3z-iw-1ZN"/>
+                            <constraint firstItem="UJx-J5-03q" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MVl-va-5Wu"/>
+                            <constraint firstItem="UJx-J5-03q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="RTp-4U-qKy"/>
+                            <constraint firstAttribute="trailing" secondItem="UJx-J5-03q" secondAttribute="trailing" id="egp-NK-DAk"/>
+                            <constraint firstItem="UJx-J5-03q" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ntt-9I-ZS7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="schoolSearchBar" destination="PYr-S7-l0t" id="Mjk-Ig-2ve"/>
                         <outlet property="schoolTextField" destination="JQo-io-eMU" id="qdw-CI-q9E"/>
+                        <segue destination="giN-7n-CL4" kind="show" identifier="toMain" id="hyX-TW-1rF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -141,7 +147,7 @@
                                         <rect key="frame" x="48" y="387" width="319" height="136"/>
                                         <subviews>
                                             <view alpha="0.25" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fP-sh-Njy">
-                                                <rect key="frame" x="319" y="0.0" width="0.0" height="137"/>
+                                                <rect key="frame" x="324" y="0.0" width="325" height="137"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
@@ -648,4 +654,7 @@
         <image name="plusIcon" width="46" height="46"/>
         <image name="plusIconGray" width="46" height="46"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="hyX-TW-1rF"/>
+    </inferredMetricsTieBreakers>
 </document>

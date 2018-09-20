@@ -62,8 +62,28 @@ class MainViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-	func checkRead(postID: String) {
-		ref = Database.database().reference()
+    func checkRead(postID: String, greaterPerc: String? = "true" ,num: Double? = 0.0) {
+        if greaterPerc == "true" {
+            UIView.animate(withDuration: 0.5) {
+                for _ in 0...Int(num!) {
+                    self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
+                }
+            }
+        } else if greaterPerc == "false" {
+            UIView.animate(withDuration: 0.5) {
+                self.falseView.frame.size.width = 0
+            }
+        } else if greaterPerc == "equals"{
+            UIView.animate(withDuration: 0.5) {
+                self.falseView.frame.size.width = 0
+                for _ in 0...162 {
+                    self.trueView.center = CGPoint(x: self.trueView.center.x+1, y: self.trueView.center.y)
+                }
+            }
+        }
+        
+        
+        ref = Database.database().reference()
 		ref.child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(postID).child("usersRead").observeSingleEvent(of: .value) { (snapshot) in
 			for rest in snapshot.children.allObjects as! [DataSnapshot] {
 				let userID = rest.value as! String
@@ -72,14 +92,10 @@ class MainViewController: UIViewController {
 					self.placeholderQuestion.isHidden = false
 					self.falseButton.isEnabled = false
 					self.trueButton.isEnabled = false
-					self.truePercentageLabel.isHidden = true
-					self.falsePercentageLabel.isHidden = true
 					break
 				} else {
 					let currentPost = self.Posts[self.postCount]
 					self.questionLabel.text = currentPost.question
-					self.truePercentageLabel.isHidden = true
-					self.falsePercentageLabel.isHidden = true
 				}
 			}
 			
@@ -132,67 +148,44 @@ class MainViewController: UIViewController {
 		ref.child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(postID).child("usersRead").childByAutoId().setValue(UserDefaults.standard.string(forKey: "userID")!)
 	}
 	
-	
-	
-	
 	func showPercentage(falsePercentage: Int, truePercentage: Int) {
 		if falsePercentage>truePercentage {
 			let num = 319/(100/Double(falsePercentage))
 			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
 				self.falseView.frame.size.width = CGFloat(num)
 			}) { (complete) in
-				sleep(2)
-				UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-					for _ in 0...Int(num) {
-						self.falseView.frame.size.width = 0
-					}
-				}) { (complete) in
-					let currentPost = self.Posts[self.postCount]
-					self.checkRead(postID: currentPost.postID)
-				}
-				
+                sleep(3)
+                self.truePercentageLabel.isHidden = true
+                self.falsePercentageLabel.isHidden = true
+                let currentPost = self.Posts[self.postCount]
+                self.checkRead(postID: currentPost.postID, greaterPerc: "true", num: num)
 			}
-		}else if truePercentage>falsePercentage {
-			let num = 319/(100/Double(truePercentage))
+		} else if truePercentage>falsePercentage {
+			let num = 324/(100/Double(truePercentage))
 			self.trueView.isHidden = false
 			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
 				for _ in 0...Int(num) {
-					self.trueView.frame.size.width += 1
-					self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
+                    self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
 				}
 			}) { (complete) in
-				sleep(2)
-				UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-					for _ in 0...Int(num) {
-						self.trueView.frame.size.width -= 1
-						self.trueView.center = CGPoint(x: self.trueView.center.x+1, y: self.trueView.center.y)
-					}
-				}){ (complete) in
-					let currentPost = self.Posts[self.postCount]
-					self.checkRead(postID: currentPost.postID)
-				}
-				
+                sleep(3)
+                self.truePercentageLabel.isHidden = true
+                self.falsePercentageLabel.isHidden = true
+                let currentPost = self.Posts[self.postCount]
+                self.checkRead(postID: currentPost.postID, greaterPerc: "false", num: num)
 			}
 		} else {
 			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
-				self.falseView.frame.size.width = CGFloat(160)
-				for _ in 0...160 {
-					self.trueView.frame.size.width += 1
+				self.falseView.frame.size.width = CGFloat(162)
+				for _ in 0...162 {
 					self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
 				}
 			}) { (complete) in
-				sleep(2)
-				UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-					for _ in 0...160 {
-						self.falseView.frame.size.width = 0
-						self.trueView.frame.size.width -= 1
-						self.trueView.center = CGPoint(x: self.trueView.center.x+1, y: self.trueView.center.y)
-					}
-				}) { (complete) in
-					let currentPost = self.Posts[self.postCount]
-					self.checkRead(postID: currentPost.postID)
-				}
-				
+                sleep(3)
+                self.truePercentageLabel.isHidden = true
+                self.falsePercentageLabel.isHidden = true
+                let currentPost = self.Posts[self.postCount]
+                self.checkRead(postID: currentPost.postID, greaterPerc: "equals")
 			}
 			
 		}
