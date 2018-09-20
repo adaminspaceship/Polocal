@@ -66,7 +66,7 @@ class MainViewController: UIViewController {
         if greaterPerc == "true" {
             UIView.animate(withDuration: 0.5) {
                 for _ in 0...Int(num!) {
-                    self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
+                    self.trueView.center = CGPoint(x: self.trueView.center.x+1, y: self.trueView.center.y)
                 }
             }
         } else if greaterPerc == "false" {
@@ -158,7 +158,7 @@ class MainViewController: UIViewController {
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
                 let currentPost = self.Posts[self.postCount]
-                self.checkRead(postID: currentPost.postID, greaterPerc: "true", num: num)
+                self.checkRead(postID: currentPost.postID, greaterPerc: "false", num: num)
 			}
 		} else if truePercentage>falsePercentage {
 			let num = 324/(100/Double(truePercentage))
@@ -172,7 +172,7 @@ class MainViewController: UIViewController {
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
                 let currentPost = self.Posts[self.postCount]
-                self.checkRead(postID: currentPost.postID, greaterPerc: "false", num: num)
+                self.checkRead(postID: currentPost.postID, greaterPerc: "true", num: num)
 			}
 		} else {
 			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
