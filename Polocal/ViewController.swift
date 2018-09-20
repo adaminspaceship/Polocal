@@ -18,9 +18,18 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
     @IBOutlet var schoolTextField: UITextField!
 	@IBOutlet weak var schoolSearchBar: ModernSearchBar!
 	
+	func isKeyPresentInUserDefaults(key: String) -> Bool {
+		return UserDefaults.standard.object(forKey: key) != nil
+	}
 
+	override func viewDidAppear(_ animated: Bool) {
+		if isKeyPresentInUserDefaults(key: "userID") {
+			performSegue(withIdentifier: "toMain", sender: self)
+		}
+	}
     override func viewDidLoad() {
         super.viewDidLoad()
+		
         // Do any additional setup after loading the view, typically from a nib.
         ref = Database.database().reference()
 		self.schoolSearchBar.delegateModernSearchBar = self
