@@ -41,7 +41,7 @@ class MainViewController: UIViewController {
                 self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: rest.key))
 				self.postCount += 1
             }
-			self.readNewPost()
+			self.checkRead(postID: self.Posts[self.postCount].postID)
 		}
     }
     override func didReceiveMemoryWarning() {
@@ -65,6 +65,24 @@ class MainViewController: UIViewController {
 		self.questionLabel.text = currentPost.question
 		truePercentageLabel.isHidden = true
 		falsePercentageLabel.isHidden = true
+	}
+	
+	func checkRead(postID: String) {
+		ref = Database.database().reference()
+		ref.child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(postID).child("usersRead").observeSingleEvent(of: .value) { (snapshot) in
+			for rest in snapshot.children.allObjects as! [DataSnapshot] {
+				let userID = rest.value as! String
+				if UserDefaults.standard.string(forKey: "userID") == userID {
+					print("error")
+				} else {
+					let currentPost = self.Posts[self.postCount]
+					self.questionLabel.text = currentPost.question
+					self.truePercentageLabel.isHidden = true
+					self.falsePercentageLabel.isHidden = true
+				}
+			}
+			
+		}
 	}
     
     @IBAction func falseAnswerButtonTapped(_ sender: Any) {
@@ -109,7 +127,8 @@ class MainViewController: UIViewController {
 	
 	func didReadPost(postID: String, answer: String) {
 		ref = Database.database().reference()
-		ref.child(UserDefaults.standard.string(forKey: "userID")!).child("readPosts").child(postID).setValue(answer)
+//		ref.child(UserDefaults.standard.string(forKey: "userID")!).child("readPosts").child(postID).setValue(answer)
+		ref.child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(postID).child("usersRead").childByAutoId().setValue(UserDefaults.standard.string(forKey: "userID")!)
 	}
 	
 	
@@ -127,7 +146,8 @@ class MainViewController: UIViewController {
 						self.falseView.frame.size.width = 0
 					}
 				}) { (complete) in
-					self.readNewPost()
+					let currentPost = self.Posts[self.postCount]
+					self.checkRead(postID: currentPost.postID)
 				}
 				
 			}
@@ -147,7 +167,8 @@ class MainViewController: UIViewController {
 						self.trueView.center = CGPoint(x: self.trueView.center.x+1, y: self.trueView.center.y)
 					}
 				}){ (complete) in
-					self.readNewPost()
+					let currentPost = self.Posts[self.postCount]
+					self.checkRead(postID: currentPost.postID)
 				}
 				
 			}
@@ -167,7 +188,8 @@ class MainViewController: UIViewController {
 						self.trueView.center = CGPoint(x: self.trueView.center.x+1, y: self.trueView.center.y)
 					}
 				}) { (complete) in
-					self.readNewPost()
+					let currentPost = self.Posts[self.postCount]
+					self.checkRead(postID: currentPost.postID)
 				}
 				
 			}
