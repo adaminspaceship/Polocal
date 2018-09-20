@@ -139,7 +139,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y2G-lN-nIz" customClass="GradientView" customModule="Polocal" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2G-lN-nIz" customClass="GradientView" customModule="Polocal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdv-O6-nb7">
@@ -322,12 +322,12 @@
                         <constraints>
                             <constraint firstItem="Y2G-lN-nIz" firstAttribute="top" secondItem="Tx9-IJ-ldI" secondAttribute="top" id="91A-Mn-ySg"/>
                             <constraint firstItem="Y2G-lN-nIz" firstAttribute="trailing" secondItem="taK-UK-5Xk" secondAttribute="trailing" id="A0n-MM-tzJ"/>
-                            <constraint firstItem="Y2G-lN-nIz" firstAttribute="bottom" secondItem="taK-UK-5Xk" secondAttribute="bottom" id="A38-zx-GMs"/>
+                            <constraint firstItem="Y2G-lN-nIz" firstAttribute="bottom" secondItem="taK-UK-5Xk" secondAttribute="bottom" constant="49" id="A38-zx-GMs"/>
                             <constraint firstItem="Y2G-lN-nIz" firstAttribute="leading" secondItem="taK-UK-5Xk" secondAttribute="leading" id="Ehi-0w-W5f"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="taK-UK-5Xk"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="graphGray" selectedImage="graph" id="I4p-rG-1uV"/>
+                    <tabBarItem key="tabBarItem" title="" image="plusIconGray" selectedImage="plusIcon" id="I4p-rG-1uV"/>
                     <connections>
                         <outlet property="answerView" destination="4bp-tY-STs" id="6rk-Qn-xbd"/>
                         <outlet property="falseButton" destination="uoM-S4-VJb" id="Rau-Z2-6TD"/>
@@ -410,8 +410,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uwW-XB-ThT" customClass="GradientView" customModule="Polocal" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uwW-XB-ThT" customClass="GradientView" customModule="Polocal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCW-Ti-R43">
                                         <rect key="frame" x="48" y="164" width="279" height="86"/>
@@ -447,7 +447,7 @@
                                     <constraint firstItem="MCW-Ti-R43" firstAttribute="top" secondItem="uwW-XB-ThT" secondAttribute="top" constant="164" id="7dx-sh-Zz2"/>
                                     <constraint firstItem="MCW-Ti-R43" firstAttribute="leading" secondItem="uwW-XB-ThT" secondAttribute="leading" constant="48" id="GQ3-Jy-mRJ"/>
                                     <constraint firstItem="MCW-Ti-R43" firstAttribute="centerX" secondItem="uwW-XB-ThT" secondAttribute="centerX" id="YPU-rG-HRb"/>
-                                    <constraint firstAttribute="bottom" secondItem="MCW-Ti-R43" secondAttribute="bottom" constant="368" id="vmG-PP-TMK"/>
+                                    <constraint firstAttribute="bottom" secondItem="MCW-Ti-R43" secondAttribute="bottom" constant="417" id="vmG-PP-TMK"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -489,7 +489,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="uwW-XB-ThT" firstAttribute="bottom" secondItem="mrl-oL-YHP" secondAttribute="bottom" id="62q-xU-xpH"/>
+                            <constraint firstItem="uwW-XB-ThT" firstAttribute="bottom" secondItem="mrl-oL-YHP" secondAttribute="bottom" constant="49" id="62q-xU-xpH"/>
                             <constraint firstAttribute="trailing" secondItem="uwW-XB-ThT" secondAttribute="trailing" id="DXX-AD-xhO"/>
                             <constraint firstItem="uwW-XB-ThT" firstAttribute="top" secondItem="X8L-Nk-IO6" secondAttribute="top" id="QAW-1M-aem"/>
                             <constraint firstItem="uwW-XB-ThT" firstAttribute="leading" secondItem="X8L-Nk-IO6" secondAttribute="leading" id="qeN-Xz-Sd2"/>
@@ -498,7 +498,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mrl-oL-YHP"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="plusIconGray" selectedImage="plusIcon" id="KH8-fQ-8U6"/>
+                    <tabBarItem key="tabBarItem" title="" image="graphGray" selectedImage="graph" id="KH8-fQ-8U6"/>
                     <connections>
                         <outlet property="questionTextView" destination="Udo-XD-rm8" id="A7z-8c-dmG"/>
                     </connections>
@@ -535,7 +535,6 @@
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="k0N-RJ-2uL">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="giN-7n-CL4" kind="relationship" relationship="viewControllers" id="QXi-Ib-bd0"/>
@@ -548,10 +547,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="graph" width="33" height="46"/>
-        <image name="graphGray" width="33" height="46"/>
+        <image name="graph" width="30" height="30"/>
+        <image name="graphGray" width="30" height="30"/>
         <image name="menuIcon" width="15" height="15"/>
-        <image name="plusIcon" width="46" height="46"/>
-        <image name="plusIconGray" width="46" height="46"/>
+        <image name="plusIcon" width="30" height="30"/>
+        <image name="plusIconGray" width="30" height="30"/>
     </resources>
 </document>
