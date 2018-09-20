@@ -10,6 +10,9 @@ pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'SwiftyJSON', '~> 4.0'
 pod 'ModernSearchBar'
+pod 'SideMenu'
+
+
 target 'PolocalTests' do
     inherit! :search_paths
     # Pods for testing

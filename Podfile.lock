@@ -53,12 +53,14 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - SideMenu (4.0.0)
   - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - ModernSearchBar
+  - SideMenu
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
@@ -73,6 +75,7 @@ SPEC REPOS:
     - leveldb-library
     - ModernSearchBar
     - nanopb
+    - SideMenu
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -86,8 +89,9 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   ModernSearchBar: 5dd19c94b1e04f1f83dd9b9950d05153ef2535e5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 8f2895ad756bf009329002d0d7efbf8ae35beea0
+PODFILE CHECKSUM: bb9218e28297db6c04c992b541511520dd38a41c
 
 COCOAPODS: 1.5.3

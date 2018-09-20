@@ -68,10 +68,12 @@ class MainViewController: UIViewController {
 			for rest in snapshot.children.allObjects as! [DataSnapshot] {
 				let userID = rest.value as! String
 				if UserDefaults.standard.string(forKey: "userID") == userID {
-					print("error")
+					print("error, no more polls")
 					self.placeholderQuestion.isHidden = false
 					self.falseButton.isEnabled = false
 					self.trueButton.isEnabled = false
+					self.truePercentageLabel.isHidden = true
+					self.falsePercentageLabel.isHidden = true
 					break
 				} else {
 					let currentPost = self.Posts[self.postCount]
