@@ -20,7 +20,7 @@ class MainViewController: UIViewController {
     @IBOutlet var falseView: UIView!
     
     var Posts = [Post]()
-    var postCount = 0
+    var postCount = -1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,14 +39,13 @@ class MainViewController: UIViewController {
                 let falseAnswers = json["answers"]["false"].intValue
                 let trueAnswers = json["answers"]["true"].intValue
                 self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: rest.key))
-				
+				self.postCount += 1
             }
-			self.postCount = self.Posts.count-1
 			let currentPost = self.Posts[self.postCount]
 			self.questionLabel.text = currentPost.question
-        }
+			self.readNewPost()
+		}
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,10 +63,21 @@ class MainViewController: UIViewController {
     */
 
 	func readNewPost() {
-        postCount -= 1
-        let currentPost = Posts[postCount]
-		UIView.animate(withDuration: 3) {
-			self.questionLabel.text = currentPost.question
+		ref = Database.database().reference()
+		ref.child(UserDefaults.standard.string(forKey: "userID")!).child("readPosts").observeSingleEvent(of: .value) { (snapshot) in
+			for rest in snapshot.children.allObjects as! [DataSnapshot] {
+				let postID = rest.key
+				print(postID)
+				let currentPost = self.Posts[self.postCount]
+				if currentPost.postID != postID {
+					self.questionLabel.text = currentPost.question
+					self.postCount -= 1
+				}else {
+					print("already voted on...")
+					self.postCount -= 1
+					self.readNewPost()
+				}
+			}
 		}
         truePercentageLabel.isHidden = true
         falsePercentageLabel.isHidden = true
@@ -87,6 +97,7 @@ class MainViewController: UIViewController {
         truePercentageLabel.text = "\(String(truePercentage))%"
         falsePercentageLabel.text = "\(String(falsePercentage))%"
         showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
+		didReadPost(postID: currentPost.postID, answer: "false")
     }
     
     var timer = Timer()
@@ -106,11 +117,15 @@ class MainViewController: UIViewController {
         truePercentageLabel.text = "\(String(truePercentage))%"
         falsePercentageLabel.text = "\(String(falsePercentage))%"
 		showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
+		didReadPost(postID: currentPost.postID, answer: "true")
     }
 	
 	
 	
-	
+	func didReadPost(postID: String, answer: String) {
+		ref = Database.database().reference()
+		ref.child(UserDefaults.standard.string(forKey: "userID")!).child("readPosts").child(postID).setValue(answer)
+	}
 	
 	
 	
