@@ -18,7 +18,10 @@ class MainViewController: UIViewController {
     @IBOutlet var truePercentageLabel: UILabel!
     @IBOutlet var trueView: UIView!
     @IBOutlet var falseView: UIView!
-    
+	@IBOutlet weak var placeholderQuestion: UIView!
+	@IBOutlet weak var falseButton: UIButton!
+	@IBOutlet weak var trueButton: UIButton!
+	
     var Posts = [Post]()
     var postCount = -1
 
@@ -66,7 +69,10 @@ class MainViewController: UIViewController {
 				let userID = rest.value as! String
 				if UserDefaults.standard.string(forKey: "userID") == userID {
 					print("error")
-					break //works!
+					self.placeholderQuestion.isHidden = false
+					self.falseButton.isEnabled = false
+					self.trueButton.isEnabled = false
+					break
 				} else {
 					let currentPost = self.Posts[self.postCount]
 					self.questionLabel.text = currentPost.question

@@ -238,6 +238,17 @@
                                                 <color key="textColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nOS-20-Q83">
+                                                <rect key="frame" x="16" y="51" width="286" height="72"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.88349160716888753" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -357,9 +368,12 @@
                         <viewLayoutGuide key="safeArea" id="taK-UK-5Xk"/>
                     </view>
                     <connections>
+                        <outlet property="falseButton" destination="uoM-S4-VJb" id="Rau-Z2-6TD"/>
                         <outlet property="falsePercentageLabel" destination="buF-xp-MVW" id="m3E-mN-Vle"/>
                         <outlet property="falseView" destination="qlT-J8-Dwx" id="yje-gJ-DHc"/>
+                        <outlet property="placeholderQuestion" destination="nOS-20-Q83" id="Zg0-3g-Z2O"/>
                         <outlet property="questionLabel" destination="MKQ-cJ-CCk" id="Fbl-Ub-cZ2"/>
+                        <outlet property="trueButton" destination="cTo-vn-rQP" id="bYk-6P-OlM"/>
                         <outlet property="truePercentageLabel" destination="Wmh-hN-eb9" id="bam-9m-55K"/>
                         <outlet property="trueView" destination="5fP-sh-Njy" id="Zjf-xj-WaA"/>
                     </connections>
