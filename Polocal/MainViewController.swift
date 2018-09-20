@@ -59,14 +59,6 @@ class MainViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-	func readNewPost() {
-		let currentPost = Posts[postCount]
-		self.questionLabel.text = currentPost.question
-		truePercentageLabel.isHidden = true
-		falsePercentageLabel.isHidden = true
-	}
-	
 	func checkRead(postID: String) {
 		ref = Database.database().reference()
 		ref.child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(postID).child("usersRead").observeSingleEvent(of: .value) { (snapshot) in
@@ -74,6 +66,7 @@ class MainViewController: UIViewController {
 				let userID = rest.value as! String
 				if UserDefaults.standard.string(forKey: "userID") == userID {
 					print("error")
+					break //works!
 				} else {
 					let currentPost = self.Posts[self.postCount]
 					self.questionLabel.text = currentPost.question
