@@ -24,6 +24,8 @@
 		99C987932150591A004F36F2 /* PolocalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C987922150591A004F36F2 /* PolocalUITests.swift */; };
 		99C987A12150606C004F36F2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99C987A02150606C004F36F2 /* GoogleService-Info.plist */; };
 		99C987A3215062B9004F36F2 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C987A2215062B9004F36F2 /* GradientView.swift */; };
+		99DC5E2F215AD22400C622EE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DC5E2E215AD22400C622EE /* ProfileViewController.swift */; };
+		99DC5E31215AD26100C622EE /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DC5E30215AD26100C622EE /* QuestionTableViewCell.swift */; };
 		C06F41A9EC1719C0E9CDC4DD /* Pods_PolocalUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD495A343E19164D0F25265 /* Pods_PolocalUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +72,8 @@
 		99C987942150591A004F36F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99C987A02150606C004F36F2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		99C987A2215062B9004F36F2 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		99DC5E2E215AD22400C622EE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		99DC5E30215AD26100C622EE /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		CE2C42D36D7953374386A5FD /* Pods-PolocalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolocalTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PolocalTests/Pods-PolocalTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DBFBD8011C555CB85F130D58 /* Pods-PolocalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolocalTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PolocalTests/Pods-PolocalTests.release.xcconfig"; sourceTree = "<group>"; };
 		DF883AE25207F34F784976CE /* Pods_Polocal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Polocal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +152,8 @@
 				9992801121507031006959A4 /* MainViewController.swift */,
 				996E39A02152EB9F00D9EF4B /* AddPostViewController.swift */,
 				99C9877321505912004F36F2 /* Main.storyboard */,
+				99DC5E30215AD26100C622EE /* QuestionTableViewCell.swift */,
+				99DC5E2E215AD22400C622EE /* ProfileViewController.swift */,
 				99C987792150591A004F36F2 /* Assets.xcassets */,
 				99C9877B2150591A004F36F2 /* LaunchScreen.storyboard */,
 				99C9877E2150591A004F36F2 /* Info.plist */,
@@ -418,6 +424,8 @@
 				99928014215080FE006959A4 /* Post.swift in Sources */,
 				99C9877021505912004F36F2 /* AppDelegate.swift in Sources */,
 				9992801221507031006959A4 /* MainViewController.swift in Sources */,
+				99DC5E31215AD26100C622EE /* QuestionTableViewCell.swift in Sources */,
+				99DC5E2F215AD22400C622EE /* ProfileViewController.swift in Sources */,
 				996E39A12152EB9F00D9EF4B /* AddPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
