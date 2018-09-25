@@ -43,7 +43,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 		postRef.child("answers").child("true").setValue(0)
 		postRef.child("question").setValue(questionTextView.text ?? "nil") // if nil alert the user
 		postRef.child("timestamp").setValue(time)
-		ref.child(userID!).child("Posts").child("postID").setValue(String(time))
+		ref.child(userID!).child("Posts").childByAutoId().setValue(String(time))
 	}
 	
     /*

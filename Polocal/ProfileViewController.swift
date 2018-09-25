@@ -7,17 +7,24 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import SwiftyJSON
 
 class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
+    var ref: DatabaseReference!
+    
+    var Posts = [Post]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return Posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "questionCell") as! QuestionTableViewCell
-        cell.questionLabel.text = "fa"
+        cell.questionLabel.text = Posts[indexPath.row].question
+        cell.backgroundColor = .clear
+        
         return cell
     }
     
@@ -26,7 +33,23 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let userID = UserDefaults.standard.string(forKey: "userID")!
+        let schoolSemel = UserDefaults.standard.string(forKey: "schoolSemel")!
+        ref = Database.database().reference()
+        ref.child(userID).child("Posts").observeSingleEvent(of: .value) { (snapshot) in
+            for rest in snapshot.children.allObjects as! [DataSnapshot] {
+                let postUID = rest.value
+                print(postUID)
+                self.ref.child("Posts").child(schoolSemel).child(postUID as! String).observeSingleEvent(of: .value, with: { (querySnapShot) in
+                    var finalJSON = JSON(querySnapShot.value)
+                    let falseAnswers = finalJSON["answers"]["false"].intValue
+                    let trueAnswers = finalJSON["answers"]["true"].intValue
+                    let question = finalJSON["question"].stringValue
+                    self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: postUID as! String))
+                    self.tableView.reloadData()
+                })
+            }
+        }
         // Do any additional setup after loading the view.
     }
     
