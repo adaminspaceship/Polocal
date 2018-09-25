@@ -28,6 +28,9 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+		swipeLeft.direction = .left
+		self.view.addGestureRecognizer(swipeLeft)
         let time = Int(Date().timeIntervalSince1970)
         print(time)
         falsePercentageLabel.isHidden = true
@@ -53,16 +56,13 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	@objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+		if gesture.direction == UISwipeGestureRecognizerDirection.left {
+			print("Swipe Left")
+			performSegue(withIdentifier: "toSideMenu", sender: self)
+		}
+		
+	}
     func checkRead(postID: String, greaterPerc: String? = "true" ,num: Double? = 0.0) {
         if greaterPerc == "true" {
             UIView.animate(withDuration: 0.5) {

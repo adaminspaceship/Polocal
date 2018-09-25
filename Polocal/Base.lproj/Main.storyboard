@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,7 +33,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bpx-hw-OCX">
-                                        <rect key="frame" x="8" y="326" width="359" height="36"/>
+                                        <rect key="frame" x="8" y="326" width="359" height="37"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -58,7 +56,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hh0-v2-mR4">
-                                        <rect key="frame" x="125" y="456.5" width="124" height="56"/>
+                                        <rect key="frame" x="125.5" y="456.5" width="124" height="56"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="124" id="HCd-Cv-ySA"/>
@@ -150,7 +148,7 @@
                                         </constraints>
                                         <state key="normal" image="menuIcon"/>
                                         <connections>
-                                            <segue destination="HSQ-8p-eNk" kind="presentation" id="QSR-Oz-dYi"/>
+                                            <segue destination="HSQ-8p-eNk" kind="presentation" identifier="toSideMenu" id="QSR-Oz-dYi"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="Yrl-DQ-OUD">
@@ -160,13 +158,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="204"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKQ-cJ-CCk">
-                                                        <rect key="frame" x="10" y="25" width="259" height="154"/>
+                                                        <rect key="frame" x="10" y="25" width="260" height="154"/>
                                                         <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="55"/>
                                                         <color key="textColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nOS-20-Q83">
-                                                        <rect key="frame" x="18" y="72" width="242" height="61"/>
+                                                        <rect key="frame" x="18" y="72" width="244" height="60"/>
                                                         <color key="backgroundColor" white="0.88349160716888753" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -200,7 +198,7 @@
                                                 <rect key="frame" x="0.0" y="235" width="280" height="91"/>
                                                 <subviews>
                                                     <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fP-sh-Njy">
-                                                        <rect key="frame" x="280" y="0.0" width="369" height="90"/>
+                                                        <rect key="frame" x="280" y="0.0" width="369" height="91"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlT-J8-Dwx">
@@ -208,13 +206,13 @@
                                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="כן" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="581-3p-qcB">
-                                                        <rect key="frame" x="171" y="2" width="92" height="86"/>
+                                                        <rect key="frame" x="172" y="2" width="91" height="87"/>
                                                         <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="100"/>
                                                         <color key="textColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTo-vn-rQP">
-                                                        <rect key="frame" x="155" y="0.0" width="125" height="90"/>
+                                                        <rect key="frame" x="155" y="0.0" width="125" height="91"/>
                                                         <connections>
                                                             <action selector="trueAnswerButtonTapped:" destination="giN-7n-CL4" eventType="touchUpInside" id="6SP-Gh-VBx"/>
                                                         </connections>
@@ -418,7 +416,7 @@
                                         <rect key="frame" x="48" y="164" width="279" height="114"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="כתוב שאלה" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Udo-XD-rm8">
-                                                <rect key="frame" x="10" y="14" width="259" height="87"/>
+                                                <rect key="frame" x="10" y="14" width="259" height="86"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="55"/>
@@ -443,7 +441,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRu-R0-a2X">
-                                        <rect key="frame" x="125" y="371" width="124" height="56"/>
+                                        <rect key="frame" x="125.5" y="371" width="124" height="56"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="JeL-Yl-Aqo"/>
@@ -462,6 +460,7 @@
                                         <connections>
                                             <action selector="doneButtonTapped:" destination="3BQ-Ue-jRW" eventType="touchUpInside" id="rdg-GI-dcl"/>
                                             <action selector="signUpButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eDT-b0-zbV"/>
+                                            <segue destination="4kx-cW-ior" kind="show" id="tgA-zF-t8K"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -555,4 +554,7 @@
         <image name="plusIcon" width="25" height="25"/>
         <image name="plusIconGray" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="tgA-zF-t8K"/>
+    </inferredMetricsTieBreakers>
 </document>
