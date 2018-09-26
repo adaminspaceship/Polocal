@@ -27,7 +27,8 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 		
     }
     override func viewDidAppear(_ animated: Bool) {
-        self.questionTextView.becomeFirstResponder()
+//        self.questionTextView.becomeFirstResponder()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,6 +48,8 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 		postRef.child("question").setValue(questionTextView.text ?? "nil") // if nil alert the user
 		postRef.child("timestamp").setValue(time)
 		ref.child(userID!).child("Posts").child(String(time)).setValue(String(time))
+        // share() release later...
+        performSegue(withIdentifier: "toMain", sender: self)
 	}
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -73,7 +76,27 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
     */
 	
 	
-	
+    func share(){
+        let firstActivityItem = "הרגע פרסמתי שאלה חדשה, תיכנס ותראה!"
+        let secondActivityItem : NSURL = NSURL(string: "http://google.com/")! // app url
+        
+        let activityViewController : UIActivityViewController = UIActivityViewController(
+            activityItems: [firstActivityItem, secondActivityItem], applicationActivities: nil)
+
+        
+        // Anything you want to exclude
+        activityViewController.excludedActivityTypes = [
+            UIActivityType.postToWeibo,
+            UIActivityType.print,
+            UIActivityType.assignToContact,
+            UIActivityType.saveToCameraRoll,
+            UIActivityType.addToReadingList,
+            UIActivityType.postToFlickr,
+            UIActivityType.postToVimeo,
+            UIActivityType.postToTencentWeibo
+        ]
+        self.present(activityViewController, animated: true, completion: nil)
+    }
 	
 	
 	func textViewDidBeginEditing(_ questionTextView: UITextView) {

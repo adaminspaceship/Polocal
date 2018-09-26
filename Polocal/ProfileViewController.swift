@@ -47,7 +47,6 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     override func viewDidAppear(_ animated: Bool) {
         Posts = []
-        activityIndicator.startAnimating()
         let userID = UserDefaults.standard.string(forKey: "userID")!
         let schoolSemel = UserDefaults.standard.string(forKey: "schoolSemel")!
         ref = Database.database().reference()

@@ -22,7 +22,9 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var falseButton: UIButton!
 	@IBOutlet weak var trueButton: UIButton!
 	@IBOutlet weak var answerView: UIView!
-	
+    @IBOutlet weak var trueLabel: UILabel!
+    @IBOutlet weak var falseLabel: UILabel!
+    
     var Posts = [Post]()
     var postCount = -1
 
@@ -50,6 +52,8 @@ class MainViewController: UIViewController {
             }
             if self.Posts.count == 0 {
                 self.placeholderQuestion.isHidden = false
+                self.falseLabel.textColor = .lightGray
+                self.trueLabel.textColor = .lightGray
             } else {
                 self.checkRead(postID: self.Posts[self.postCount].postID)
             }
@@ -69,6 +73,8 @@ class MainViewController: UIViewController {
 	}
     func checkRead(postID: String, greaterPerc: String? = "true" ,num: Double? = 0.0) {
         self.placeholderQuestion.isHidden = true
+        self.falseLabel.textColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
+        self.trueLabel.textColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
         if greaterPerc == "true" {
             UIView.animate(withDuration: 0.5) {
                 for _ in 0...Int(num!) {
@@ -96,6 +102,8 @@ class MainViewController: UIViewController {
 				if UserDefaults.standard.string(forKey: "userID") == userID {
 					print("error, no more polls")
 					self.placeholderQuestion.isHidden = false
+                    self.falseLabel.textColor = .lightGray
+                    self.trueLabel.textColor = .lightGray
 					self.falseButton.isEnabled = false
 					self.trueButton.isEnabled = false
 					break
@@ -165,6 +173,8 @@ class MainViewController: UIViewController {
                 self.falsePercentageLabel.isHidden = true
                 if self.Posts.count == 0 {
                     self.placeholderQuestion.isHidden = false
+                    self.falseLabel.textColor = .lightGray
+                    self.trueLabel.textColor = .lightGray
                 } else {
                     let currentPost = self.Posts[self.postCount]
                     self.checkRead(postID: currentPost.postID, greaterPerc: "false", num: num)
@@ -183,6 +193,8 @@ class MainViewController: UIViewController {
                 self.falsePercentageLabel.isHidden = true
                 if self.Posts.count == 0 {
                     self.placeholderQuestion.isHidden = false
+                    self.falseLabel.textColor = .lightGray
+                    self.trueLabel.textColor = .lightGray
                 } else {
                     let currentPost = self.Posts[self.postCount]
                     self.checkRead(postID: currentPost.postID, greaterPerc: "true", num: num)
@@ -200,6 +212,8 @@ class MainViewController: UIViewController {
                 self.falsePercentageLabel.isHidden = true
                 if self.Posts.count == 0 {
                     self.placeholderQuestion.isHidden = false
+                    self.falseLabel.textColor = .lightGray
+                    self.trueLabel.textColor = .lightGray
                 } else {
                     let currentPost = self.Posts[self.postCount]
                     self.checkRead(postID: currentPost.postID, greaterPerc: "equals")
