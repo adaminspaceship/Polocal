@@ -26,6 +26,9 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 		
 		
     }
+    override func viewDidAppear(_ animated: Bool) {
+        self.questionTextView.becomeFirstResponder()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -43,8 +46,21 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 		postRef.child("answers").child("true").setValue(0)
 		postRef.child("question").setValue(questionTextView.text ?? "nil") // if nil alert the user
 		postRef.child("timestamp").setValue(time)
-		ref.child(userID!).child("Posts").childByAutoId().setValue(String(time))
+		ref.child(userID!).child("Posts").child(String(time)).setValue(String(time))
 	}
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        questionTextView.resignFirstResponder()
+        return true
+    }
+    
+    
+    /**
+     * Called when the user click on the view (outside the UITextField).
+     */
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 	
     /*
     // MARK: - Navigation

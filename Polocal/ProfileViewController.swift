@@ -13,7 +13,6 @@ import SwiftyJSON
 class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     var ref: DatabaseReference!
-    
     var Posts = [Post]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -22,17 +21,33 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "questionCell") as! QuestionTableViewCell
-        cell.questionLabel.text = Posts[indexPath.row].question
+        let currentPost = Posts[indexPath.row]
+        cell.questionLabel.text = currentPost.question
         cell.backgroundColor = .clear
-        
+        let sum = currentPost.falseAnswers+currentPost.trueAnswers
+        if sum == 0 {
+            cell.falsePercentLabel.text = "0%"
+            cell.truePercentLabel.text = "0%"
+        } else {
+            let falsePercentage = Int((Double(currentPost.falseAnswers)/Double(sum))*100)
+            let truePercentage = Int(100-falsePercentage)
+            cell.falsePercentLabel.text = "\(falsePercentage)%"
+            cell.truePercentLabel.text = "\(truePercentage)%"
+        }
         return cell
     }
     
-
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        Posts = []
+        activityIndicator.startAnimating()
         let userID = UserDefaults.standard.string(forKey: "userID")!
         let schoolSemel = UserDefaults.standard.string(forKey: "schoolSemel")!
         ref = Database.database().reference()
@@ -50,10 +65,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 })
             }
         }
-        // Do any additional setup after loading the view.
     }
-    
-
     /*
     // MARK: - Navigation
 

@@ -48,7 +48,11 @@ class MainViewController: UIViewController {
                 self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: rest.key))
 				self.postCount += 1
             }
-			self.checkRead(postID: self.Posts[self.postCount].postID)
+            if self.Posts.count == 0 {
+                self.placeholderQuestion.isHidden = false
+            } else {
+                self.checkRead(postID: self.Posts[self.postCount].postID)
+            }
 		}
     }
     override func didReceiveMemoryWarning() {
@@ -64,6 +68,7 @@ class MainViewController: UIViewController {
 		
 	}
     func checkRead(postID: String, greaterPerc: String? = "true" ,num: Double? = 0.0) {
+        self.placeholderQuestion.isHidden = true
         if greaterPerc == "true" {
             UIView.animate(withDuration: 0.5) {
                 for _ in 0...Int(num!) {
@@ -158,8 +163,12 @@ class MainViewController: UIViewController {
                 sleep(3)
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
-                let currentPost = self.Posts[self.postCount]
-                self.checkRead(postID: currentPost.postID, greaterPerc: "false", num: num)
+                if self.Posts.count == 0 {
+                    self.placeholderQuestion.isHidden = false
+                } else {
+                    let currentPost = self.Posts[self.postCount]
+                    self.checkRead(postID: currentPost.postID, greaterPerc: "false", num: num)
+                }
 			}
 		} else if truePercentage>falsePercentage {
 			let num = Double(self.answerView.frame.width)/(100/Double(truePercentage))
@@ -172,8 +181,12 @@ class MainViewController: UIViewController {
                 sleep(3)
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
-                let currentPost = self.Posts[self.postCount]
-                self.checkRead(postID: currentPost.postID, greaterPerc: "true", num: num)
+                if self.Posts.count == 0 {
+                    self.placeholderQuestion.isHidden = false
+                } else {
+                    let currentPost = self.Posts[self.postCount]
+                    self.checkRead(postID: currentPost.postID, greaterPerc: "true", num: num)
+                }
 			}
 		} else {
 			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
@@ -185,8 +198,12 @@ class MainViewController: UIViewController {
                 sleep(3)
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
-                let currentPost = self.Posts[self.postCount]
-                self.checkRead(postID: currentPost.postID, greaterPerc: "equals")
+                if self.Posts.count == 0 {
+                    self.placeholderQuestion.isHidden = false
+                } else {
+                    let currentPost = self.Posts[self.postCount]
+                    self.checkRead(postID: currentPost.postID, greaterPerc: "equals")
+                }
 			}
 			
 		}
