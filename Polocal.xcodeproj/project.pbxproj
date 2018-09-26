@@ -26,6 +26,7 @@
 		99C987A3215062B9004F36F2 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C987A2215062B9004F36F2 /* GradientView.swift */; };
 		99DC5E2F215AD22400C622EE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DC5E2E215AD22400C622EE /* ProfileViewController.swift */; };
 		99DC5E31215AD26100C622EE /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DC5E30215AD26100C622EE /* QuestionTableViewCell.swift */; };
+		99ECD26F215B2DC300763AFA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 99ECD26E215B2DC200763AFA /* logo.png */; };
 		C06F41A9EC1719C0E9CDC4DD /* Pods_PolocalUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD495A343E19164D0F25265 /* Pods_PolocalUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		99C987A2215062B9004F36F2 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		99DC5E2E215AD22400C622EE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		99DC5E30215AD26100C622EE /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
+		99ECD26E215B2DC200763AFA /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		CE2C42D36D7953374386A5FD /* Pods-PolocalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolocalTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PolocalTests/Pods-PolocalTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DBFBD8011C555CB85F130D58 /* Pods-PolocalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolocalTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PolocalTests/Pods-PolocalTests.release.xcconfig"; sourceTree = "<group>"; };
 		DF883AE25207F34F784976CE /* Pods_Polocal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Polocal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +165,7 @@
 				99C987A2215062B9004F36F2 /* GradientView.swift */,
 				9992801521510589006959A4 /* almoni-neue-aaa-300.ttf */,
 				996E39A22153071900D9EF4B /* data.json */,
+				99ECD26E215B2DC200763AFA /* logo.png */,
 			);
 			path = Polocal;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				996E39A32153071900D9EF4B /* data.json in Resources */,
 				9992801621510592006959A4 /* almoni-neue-aaa-300.ttf in Resources */,
 				99C987A12150606C004F36F2 /* GoogleService-Info.plist in Resources */,
+				99ECD26F215B2DC300763AFA /* logo.png in Resources */,
 				99C9877A2150591A004F36F2 /* Assets.xcassets in Resources */,
 				99C9877521505912004F36F2 /* Main.storyboard in Resources */,
 			);

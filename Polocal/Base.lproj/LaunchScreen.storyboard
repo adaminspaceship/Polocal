@@ -18,12 +18,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="school" translatesAutoresizingMaskIntoConstraints="NO" id="JME-HI-MyL">
-                                <rect key="frame" x="67" y="174" width="240" height="232"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="JME-HI-MyL">
+                                <rect key="frame" x="67" y="213" width="241" height="241"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="JME-HI-MyL" secondAttribute="height" multiplier="1:1" id="H8e-wK-QSv"/>
+                                </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0039215686269999999" green="0.60392156860000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="JME-HI-MyL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="193" id="eY9-dp-ftt"/>
+                            <constraint firstItem="JME-HI-MyL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="67" id="gzb-tC-TIh"/>
+                            <constraint firstItem="JME-HI-MyL" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="o5D-7H-3z4"/>
+                            <constraint firstItem="JME-HI-MyL" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="r8Q-4d-eHW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -33,6 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="school" width="1000" height="1000"/>
+        <image name="logo" width="1251" height="1251"/>
     </resources>
 </document>

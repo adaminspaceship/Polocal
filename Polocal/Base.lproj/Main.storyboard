@@ -473,14 +473,23 @@
                                             <action selector="signUpButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eDT-b0-zbV"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="שאלה חדשה" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poO-cz-yi4">
+                                        <rect key="frame" x="93" y="28" width="188" height="48"/>
+                                        <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="40"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="MCW-Ti-R43" firstAttribute="leading" secondItem="uwW-XB-ThT" secondAttribute="leading" constant="48" id="5dD-aZ-XUo"/>
+                                    <constraint firstItem="poO-cz-yi4" firstAttribute="leading" secondItem="uwW-XB-ThT" secondAttribute="leading" constant="93" id="8jc-vm-Lg2"/>
                                     <constraint firstAttribute="bottom" secondItem="uRu-R0-a2X" secondAttribute="bottom" constant="240" id="Ygb-ol-6kp"/>
                                     <constraint firstItem="MCW-Ti-R43" firstAttribute="centerX" secondItem="uRu-R0-a2X" secondAttribute="centerX" id="a9j-tg-wGF"/>
+                                    <constraint firstItem="poO-cz-yi4" firstAttribute="centerX" secondItem="MCW-Ti-R43" secondAttribute="centerX" id="bCE-eI-4ul"/>
                                     <constraint firstItem="uRu-R0-a2X" firstAttribute="top" secondItem="MCW-Ti-R43" secondAttribute="bottom" constant="93" id="lgv-dr-9kb"/>
                                     <constraint firstItem="MCW-Ti-R43" firstAttribute="top" secondItem="uwW-XB-ThT" secondAttribute="top" constant="164" id="ml1-Om-9OS"/>
+                                    <constraint firstItem="poO-cz-yi4" firstAttribute="top" secondItem="uwW-XB-ThT" secondAttribute="topMargin" id="ua7-UF-zLh"/>
                                     <constraint firstItem="uRu-R0-a2X" firstAttribute="centerX" secondItem="uwW-XB-ThT" secondAttribute="centerX" id="wKc-ix-Xcq"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -521,6 +530,7 @@
         <!--Profile View Controller-->
         <scene sceneID="vND-hh-5jm">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="McF-yp-1Nt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="bIg-ML-WDh" customClass="ProfileViewController" customModule="Polocal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wAf-U1-DmK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -613,10 +623,10 @@
                                             <outlet property="delegate" destination="bIg-ML-WDh" id="gxP-te-5Fy"/>
                                         </connections>
                                     </tableView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="שאלות שלי" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPS-Sm-0sb">
-                                        <rect key="frame" x="115" y="28" width="144" height="43"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="השאלות שלי" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPS-Sm-0sb">
+                                        <rect key="frame" x="96" y="28" width="183" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="36"/>
+                                        <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="40"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -646,7 +656,6 @@
                         <outlet property="tableView" destination="wQX-ez-rWZ" id="Ler-r9-cyV"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="McF-yp-1Nt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3204" y="135.38230884557723"/>
         </scene>
