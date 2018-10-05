@@ -73,6 +73,8 @@ class MainViewController: UIViewController {
 	}
     func checkRead(postID: String, greaterPerc: String? = "true" ,num: Double? = 0.0) {
         self.placeholderQuestion.isHidden = true
+		trueButton.isEnabled = true
+		falseButton.isEnabled = true
         self.falseLabel.textColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
         self.trueLabel.textColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
         if greaterPerc == "true" {
@@ -88,13 +90,13 @@ class MainViewController: UIViewController {
         } else if greaterPerc == "equals"{
             UIView.animate(withDuration: 0.5) {
                 self.falseView.frame.size.width = 0
-                for _ in 0...162 {
+				let half = self.answerView.frame.size.width/2
+                for _ in 0...Int(half)  {
                     self.trueView.center = CGPoint(x: self.trueView.center.x+1, y: self.trueView.center.y)
                 }
             }
         }
-        
-        
+		
         ref = Database.database().reference()
 		ref.child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(postID).child("usersRead").observeSingleEvent(of: .value) { (snapshot) in
 			for rest in snapshot.children.allObjects as! [DataSnapshot] {
@@ -117,6 +119,8 @@ class MainViewController: UIViewController {
 	}
     
     @IBAction func falseAnswerButtonTapped(_ sender: Any) {
+		falseButton.isEnabled = false
+		trueButton.isEnabled = false
         let currentPost = Posts[postCount]
         let falseAnswers = currentPost.falseAnswers
         let newFalseAnswers = falseAnswers+1
@@ -137,6 +141,8 @@ class MainViewController: UIViewController {
     
     
     @IBAction func trueAnswerButtonTapped(_ sender: Any) {
+		trueButton.isEnabled = false
+		falseButton.isEnabled = false
         let currentPost = Posts[postCount]
         let trueAnswers = currentPost.trueAnswers
         let newTrueAnswers = trueAnswers+1
@@ -202,7 +208,7 @@ class MainViewController: UIViewController {
 			}
 		} else {
 			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
-				self.falseView.frame.size.width = CGFloat(162)
+				self.falseView.frame.size.width = CGFloat(self.answerView.frame.size.width/2)
 				for _ in 0...Int(self.answerView.frame.width/2) {
 					self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
 				}
