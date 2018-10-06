@@ -52,11 +52,16 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 			do {
 				let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
 				let jsonObj = try JSON(data: data)
-				for i in 0...707{
-					let schoolName = jsonObj[i]["name"].stringValue
+				for (key,value) in jsonObj {
+					let schoolName = value.stringValue
 					suggestionList.append(schoolName)
+					if key == "540211" {
+						print(schoolName)
+					}
+					self.schoolSearchBar.setDatas(datas: suggestionList)
 				}
-				self.schoolSearchBar.setDatas(datas: suggestionList)
+				
+				
 			} catch let error {
 				print("parse error: \(error.localizedDescription)")
 			}
