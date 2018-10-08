@@ -47,7 +47,10 @@ class MainViewController: UIViewController {
                 let question = json["question"].stringValue
                 let falseAnswers = json["answers"]["false"].intValue
                 let trueAnswers = json["answers"]["true"].intValue
-                self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: rest.key))
+				let trueAnswer = json["trueAnswer"].stringValue
+				let falseAnswer = json["falseAnswer"].stringValue
+				print("trueAnswer: \(trueAnswer), falseAnswer: \(falseAnswer)")
+				self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: rest.key, trueAnswer: trueAnswer, falseAnswer: falseAnswer))
 				self.postCount += 1
             }
             if self.Posts.count == 0 {
@@ -112,6 +115,8 @@ class MainViewController: UIViewController {
 				} else {
 					let currentPost = self.Posts[self.postCount]
 					self.questionLabel.text = currentPost.question
+					self.trueLabel.text = currentPost.trueAnswer
+					self.falseLabel.text = currentPost.falseAnswer
 				}
 			}
 			
