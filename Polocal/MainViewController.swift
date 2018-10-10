@@ -30,6 +30,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//		print(UserDefaults.standard.string(forKey: "userID"))
 		let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
 		swipeLeft.direction = .left
 		self.view.addGestureRecognizer(swipeLeft)
@@ -117,6 +118,11 @@ class MainViewController: UIViewController {
 					self.questionLabel.text = currentPost.question
 					self.trueLabel.text = currentPost.trueAnswer
 					self.falseLabel.text = currentPost.falseAnswer
+					if self.falseLabel.font.pointSize > self.trueLabel.font.pointSize {
+						print(self.falseLabel.font.pointSize)
+					} else {
+						print(self.trueLabel.font.pointSize)
+					}
 				}
 			}
 			
