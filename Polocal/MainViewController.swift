@@ -118,11 +118,6 @@ class MainViewController: UIViewController {
 					self.questionLabel.text = currentPost.question
 					self.trueLabel.text = currentPost.trueAnswer
 					self.falseLabel.text = currentPost.falseAnswer
-					if self.falseLabel.font.pointSize > self.trueLabel.font.pointSize {
-						print(self.falseLabel.font.pointSize)
-					} else {
-						print(self.trueLabel.font.pointSize)
-					}
 				}
 			}
 			

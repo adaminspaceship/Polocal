@@ -14,6 +14,8 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 	@IBOutlet weak var questionTextView: UITextView!
 	var ref: DatabaseReference!
 	
+	@IBOutlet weak var falseAnswerField: UITextField!
+	@IBOutlet weak var trueAnswerField: UITextField!
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -46,6 +48,16 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 		postRef.child("answers").child("false").setValue(0)
 		postRef.child("answers").child("true").setValue(0)
 		postRef.child("question").setValue(questionTextView.text ?? "nil") // if nil alert the user
+		if trueAnswerField.text == "" && falseAnswerField.text == "" {
+			postRef.child("trueAnswer").setValue("כן")
+			postRef.child("falseAnswer").setValue("לא")
+		} else if trueAnswerField.text == "" && falseAnswerField.text != "" {
+			postRef.child("trueAnswer").setValue("כן")
+			postRef.child("falseAnswer").setValue(falseAnswerField.text ?? "לא")
+		} else {
+			postRef.child("trueAnswer").setValue(trueAnswerField.text ?? "כן")
+			postRef.child("falseAnswer").setValue("לא")
+		}
 		postRef.child("timestamp").setValue(time)
 		ref.child(userID!).child("Posts").child(String(time)).setValue(String(time))
         // share() release later...
