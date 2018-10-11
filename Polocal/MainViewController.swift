@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import SwiftyJSON
+import DateTools
 
 class MainViewController: UIViewController {
 
@@ -24,7 +25,8 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var answerView: UIView!
     @IBOutlet weak var trueLabel: UILabel!
     @IBOutlet weak var falseLabel: UILabel!
-    
+	@IBOutlet weak var timeAgoLabel: UILabel!
+	
     var Posts = [Post]()
     var postCount = -1
 
@@ -50,8 +52,9 @@ class MainViewController: UIViewController {
                 let trueAnswers = json["answers"]["true"].intValue
 				let trueAnswer = json["trueAnswer"].stringValue
 				let falseAnswer = json["falseAnswer"].stringValue
+				let timestamp = json["timestamp"].intValue
 				print("trueAnswer: \(trueAnswer), falseAnswer: \(falseAnswer)")
-				self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: rest.key, trueAnswer: trueAnswer, falseAnswer: falseAnswer))
+				self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: rest.key, trueAnswer: trueAnswer, falseAnswer: falseAnswer, timestamp: timestamp))
 				self.postCount += 1
             }
             if self.Posts.count == 0 {
@@ -76,6 +79,7 @@ class MainViewController: UIViewController {
 		
 	}
     func checkRead(postID: String, greaterPerc: String? = "true" ,num: Double? = 0.0) {
+
         self.placeholderQuestion.isHidden = true
 		trueButton.isEnabled = true
 		falseButton.isEnabled = true
@@ -118,6 +122,8 @@ class MainViewController: UIViewController {
 					self.questionLabel.text = currentPost.question
 					self.trueLabel.text = currentPost.trueAnswer
 					self.falseLabel.text = currentPost.falseAnswer
+					let date = NSDate(timeIntervalSince1970: TimeInterval(currentPost.timestamp))
+					self.timeAgoLabel.text = date.shortTimeAgoSinceNow()
 				}
 			}
 			

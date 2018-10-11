@@ -17,14 +17,16 @@ class Post {
     var postID = String()
 	var trueAnswer = String()
 	var falseAnswer = String()
+	var timestamp = Int()
     
-	init(question: String, falseAnswers: Int, trueAnswers: Int, postID: String, trueAnswer: String?, falseAnswer: String?) {
+	init(question: String, falseAnswers: Int, trueAnswers: Int, postID: String, trueAnswer: String?, falseAnswer: String?, timestamp: Int?) {
         self.question = question
         self.falseAnswers = falseAnswers
         self.trueAnswers = trueAnswers
         self.postID = postID
 		self.trueAnswer = trueAnswer ?? "כן"
 		self.falseAnswer = falseAnswer ?? "לא"
+		self.timestamp = timestamp ?? 1415637900
     }
     
 }

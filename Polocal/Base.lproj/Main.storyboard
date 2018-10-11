@@ -167,7 +167,7 @@
                                                         <rect key="frame" x="18" y="72" width="244" height="60"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="אין שאלות נוספות" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3H-oH-n2U">
-                                                                <rect key="frame" x="35.5" y="13" width="173" height="33"/>
+                                                                <rect key="frame" x="36" y="13" width="173" height="33"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="27"/>
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -182,15 +182,23 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9L-2b-fmG">
+                                                        <rect key="frame" x="236" y="6.5" width="36" height="20.5"/>
+                                                        <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="17"/>
+                                                        <color key="textColor" white="0.87232139440293011" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="nOS-20-Q83" firstAttribute="top" secondItem="h9L-2b-fmG" secondAttribute="bottom" constant="45" id="2gt-Zr-Adq"/>
                                                     <constraint firstAttribute="height" constant="204" id="C4X-KX-OrH"/>
                                                     <constraint firstItem="MKQ-cJ-CCk" firstAttribute="leading" secondItem="hrN-6w-V47" secondAttribute="leading" constant="10" id="CIz-8O-7Ho"/>
                                                     <constraint firstItem="MKQ-cJ-CCk" firstAttribute="centerX" secondItem="hrN-6w-V47" secondAttribute="centerX" id="DGh-io-0uY"/>
                                                     <constraint firstItem="nOS-20-Q83" firstAttribute="leading" secondItem="hrN-6w-V47" secondAttribute="leading" constant="18" id="Inx-tP-AK8"/>
                                                     <constraint firstItem="MKQ-cJ-CCk" firstAttribute="centerY" secondItem="hrN-6w-V47" secondAttribute="centerY" id="R7o-2N-Zl9"/>
                                                     <constraint firstItem="MKQ-cJ-CCk" firstAttribute="centerY" secondItem="nOS-20-Q83" secondAttribute="centerY" id="SRD-gQ-b9d"/>
+                                                    <constraint firstItem="h9L-2b-fmG" firstAttribute="trailing" secondItem="hrN-6w-V47" secondAttribute="trailingMargin" id="eRy-c5-7Qp"/>
                                                     <constraint firstItem="MKQ-cJ-CCk" firstAttribute="top" secondItem="hrN-6w-V47" secondAttribute="top" constant="25" id="h56-nb-wPb"/>
                                                     <constraint firstItem="nOS-20-Q83" firstAttribute="top" secondItem="hrN-6w-V47" secondAttribute="top" constant="72" id="lrh-jC-734"/>
                                                     <constraint firstItem="MKQ-cJ-CCk" firstAttribute="centerX" secondItem="nOS-20-Q83" secondAttribute="centerX" id="pm8-qp-3bh"/>
@@ -343,6 +351,7 @@
                         <outlet property="falseView" destination="qlT-J8-Dwx" id="yje-gJ-DHc"/>
                         <outlet property="placeholderQuestion" destination="nOS-20-Q83" id="Zg0-3g-Z2O"/>
                         <outlet property="questionLabel" destination="MKQ-cJ-CCk" id="Fbl-Ub-cZ2"/>
+                        <outlet property="timeAgoLabel" destination="h9L-2b-fmG" id="MIb-pz-zpp"/>
                         <outlet property="trueButton" destination="cTo-vn-rQP" id="bYk-6P-OlM"/>
                         <outlet property="trueLabel" destination="581-3p-qcB" id="grg-Pc-F6A"/>
                         <outlet property="truePercentageLabel" destination="Wmh-hN-eb9" id="bam-9m-55K"/>

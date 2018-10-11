@@ -11,7 +11,7 @@ pod 'Firebase/Database'
 pod 'SwiftyJSON', '~> 4.0'
 pod 'ModernSearchBar'
 pod 'SideMenu'
-
+pod 'DateTools'
 
 target 'PolocalTests' do
     inherit! :search_paths
