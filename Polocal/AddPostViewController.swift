@@ -47,6 +47,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 		postRef.child("usersRead").child("userID").setValue("0")
 		postRef.child("answers").child("false").setValue(0)
 		postRef.child("answers").child("true").setValue(0)
+		
 		postRef.child("question").setValue(questionTextView.text ?? "nil") // if nil alert the user
 		if trueAnswerField.text == "" && falseAnswerField.text == "" {
 			postRef.child("trueAnswer").setValue("כן")
@@ -56,7 +57,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 			postRef.child("falseAnswer").setValue(falseAnswerField.text ?? "לא")
 		} else {
 			postRef.child("trueAnswer").setValue(trueAnswerField.text ?? "כן")
-			postRef.child("falseAnswer").setValue("לא")
+			postRef.child("falseAnswer").setValue(falseAnswerField.text ?? "לא")
 		}
 		postRef.child("timestamp").setValue(time)
 		ref.child(userID!).child("Posts").child(String(time)).setValue(String(time))

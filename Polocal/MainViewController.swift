@@ -33,6 +33,10 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //		print(UserDefaults.standard.string(forKey: "userID"))
+		trueLabel.adjustsFontSizeToFitWidth = true
+		falseLabel.adjustsFontSizeToFitWidth = true
+//		self.falseLabel.font.withSize(CGFloat(30))
+		
 		let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
 		swipeLeft.direction = .left
 		self.view.addGestureRecognizer(swipeLeft)
@@ -85,6 +89,7 @@ class MainViewController: UIViewController {
 		falseButton.isEnabled = true
         self.falseLabel.textColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
         self.trueLabel.textColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
+		
         if greaterPerc == "true" {
             UIView.animate(withDuration: 0.5) {
                 for _ in 0...Int(num!) {
@@ -122,55 +127,62 @@ class MainViewController: UIViewController {
 					self.questionLabel.text = currentPost.question
 					self.trueLabel.text = currentPost.trueAnswer
 					self.falseLabel.text = currentPost.falseAnswer
+//					if self.trueLabel.font.pointSize < self.falseLabel.font.pointSize {
+//						self.falseLabel.font.withSize(CGFloat(30))
+//					} else if self.falseLabel.font.pointSize < self.trueLabel.font.pointSize {
+//						self.trueLabel.font.withSize(self.falseLabel.font.pointSize)
+//					} else {
+//						break
+//					}
 					let date = NSDate(timeIntervalSince1970: TimeInterval(currentPost.timestamp))
 					self.timeAgoLabel.text = date.shortTimeAgoSinceNow()
 				}
 			}
-			
+//		let currentPost = self.Posts[self.postCount]
 		}
 	}
     
-    @IBAction func falseAnswerButtonTapped(_ sender: Any) {
-		falseButton.isEnabled = false
+
+	
+	@IBAction func trueAnswerButtonTouched(_ sender: Any) {
 		trueButton.isEnabled = false
-        let currentPost = Posts[postCount]
-        let falseAnswers = currentPost.falseAnswers
-        let newFalseAnswers = falseAnswers+1
+		falseButton.isEnabled = false
+		let currentPost = Posts[postCount]
+		let trueAnswers = currentPost.trueAnswers
+		let newTrueAnswers = trueAnswers+1
 		ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
-        ref.child(currentPost.postID).child("answers").child("false").setValue(newFalseAnswers)
-        let sum = newFalseAnswers+currentPost.trueAnswers
-		let falsePercentage = Int((Double(newFalseAnswers)/Double(sum))*100)
-        let truePercentage = Int(100-falsePercentage)
-        falsePercentageLabel.isHidden = false
-        truePercentageLabel.isHidden = false
-        truePercentageLabel.text = "\(String(truePercentage))%"
-        falsePercentageLabel.text = "\(String(falsePercentage))%"
-        showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
-		didReadPost(postID: currentPost.postID, answer: "false")
-		postCount -= 1
-    }
-    var timer = Timer()
-    
-    
-    @IBAction func trueAnswerButtonTapped(_ sender: Any) {
-		trueButton.isEnabled = false
-		falseButton.isEnabled = false
-        let currentPost = Posts[postCount]
-        let trueAnswers = currentPost.trueAnswers
-        let newTrueAnswers = trueAnswers+1
-        ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
-        ref.child(currentPost.postID).child("answers").child("true").setValue(newTrueAnswers)
-        let sum = currentPost.falseAnswers+newTrueAnswers
+		ref.child(currentPost.postID).child("answers").child("true").setValue(newTrueAnswers)
+		let sum = currentPost.falseAnswers+newTrueAnswers
 		let truePercentage = Int((Double(newTrueAnswers)/Double(sum))*100)
-        let falsePercentage = Int(100-truePercentage)
-        truePercentageLabel.isHidden = false
-        falsePercentageLabel.isHidden = false
-        truePercentageLabel.text = "\(String(truePercentage))%"
-        falsePercentageLabel.text = "\(String(falsePercentage))%"
+		let falsePercentage = Int(100-truePercentage)
+		truePercentageLabel.isHidden = false
+		falsePercentageLabel.isHidden = false
+		truePercentageLabel.text = "\(String(truePercentage))%"
+		falsePercentageLabel.text = "\(String(falsePercentage))%"
 		showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
 		didReadPost(postID: currentPost.postID, answer: "true")
 		postCount -= 1
-    }
+	}
+	
+	@IBAction func falseAnswerButtonTouched(_ sender: Any) {
+		falseButton.isEnabled = false
+		trueButton.isEnabled = false
+		let currentPost = Posts[postCount]
+		let falseAnswers = currentPost.falseAnswers
+		let newFalseAnswers = falseAnswers+1
+		ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
+		ref.child(currentPost.postID).child("answers").child("false").setValue(newFalseAnswers)
+		let sum = newFalseAnswers+currentPost.trueAnswers
+		let falsePercentage = Int((Double(newFalseAnswers)/Double(sum))*100)
+		let truePercentage = Int(100-falsePercentage)
+		falsePercentageLabel.isHidden = false
+		truePercentageLabel.isHidden = false
+		truePercentageLabel.text = "\(String(truePercentage))%"
+		falsePercentageLabel.text = "\(String(falsePercentage))%"
+		showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
+		didReadPost(postID: currentPost.postID, answer: "false")
+		postCount -= 1
+	}
 	
 	
 	
