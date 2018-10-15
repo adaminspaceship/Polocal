@@ -198,7 +198,7 @@ class MainViewController: UIViewController {
 			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
 				self.falseView.frame.size.width = CGFloat(num)
 			}) { (complete) in
-                sleep(3)
+                sleep(2)
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
                 if self.Posts.count == 0 {
@@ -218,7 +218,7 @@ class MainViewController: UIViewController {
                     self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
 				}
 			}) { (complete) in
-                sleep(3)
+                sleep(2)
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
                 if self.Posts.count == 0 {
@@ -237,7 +237,7 @@ class MainViewController: UIViewController {
 					self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
 				}
 			}) { (complete) in
-                sleep(3)
+                sleep(2)
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
                 if self.Posts.count == 0 {

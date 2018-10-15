@@ -217,13 +217,13 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTo-vn-rQP">
                                                         <rect key="frame" x="160" y="0.0" width="120" height="91"/>
                                                         <connections>
-                                                            <action selector="falseAnswerButtonTouched:" destination="giN-7n-CL4" eventType="touchUpInside" id="88j-ue-iHJ"/>
+                                                            <action selector="trueAnswerButtonTouched:" destination="giN-7n-CL4" eventType="touchUpInside" id="j4C-dJ-add"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uoM-S4-VJb">
                                                         <rect key="frame" x="0.0" y="0.0" width="120" height="91"/>
                                                         <connections>
-                                                            <action selector="trueAnswerButtonTouched:" destination="giN-7n-CL4" eventType="touchUpInside" id="dYU-Oe-Fsa"/>
+                                                            <action selector="falseAnswerButtonTouched:" destination="giN-7n-CL4" eventType="touchUpInside" id="4RR-7k-zYg"/>
                                                         </connections>
                                                     </button>
                                                     <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fP-sh-Njy">
