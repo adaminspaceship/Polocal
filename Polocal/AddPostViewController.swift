@@ -18,7 +18,6 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 	@IBOutlet weak var trueAnswerField: UITextField!
 	override func viewDidLoad() {
         super.viewDidLoad()
-		
 		ref = Database.database().reference()
 		
 		questionTextView.delegate = self
@@ -88,6 +87,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
     }
     */
 	
+	// for students same school
 	
     func share(){
         let firstActivityItem = "הרגע פרסמתי שאלה חדשה, תיכנס ותראה!"

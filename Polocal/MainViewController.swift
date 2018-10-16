@@ -35,6 +35,8 @@ class MainViewController: UIViewController {
 //		print(UserDefaults.standard.string(forKey: "userID"))
 		trueLabel.adjustsFontSizeToFitWidth = true
 		falseLabel.adjustsFontSizeToFitWidth = true
+		trueLabel.lineBreakMode = .byTruncatingTail
+		falseLabel.lineBreakMode = .byTruncatingTail
 //		self.falseLabel.font.withSize(CGFloat(30))
 		
 		let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
@@ -121,6 +123,8 @@ class MainViewController: UIViewController {
                     self.trueLabel.textColor = .lightGray
 					self.falseButton.isEnabled = false
 					self.trueButton.isEnabled = false
+					self.falseLabel.text = "לא"
+					self.trueLabel.text = "כן"
 					break
 				} else {
 					let currentPost = self.Posts[self.postCount]

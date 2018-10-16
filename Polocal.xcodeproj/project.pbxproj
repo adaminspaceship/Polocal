@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		70A068771F9DE96F128C13EA /* Pods_Polocal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF883AE25207F34F784976CE /* Pods_Polocal.framework */; };
 		917E615E211F6A79CFBE861A /* Pods_PolocalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2218115B8352F94B5F852DFD /* Pods_PolocalTests.framework */; };
+		99591840217528560007AFDC /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959183F217528560007AFDC /* SettingsTableViewController.swift */; };
 		996E39A12152EB9F00D9EF4B /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996E39A02152EB9F00D9EF4B /* AddPostViewController.swift */; };
 		996E39A32153071900D9EF4B /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 996E39A22153071900D9EF4B /* data.json */; };
 		9992801221507031006959A4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9992801121507031006959A4 /* MainViewController.swift */; };
@@ -52,6 +53,7 @@
 		248805F1DA16E5FA82C60814 /* Pods-PolocalUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolocalUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PolocalUITests/Pods-PolocalUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		313B50B276BBC236382CC76E /* Pods-Polocal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Polocal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Polocal/Pods-Polocal.debug.xcconfig"; sourceTree = "<group>"; };
 		7E65170F7190FAB924376227 /* Pods-Polocal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Polocal.release.xcconfig"; path = "Pods/Target Support Files/Pods-Polocal/Pods-Polocal.release.xcconfig"; sourceTree = "<group>"; };
+		9959183F217528560007AFDC /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		996E39A02152EB9F00D9EF4B /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		996E39A22153071900D9EF4B /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		9992801121507031006959A4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				996E39A02152EB9F00D9EF4B /* AddPostViewController.swift */,
 				99DC5E2E215AD22400C622EE /* ProfileViewController.swift */,
 				99DC5E30215AD26100C622EE /* QuestionTableViewCell.swift */,
+				9959183F217528560007AFDC /* SettingsTableViewController.swift */,
 				99C9877321505912004F36F2 /* Main.storyboard */,
 				99C987792150591A004F36F2 /* Assets.xcassets */,
 				99C9877B2150591A004F36F2 /* LaunchScreen.storyboard */,
@@ -430,6 +433,7 @@
 				99928014215080FE006959A4 /* Post.swift in Sources */,
 				99C9877021505912004F36F2 /* AppDelegate.swift in Sources */,
 				9992801221507031006959A4 /* MainViewController.swift in Sources */,
+				99591840217528560007AFDC /* SettingsTableViewController.swift in Sources */,
 				99DC5E31215AD26100C622EE /* QuestionTableViewCell.swift in Sources */,
 				99DC5E2F215AD22400C622EE /* ProfileViewController.swift in Sources */,
 				996E39A12152EB9F00D9EF4B /* AddPostViewController.swift in Sources */,
@@ -606,15 +610,18 @@
 			baseConfigurationReference = 313B50B276BBC236382CC76E /* Pods-Polocal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z28CSUK723;
 				INFOPLIST_FILE = Polocal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.adameliezerov.Polocal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -625,15 +632,18 @@
 			baseConfigurationReference = 7E65170F7190FAB924376227 /* Pods-Polocal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z28CSUK723;
 				INFOPLIST_FILE = Polocal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.adameliezerov.Polocal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
