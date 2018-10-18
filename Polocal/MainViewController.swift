@@ -40,7 +40,7 @@ class MainViewController: UIViewController {
 	var unfilteredPosts = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
-//		print(UserDefaults.standard.string(forKey: "userID"))
+		print(UserDefaults.standard.string(forKey: "userID"))
 		trueLabel.adjustsFontSizeToFitWidth = true
 		falseLabel.adjustsFontSizeToFitWidth = true
 		trueLabel.lineBreakMode = .byTruncatingTail
@@ -100,7 +100,7 @@ class MainViewController: UIViewController {
 		
 	}
     func checkRead(postID: String, greaterPerc: String? = "true" ,num: Double? = 0.0) {
-
+		
         self.placeholderQuestion.isHidden = true
 		trueButton.isEnabled = true
 		falseButton.isEnabled = true
@@ -134,6 +134,15 @@ class MainViewController: UIViewController {
 		self.falseLabel.text = currentPost.falseAnswer
 		let date = NSDate(timeIntervalSince1970: TimeInterval(currentPost.timestamp))
 		self.timeAgoLabel.text = date.shortTimeAgoSinceNow()
+		
+		if self.trueLabel.font.pointSize < self.falseLabel.font.pointSize {
+			self.falseLabel.font = UIFont(name: "almoni-neue-aaa-300.ttf", size: self.trueLabel.font.pointSize)
+		} else if self.falseLabel.font.pointSize < self.trueLabel.font.pointSize {
+			self.trueLabel.font = UIFont(name: "almoni-neue-aaa-300.ttf", size: self.falseLabel.font.pointSize)
+		} else {
+			
+		}
+		
 	}
     
 
