@@ -12,6 +12,7 @@ pod 'SwiftyJSON', '~> 4.0'
 pod 'ModernSearchBar'
 pod 'SideMenu'
 pod 'DateTools'
+pod 'Malert'
 
 target 'PolocalTests' do
     inherit! :search_paths

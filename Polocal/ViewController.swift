@@ -10,6 +10,8 @@ import UIKit
 import FirebaseDatabase
 import SwiftyJSON
 import ModernSearchBar
+import Malert
+
 
 class ViewController: UIViewController, ModernSearchBarDelegate {
     
@@ -45,7 +47,7 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 		self.schoolSearchBar.searchLabel_font = UIFont(name: "almoni-neue-aaa-300.ttf", size: 30)
 		self.schoolSearchBar.searchLabel_textColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
 		self.schoolSearchBar.searchLabel_backgroundColor = UIColor.white
-		self.schoolSearchBar.setTextColor(color: UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0))
+		self.schoolSearchBar.setTextColor(color: .white)
 		self.schoolSearchBar.suggestionsView_searchIcon_isRound = false
 		
 		if let path = Bundle.main.path(forResource: "data", ofType: "json") {
@@ -70,27 +72,51 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
     @IBAction func signUpButtonTapped(_ sender: Any) {
         let userDefaults = UserDefaults.standard
         let uuid = UUID().uuidString
-		if let path = Bundle.main.path(forResource: "data", ofType: "json") {
-			do {
-				let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-				let jsonObj = try JSON(data: data)
-				for (key,value) in jsonObj {
-					let schoolName = value.stringValue
-					if schoolName == selectedSchool {
-						ref.child(uuid).child("school").setValue(key)
-						userDefaults.set(key, forKey: "schoolSemel")
-						performSegue(withIdentifier: "toMain", sender: self)
-					}
-				}
-				
-			} catch let error {
-				print("parse error: \(error.localizedDescription)")
-			}
+		if self.schoolSearchBar.text == "" {
+			let alert = Malert(title: "אנא הכנס בית ספר")
+			alert.buttonsSpace = 30
+			alert.textColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
+			alert.buttonsAxis = .horizontal
+			alert.textAlign = .center
+			alert.margin = 30
+			alert.buttonsSideMargin = 20
+			alert.buttonsBottomMargin = 30
+			alert.cornerRadius = 12
+			alert.titleFont = UIFont.systemFont(ofSize: 22)
+			
+			let laterAction = MalertAction(title: "אוקי")
+			laterAction.backgroundColor = .clear
+			laterAction.borderWidth = 1
+			laterAction.borderColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
+			laterAction.tintColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
+			laterAction.cornerRadius = 10
+			alert.addAction(laterAction)
+			
+			present(alert, animated: true)
+			
 		} else {
-			print("Invalid filename/path.")
+			if let path = Bundle.main.path(forResource: "data", ofType: "json") {
+				do {
+					let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+					let jsonObj = try JSON(data: data)
+					for (key,value) in jsonObj {
+						let schoolName = value.stringValue
+						if schoolName == selectedSchool {
+							ref.child(uuid).child("school").setValue(key)
+							userDefaults.set(key, forKey: "schoolSemel")
+							performSegue(withIdentifier: "toMain", sender: self)
+						}
+					}
+					
+				} catch let error {
+					print("parse error: \(error.localizedDescription)")
+				}
+			} else {
+				print("Invalid filename/path.")
+			}
+			userDefaults.set(uuid, forKey: "userID")
 		}
 		
-        userDefaults.set(uuid, forKey: "userID")
     }
     
     override func didReceiveMemoryWarning() {
@@ -103,9 +129,11 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 	func onClickItemSuggestionsView(item: String) {
 		print("User touched this item: "+item)
 		self.schoolSearchBar.searchBarTextDidEndEditing(self.schoolSearchBar)
+		UserDefaults.standard.set(item, forKey: "schoolName")
 		self.schoolSearchBar.text = item
 		selectedSchool = item
 	}
+
 
 
 

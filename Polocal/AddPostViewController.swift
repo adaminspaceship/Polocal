@@ -19,7 +19,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		ref = Database.database().reference()
-		
+		share()
 		questionTextView.delegate = self
 		questionTextView.text = "כתוב שאלה"
 		questionTextView.textColor = UIColor.lightGray
@@ -90,7 +90,8 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 	// for students same school
 	
     func share(){
-        let firstActivityItem = "הרגע פרסמתי שאלה חדשה, תיכנס ותראה!"
+		let schoolName = UserDefaults.standard.string(forKey: "schoolName")
+		let firstActivityItem = "פרסמתי הרגע שאלה לכל תלמידי \(schoolName ?? "שם בית ספר"), כנס ותראה!"
         let secondActivityItem : NSURL = NSURL(string: "http://google.com/")! // app url
         
         let activityViewController : UIActivityViewController = UIActivityViewController(

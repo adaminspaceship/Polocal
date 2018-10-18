@@ -48,6 +48,7 @@ PODS:
   - GoogleUtilities/Reachability (5.2.3):
     - GoogleUtilities/Logger
   - leveldb-library (1.20)
+  - Malert (3.0)
   - ModernSearchBar (1.5)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -61,6 +62,7 @@ DEPENDENCIES:
   - DateTools
   - Firebase/Core
   - Firebase/Database
+  - Malert
   - ModernSearchBar
   - SideMenu
   - SwiftyJSON (~> 4.0)
@@ -76,6 +78,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - leveldb-library
+    - Malert
     - ModernSearchBar
     - nanopb
     - SideMenu
@@ -91,11 +94,12 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: fc4a4c3fe0144db9313cbf443ffe62e6b1d6268c
   GoogleUtilities: 6f681e27050c5e130325e89fa0316dfca826f954
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  Malert: 945f3ac9176cf99bc22d025a2589ab336cd030dc
   ModernSearchBar: 5dd19c94b1e04f1f83dd9b9950d05153ef2535e5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 0c2df50cbbb8b527125b372055154d5ae1b18479
+PODFILE CHECKSUM: 7f672d11fa1244e27e909aced7fcd10593e84f01
 
 COCOAPODS: 1.5.3

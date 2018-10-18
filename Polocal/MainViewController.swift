@@ -125,6 +125,7 @@ class MainViewController: UIViewController {
 					self.trueButton.isEnabled = false
 					self.falseLabel.text = "לא"
 					self.trueLabel.text = "כן"
+					self.timeAgoLabel.text = "n/a"
 					break
 				} else {
 					let currentPost = self.Posts[self.postCount]
