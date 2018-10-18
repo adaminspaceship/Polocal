@@ -6,6 +6,14 @@
 //  Copyright © 2018 Adam Eliezerov. All rights reserved.
 //
 
+//					if self.trueLabel.font.pointSize < self.falseLabel.font.pointSize {
+//						self.falseLabel.font.withSize(CGFloat(30))
+//					} else if self.falseLabel.font.pointSize < self.trueLabel.font.pointSize {
+//						self.trueLabel.font.withSize(self.falseLabel.font.pointSize)
+//					} else {
+//						break
+//					}
+//let queryRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).queryOrdered(byChild: "usersRead/\(userid ?? "")").queryEqual(toValue: "\(userid ?? "")")
 import UIKit
 import FirebaseDatabase
 import SwiftyJSON
@@ -29,7 +37,7 @@ class MainViewController: UIViewController {
 	
     var Posts = [Post]()
     var postCount = -1
-
+	var unfilteredPosts = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
 //		print(UserDefaults.standard.string(forKey: "userID"))
@@ -42,35 +50,42 @@ class MainViewController: UIViewController {
 		let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
 		swipeLeft.direction = .left
 		self.view.addGestureRecognizer(swipeLeft)
-        let time = Int(Date().timeIntervalSince1970)
-        print(time)
         falsePercentageLabel.isHidden = true
         truePercentageLabel.isHidden = true
-        // instead of child blich change it to user defaults uid
-        ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
-        ref.observeSingleEvent(of: .value) { (snapshot) in
-            print(snapshot.childrenCount) // I got the expected number of items
-            let enumerator = snapshot.children
-            while let rest = enumerator.nextObject() as? DataSnapshot {
-                let json = JSON(rest.value)
-                let question = json["question"].stringValue
-                let falseAnswers = json["answers"]["false"].intValue
-                let trueAnswers = json["answers"]["true"].intValue
+		let userid = UserDefaults.standard.string(forKey: "userID")
+		let ref = Database.database().reference().child(userid!).child("readPosts")
+		let queryRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
+		
+		queryRef.observeSingleEvent(of: .value) { (snapshot) in
+			let enumerator = snapshot.children
+			while let rest = enumerator.nextObject() as? DataSnapshot {
+				let json = JSON(rest.value!)
+				let question = json["question"].stringValue
+				let falseAnswers = json["answers"]["false"].intValue
+				let trueAnswers = json["answers"]["true"].intValue
 				let trueAnswer = json["trueAnswer"].stringValue
 				let falseAnswer = json["falseAnswer"].stringValue
 				let timestamp = json["timestamp"].intValue
 				print("trueAnswer: \(trueAnswer), falseAnswer: \(falseAnswer)")
-				self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: rest.key, trueAnswer: trueAnswer, falseAnswer: falseAnswer, timestamp: timestamp))
-				self.postCount += 1
-            }
-            if self.Posts.count == 0 {
-                self.placeholderQuestion.isHidden = false
-                self.falseLabel.textColor = .lightGray
-                self.trueLabel.textColor = .lightGray
-            } else {
-                self.checkRead(postID: self.Posts[self.postCount].postID)
-            }
+				ref.observeSingleEvent(of: .value, with: { (snap) in
+					if snap.hasChild(rest.key) {
+						print("already answered question: \(question)")
+					} else {
+						print("not yet answered, adding question: \(question) to Posts")
+						self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: rest.key, trueAnswer: trueAnswer, falseAnswer: falseAnswer, timestamp: timestamp))
+						self.postCount += 1
+						self.checkRead(postID: self.Posts[self.postCount].postID)
+					}
+					
+				})
+				
+				
+
+			}
+			
 		}
+		
+		
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -112,42 +127,49 @@ class MainViewController: UIViewController {
             }
         }
 		
-        ref = Database.database().reference()
-		ref.child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(postID).child("usersRead").observeSingleEvent(of: .value) { (snapshot) in
-			for rest in snapshot.children.allObjects as! [DataSnapshot] {
-				let userID = rest.value as! String
-				if UserDefaults.standard.string(forKey: "userID") == userID {
-					print("error, no more polls")
-					self.placeholderQuestion.isHidden = false
-                    self.falseLabel.textColor = .lightGray
-                    self.trueLabel.textColor = .lightGray
-					self.falseButton.isEnabled = false
-					self.trueButton.isEnabled = false
-					self.falseLabel.text = "לא"
-					self.trueLabel.text = "כן"
-					self.timeAgoLabel.text = "n/a"
-					break
-				} else {
-					let currentPost = self.Posts[self.postCount]
-					self.questionLabel.text = currentPost.question
-					self.trueLabel.text = currentPost.trueAnswer
-					self.falseLabel.text = currentPost.falseAnswer
-//					if self.trueLabel.font.pointSize < self.falseLabel.font.pointSize {
-//						self.falseLabel.font.withSize(CGFloat(30))
-//					} else if self.falseLabel.font.pointSize < self.trueLabel.font.pointSize {
-//						self.trueLabel.font.withSize(self.falseLabel.font.pointSize)
-//					} else {
-//						break
-//					}
-					let date = NSDate(timeIntervalSince1970: TimeInterval(currentPost.timestamp))
-					self.timeAgoLabel.text = date.shortTimeAgoSinceNow()
-				}
-			}
-//		let currentPost = self.Posts[self.postCount]
-		}
+		let currentPost = self.Posts[self.postCount]
+		self.questionLabel.text = currentPost.question
+		print(currentPost.question)
+		self.trueLabel.text = currentPost.trueAnswer
+		self.falseLabel.text = currentPost.falseAnswer
+		let date = NSDate(timeIntervalSince1970: TimeInterval(currentPost.timestamp))
+		self.timeAgoLabel.text = date.shortTimeAgoSinceNow()
 	}
     
 
+	func noMorePosts(greaterPerc: String? = "false", num: Double? = 0.0) {
+		
+		if greaterPerc == "true" {
+			UIView.animate(withDuration: 0.5) {
+				for _ in 0...Int(num!) {
+					self.trueView.center = CGPoint(x: self.trueView.center.x+1, y: self.trueView.center.y)
+				}
+			}
+		} else if greaterPerc == "false" {
+			UIView.animate(withDuration: 0.5) {
+				self.falseView.frame.size.width = 0
+			}
+		} else if greaterPerc == "equals"{
+			UIView.animate(withDuration: 0.5) {
+				self.falseView.frame.size.width = 0
+				let half = self.answerView.frame.size.width/2
+				for _ in 0...Int(half)  {
+					self.trueView.center = CGPoint(x: self.trueView.center.x+1, y: self.trueView.center.y)
+				}
+			}
+		}
+		
+		print("error, no more polls")
+		self.placeholderQuestion.isHidden = false
+		self.falseLabel.textColor = .lightGray
+		self.trueLabel.textColor = .lightGray
+		self.falseButton.isEnabled = false
+		self.trueButton.isEnabled = false
+		self.falseLabel.text = "לא"
+		self.trueLabel.text = "כן"
+		self.timeAgoLabel.text = "n/a"
+		// make user create a new poll
+	}
 	
 	@IBAction func trueAnswerButtonTouched(_ sender: Any) {
 		trueButton.isEnabled = false
@@ -193,8 +215,8 @@ class MainViewController: UIViewController {
 	
 	func didReadPost(postID: String, answer: String) {
 		ref = Database.database().reference()
-//		ref.child(UserDefaults.standard.string(forKey: "userID")!).child("readPosts").child(postID).setValue(answer)
-		ref.child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(postID).child("usersRead").childByAutoId().setValue(UserDefaults.standard.string(forKey: "userID")!)
+		ref.child(UserDefaults.standard.string(forKey: "userID")!).child("readPosts").child(postID).setValue(postID)
+	// ref.child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(postID).child("usersRead").child((UserDefaults.standard.string(forKey: "userID")!)).setValue(UserDefaults.standard.string(forKey: "userID")!)
 	}
 	
 	func showPercentage(falsePercentage: Int, truePercentage: Int) {
@@ -211,8 +233,12 @@ class MainViewController: UIViewController {
                     self.falseLabel.textColor = .lightGray
                     self.trueLabel.textColor = .lightGray
                 } else {
-                    let currentPost = self.Posts[self.postCount]
-                    self.checkRead(postID: currentPost.postID, greaterPerc: "false", num: num)
+					if self.postCount > -1 {
+						let currentPost = self.Posts[self.postCount]
+						self.checkRead(postID: currentPost.postID, greaterPerc: "false", num: num)
+					} else {
+						self.noMorePosts(greaterPerc: "false")
+					}
                 }
 			}
 		} else if truePercentage>falsePercentage {
@@ -231,8 +257,12 @@ class MainViewController: UIViewController {
                     self.falseLabel.textColor = .lightGray
                     self.trueLabel.textColor = .lightGray
                 } else {
-                    let currentPost = self.Posts[self.postCount]
-                    self.checkRead(postID: currentPost.postID, greaterPerc: "true", num: num)
+					if self.postCount > -1 {
+						let currentPost = self.Posts[self.postCount]
+						self.checkRead(postID: currentPost.postID, greaterPerc: "true", num: num)
+					} else {
+						self.noMorePosts(greaterPerc: "true", num: num)
+					}
                 }
 			}
 		} else {
@@ -250,8 +280,12 @@ class MainViewController: UIViewController {
                     self.falseLabel.textColor = .lightGray
                     self.trueLabel.textColor = .lightGray
                 } else {
-                    let currentPost = self.Posts[self.postCount]
-                    self.checkRead(postID: currentPost.postID, greaterPerc: "equals")
+					if self.postCount > -1 {
+						let currentPost = self.Posts[self.postCount]
+						self.checkRead(postID: currentPost.postID, greaterPerc: "equals")
+					} else {
+						self.noMorePosts(greaterPerc: "equals")
+					}
                 }
 			}
 			

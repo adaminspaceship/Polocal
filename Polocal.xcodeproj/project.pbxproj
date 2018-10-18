@@ -56,7 +56,7 @@
 		9959183F217528560007AFDC /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		996E39A02152EB9F00D9EF4B /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		996E39A22153071900D9EF4B /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
-		9992801121507031006959A4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		9992801121507031006959A4 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		99928013215080FE006959A4 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		9992801521510589006959A4 /* almoni-neue-aaa-300.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "almoni-neue-aaa-300.ttf"; sourceTree = "<group>"; };
 		99C9876C21505912004F36F2 /* Polocal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Polocal.app; sourceTree = BUILT_PRODUCTS_DIR; };
