@@ -57,6 +57,7 @@ class MainViewController: UIViewController {
 		let queryRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
 		
 		queryRef.observeSingleEvent(of: .value) { (snapshot) in
+			print("started")
 			let enumerator = snapshot.children
 			while let rest = enumerator.nextObject() as? DataSnapshot {
 				let json = JSON(rest.value!)
@@ -75,10 +76,11 @@ class MainViewController: UIViewController {
 						self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: rest.key, trueAnswer: trueAnswer, falseAnswer: falseAnswer, timestamp: timestamp))
 						self.postCount += 1
 						self.checkRead(postID: self.Posts[self.postCount].postID)
+						
 					}
 					
 				})
-				
+				print("done")
 				
 
 			}
