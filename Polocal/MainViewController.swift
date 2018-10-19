@@ -75,15 +75,15 @@ class MainViewController: UIViewController {
 						print("not yet answered, adding question: \(question) to Posts")
 						self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: rest.key, trueAnswer: trueAnswer, falseAnswer: falseAnswer, timestamp: timestamp))
 						self.postCount += 1
+						print(self.postCount)
 						self.checkRead(postID: self.Posts[self.postCount].postID)
 						
 					}
 					
 				})
-				print("done")
-				
 
 			}
+			print("done")
 			
 		}
 		

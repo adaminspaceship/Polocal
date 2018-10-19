@@ -129,17 +129,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2G-lN-nIz" customClass="GradientView" customModule="Polocal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdv-O6-nb7">
-                                        <rect key="frame" x="341" y="28" width="20" height="29"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="29" id="KaQ-To-nkf"/>
-                                            <constraint firstAttribute="width" constant="20" id="Y6s-bn-H8z"/>
-                                        </constraints>
-                                        <state key="normal" image="menuIcon"/>
-                                        <connections>
-                                            <segue destination="HSQ-8p-eNk" kind="presentation" identifier="toSideMenu" id="QSR-Oz-dYi"/>
-                                        </connections>
-                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="Yrl-DQ-OUD">
                                         <rect key="frame" x="47.5" y="142" width="280" height="326"/>
                                         <subviews>
@@ -177,6 +166,17 @@
                                                         <color key="textColor" white="0.87232139440293011" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdv-O6-nb7">
+                                                        <rect key="frame" x="8" y="8" width="20" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="KaQ-To-nkf"/>
+                                                            <constraint firstAttribute="width" constant="20" id="Y6s-bn-H8z"/>
+                                                        </constraints>
+                                                        <state key="normal" image="moreIcon"/>
+                                                        <connections>
+                                                            <segue destination="HSQ-8p-eNk" kind="presentation" identifier="toSideMenu" id="QSR-Oz-dYi"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -187,9 +187,11 @@
                                                     <constraint firstItem="nOS-20-Q83" firstAttribute="leading" secondItem="hrN-6w-V47" secondAttribute="leading" constant="18" id="Inx-tP-AK8"/>
                                                     <constraint firstItem="MKQ-cJ-CCk" firstAttribute="centerY" secondItem="hrN-6w-V47" secondAttribute="centerY" constant="8.5" id="R7o-2N-Zl9"/>
                                                     <constraint firstItem="MKQ-cJ-CCk" firstAttribute="centerY" secondItem="nOS-20-Q83" secondAttribute="centerY" constant="8.5" id="SRD-gQ-b9d"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Mdv-O6-nb7" secondAttribute="trailing" constant="252" id="d3H-8u-c6c"/>
                                                     <constraint firstItem="h9L-2b-fmG" firstAttribute="trailing" secondItem="hrN-6w-V47" secondAttribute="trailingMargin" id="eRy-c5-7Qp"/>
                                                     <constraint firstItem="MKQ-cJ-CCk" firstAttribute="top" secondItem="hrN-6w-V47" secondAttribute="top" constant="25" id="h56-nb-wPb"/>
                                                     <constraint firstItem="nOS-20-Q83" firstAttribute="top" secondItem="hrN-6w-V47" secondAttribute="top" constant="72" id="lrh-jC-734"/>
+                                                    <constraint firstItem="Mdv-O6-nb7" firstAttribute="top" secondItem="hrN-6w-V47" secondAttribute="topMargin" id="nji-b6-izf"/>
                                                     <constraint firstItem="MKQ-cJ-CCk" firstAttribute="centerX" secondItem="nOS-20-Q83" secondAttribute="centerX" id="pm8-qp-3bh"/>
                                                     <constraint firstAttribute="width" constant="280" id="tod-9B-24Y"/>
                                                 </constraints>
@@ -304,9 +306,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Yrl-DQ-OUD" firstAttribute="top" secondItem="Y2G-lN-nIz" secondAttribute="top" constant="142" id="0OA-QQ-Xcp"/>
-                                    <constraint firstItem="Mdv-O6-nb7" firstAttribute="top" secondItem="Y2G-lN-nIz" secondAttribute="topMargin" id="Dhj-kE-4he"/>
                                     <constraint firstItem="Yrl-DQ-OUD" firstAttribute="centerX" secondItem="Y2G-lN-nIz" secondAttribute="centerX" id="P2S-MI-ogM"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mdv-O6-nb7" secondAttribute="trailing" constant="14" id="xgn-uX-yaG"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -548,6 +548,7 @@
                     <connections>
                         <outlet property="falseAnswerField" destination="Ckn-br-4s7" id="WLr-Og-G4i"/>
                         <outlet property="questionTextView" destination="Udo-XD-rm8" id="A7z-8c-dmG"/>
+                        <outlet property="questionView" destination="MCW-Ti-R43" id="K2M-gY-Twc"/>
                         <outlet property="trueAnswerField" destination="ajn-CK-Jx1" id="cNS-P1-Ya6"/>
                         <segue destination="4kx-cW-ior" kind="show" identifier="toMain" id="oND-4v-5BH"/>
                     </connections>
@@ -757,12 +758,11 @@
         <image name="QuestionIcon" width="25" height="25"/>
         <image name="homeIcon" width="26" height="23"/>
         <image name="homeIconGray" width="26" height="23"/>
-        <image name="menuIcon" width="15" height="15"/>
+        <image name="moreIcon" width="25" height="25"/>
         <image name="plusIcon" width="25" height="25"/>
         <image name="plusIconGray" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l25-Up-Sfe"/>
         <segue reference="oND-4v-5BH"/>
     </inferredMetricsTieBreakers>
 </document>

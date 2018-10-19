@@ -9,11 +9,13 @@
 import UIKit
 import FirebaseDatabase
 import Malert
+
 class AddPostViewController: UIViewController, UITextViewDelegate {
 
 	@IBOutlet weak var questionTextView: UITextView!
 	var ref: DatabaseReference!
 	
+	@IBOutlet weak var questionView: UIView!
 	@IBOutlet weak var falseAnswerField: UITextField!
 	@IBOutlet weak var trueAnswerField: UITextField!
 	override func viewDidLoad() {
@@ -39,31 +41,12 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 	@IBAction func doneButtonTapped(_ sender: Any) {
 		let userDefaults = UserDefaults.standard
 		let userID = userDefaults.string(forKey: "userID")
-		let uuid = UUID().uuidString
 		let time = Int(Date().timeIntervalSince1970)
 		if questionTextView.text == "כתוב שאלה" {
-			let alert = Malert(title: "אנא הקלד שאלה")
-			alert.buttonsSpace = 30
-			alert.textColor = .red
-			alert.buttonsAxis = .horizontal
-			alert.textAlign = .center
-			alert.margin = 30
-			alert.buttonsSideMargin = 20
-			alert.buttonsBottomMargin = 30
-			alert.cornerRadius = 12
-			alert.titleFont = UIFont.systemFont(ofSize: 22)
-			
-			let laterAction = MalertAction(title: "אוקי")
-			laterAction.backgroundColor = .clear
-			laterAction.borderWidth = 1
-			laterAction.borderColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
-			laterAction.tintColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
-			laterAction.cornerRadius = 10
-			alert.addAction(laterAction)
-			
-			present(alert, animated: true)
+			self.questionView.shake()
 		}
 		else {
+			share()
 			let postRef = ref.child("Posts").child(userDefaults.string(forKey: "schoolSemel")!).child(String(time))
 			postRef.child("answers").child("false").setValue(0)
 			postRef.child("answers").child("true").setValue(0)
@@ -81,11 +64,6 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 			}
 			postRef.child("timestamp").setValue(time)
 			ref.child(userID!).child("Posts").child(String(time)).setValue(String(time))
-		
-		
-		
-		
-		//		share()
 			performSegue(withIdentifier: "toMain", sender: self)
 		}
 	}
@@ -154,4 +132,19 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 		}
 	}
 
+}
+
+public extension UIView {
+	
+	func shake(count : Float = 4,for duration : TimeInterval = 0.5,withTranslation translation : Float = 5) {
+		
+		let animation : CABasicAnimation = CABasicAnimation(keyPath: "transform.translation.x")
+		animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+		animation.repeatCount = count
+		animation.duration = duration/TimeInterval(animation.repeatCount)
+		animation.autoreverses = true
+		animation.fromValue = NSValue(cgPoint: CGPoint(x: CGFloat(-translation), y: self.center.y))
+		animation.toValue = NSValue(cgPoint: CGPoint(x: CGFloat(translation), y: self.center.y))
+		layer.add(animation, forKey: "shake")
+	}
 }
