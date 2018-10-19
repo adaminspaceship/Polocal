@@ -181,7 +181,7 @@ class MainViewController: UIViewController {
 		self.timeAgoLabel.text = "n/a"
 		// make user create a new poll
 	}
-	
+
 	@IBAction func trueAnswerButtonTouched(_ sender: Any) {
 		trueButton.isEnabled = false
 		falseButton.isEnabled = false
@@ -201,8 +201,8 @@ class MainViewController: UIViewController {
 		didReadPost(postID: currentPost.postID, answer: "true")
 		postCount -= 1
 	}
-	
-	@IBAction func falseAnswerButtonTouched(_ sender: Any) {
+
+	@IBAction func falseAnswerButtonTapped(_ sender: Any) {
 		falseButton.isEnabled = false
 		trueButton.isEnabled = false
 		let currentPost = Posts[postCount]
