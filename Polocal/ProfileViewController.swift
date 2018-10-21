@@ -9,12 +9,14 @@
 import UIKit
 import FirebaseDatabase
 import SwiftyJSON
+import Malert
+//import PeekPop
 
 class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     var ref: DatabaseReference!
     var Posts = [Post]()
-    
+	
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Posts.count
     }
@@ -41,7 +43,6 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         // Do any additional setup after loading the view.
     }
     
@@ -53,7 +54,6 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         ref.child(userID).child("Posts").observeSingleEvent(of: .value) { (snapshot) in
             for rest in snapshot.children.allObjects as! [DataSnapshot] {
                 let postUID = rest.value
-                print(postUID)
                 self.ref.child("Posts").child(schoolSemel).child(postUID as! String).observeSingleEvent(of: .value, with: { (querySnapShot) in
                     var finalJSON = JSON(querySnapShot.value)
                     let falseAnswers = finalJSON["answers"]["false"].intValue
@@ -65,14 +65,36 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
             }
         }
     }
-    /*
-    // MARK: - Navigation
+//
+//	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//	let example8View = PopSelectedQuestion.instantiateFromNib()
+//
+//	let alert = Malert(customView: example8View)
+//	alert.margin = 30
+//
+//	alert.animationType = .fadeIn
+//	alert.backgroundColor = UIColor(red:0.36, green:0.86, blue:0.84, alpha:1.0)
+//	alert.cornerRadius = 20
+//
+//	present(alert, animated: true)
+//
+////	previewViewController.falseAnswerLabel?.text = Posts[indexPath.row].falseAnswer
+////	previewViewController.trueAnswerLabel?.text = Posts[indexPath.row].trueAnswer
+////	previewViewController.questionLabel?.text = Posts[indexPath.row].question
+////	let currentPost = Posts[indexPath.row]
+////	let sum = currentPost.falseAnswers+currentPost.trueAnswers
+////	if sum == 0 {
+////		previewViewController.falsePercentageLabel?.text = "0%"
+////		previewViewController.truePercentageLabel?.text = "0%"
+////	} else {
+////		let falsePercentage = Int((Double(currentPost.falseAnswers)/Double(sum))*100)
+////		let truePercentage = Int(100-falsePercentage)
+////		previewViewController.falsePercentageLabel?.text =  "\(falsePercentage)%"
+////		previewViewController.truePercentageLabel?.text = "\(truePercentage)%"
+////	}
+//
+//	}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

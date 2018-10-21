@@ -163,7 +163,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="n/a" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9L-2b-fmG">
                                                         <rect key="frame" x="251" y="6.5" width="21" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="17"/>
-                                                        <color key="textColor" white="0.87232139440293011" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" red="0.84313725490196079" green="0.84313725490196079" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdv-O6-nb7">
@@ -427,32 +427,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uwW-XB-ThT" customClass="GradientView" customModule="Polocal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MCW-Ti-R43">
-                                        <rect key="frame" x="40" y="149" width="294" height="150"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="כתוב שאלה" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Udo-XD-rm8">
-                                                <rect key="frame" x="31" y="10" width="232" height="130"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="textColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="39"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="3BQ-Ue-jRW" id="WMA-By-SPp"/>
-                                                </connections>
-                                            </textView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="8"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="שאלה חדשה" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poO-cz-yi4">
+                                        <rect key="frame" x="93.5" y="40" width="188" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="Rxg-kX-ngn"/>
+                                            <constraint firstAttribute="width" constant="188" id="pZp-UP-wyr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="40"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uRu-R0-a2X">
-                                        <rect key="frame" x="125.5" y="423" width="124" height="56"/>
+                                        <rect key="frame" x="125.5" y="456" width="124" height="56"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="GyX-ZZ-OGK"/>
@@ -473,18 +459,8 @@
                                             <action selector="signUpButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eDT-b0-zbV"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="שאלה חדשה" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poO-cz-yi4">
-                                        <rect key="frame" x="93.5" y="40" width="188" height="48"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="Rxg-kX-ngn"/>
-                                            <constraint firstAttribute="width" constant="188" id="pZp-UP-wyr"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="40"/>
-                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="li4-wJ-GAf">
-                                        <rect key="frame" x="32" y="322" width="310" height="70"/>
+                                        <rect key="frame" x="32" y="355" width="310" height="70"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="תשובה 2" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ckn-br-4s7">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="70"/>
@@ -508,14 +484,47 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCW-Ti-R43">
+                                        <rect key="frame" x="40" y="167" width="294" height="150"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="כתוב שאלה" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Udo-XD-rm8">
+                                                <rect key="frame" x="25" y="10" width="244" height="130"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="39"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="3BQ-Ue-jRW" id="WMA-By-SPp"/>
+                                                </connections>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Udo-XD-rm8" secondAttribute="bottom" constant="10" id="G5t-9T-k9I"/>
+                                            <constraint firstAttribute="width" constant="294" id="fhj-J2-vh1"/>
+                                            <constraint firstAttribute="trailing" secondItem="Udo-XD-rm8" secondAttribute="trailing" constant="25" id="mDg-sr-pb9"/>
+                                            <constraint firstItem="Udo-XD-rm8" firstAttribute="top" secondItem="MCW-Ti-R43" secondAttribute="top" constant="10" id="nEq-OI-2Jy"/>
+                                            <constraint firstItem="Udo-XD-rm8" firstAttribute="leading" secondItem="MCW-Ti-R43" secondAttribute="leading" constant="25" id="nmq-DZ-I4T"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="MCW-Ti-R43" firstAttribute="centerX" secondItem="li4-wJ-GAf" secondAttribute="centerX" id="53R-27-KNP"/>
                                     <constraint firstItem="li4-wJ-GAf" firstAttribute="leading" secondItem="uwW-XB-ThT" secondAttribute="leading" constant="32" id="5R8-aC-7Qh"/>
-                                    <constraint firstAttribute="bottom" secondItem="uRu-R0-a2X" secondAttribute="bottom" constant="188" id="B4C-ja-yvJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="uRu-R0-a2X" secondAttribute="bottom" constant="155" id="B4C-ja-yvJ"/>
                                     <constraint firstAttribute="trailing" secondItem="li4-wJ-GAf" secondAttribute="trailing" constant="33" id="BC6-v7-63A"/>
+                                    <constraint firstItem="li4-wJ-GAf" firstAttribute="top" secondItem="MCW-Ti-R43" secondAttribute="bottom" constant="38" id="MKd-Mn-UJV"/>
+                                    <constraint firstItem="MCW-Ti-R43" firstAttribute="leading" secondItem="uwW-XB-ThT" secondAttribute="leading" constant="40" id="N18-Nb-Ea8"/>
                                     <constraint firstItem="uRu-R0-a2X" firstAttribute="centerX" secondItem="uwW-XB-ThT" secondAttribute="centerX" id="cgm-va-osF"/>
                                     <constraint firstItem="poO-cz-yi4" firstAttribute="top" secondItem="uwW-XB-ThT" secondAttribute="top" constant="40" id="f9i-vR-ajZ"/>
+                                    <constraint firstItem="MCW-Ti-R43" firstAttribute="top" secondItem="poO-cz-yi4" secondAttribute="bottom" constant="79" id="lbS-tg-OSW"/>
                                     <constraint firstItem="poO-cz-yi4" firstAttribute="centerX" secondItem="uwW-XB-ThT" secondAttribute="centerX" id="ngC-QI-kIg"/>
                                     <constraint firstItem="uRu-R0-a2X" firstAttribute="top" secondItem="li4-wJ-GAf" secondAttribute="bottom" constant="31" id="pcZ-JX-xnz"/>
                                 </constraints>
@@ -593,7 +602,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCr-ep-cIO">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GCr-ep-cIO">
                                                             <rect key="frame" x="90" y="37" width="195" height="22"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="195" id="8sc-mZ-OmZ"/>
@@ -710,7 +719,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="McF-yp-1Nt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3200.8000000000002" y="133.5832083958021"/>
+            <point key="canvasLocation" x="3201" y="132"/>
         </scene>
         <!--Side Menu Navigation Controller-->
         <scene sceneID="fDk-hQ-dRu">
@@ -732,6 +741,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tWh-Wg-RhO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3728.8000000000002" y="-639.13043478260875"/>
+        </scene>
+        <!--Tutorial View Controller-->
+        <scene sceneID="Tow-YO-72A">
+            <objects>
+                <viewController id="DM0-T9-BjI" customClass="TutorialViewController" customModule="Polocal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pKe-XL-AtD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSg-8a-Nid" customClass="GradientView" customModule="Polocal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="745"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" red="0.0039215686269999999" green="0.60392156860000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                        <real key="value" value="0.25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                        <real key="value" value="0.75"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gSg-8a-Nid" firstAttribute="bottom" secondItem="Mzq-V2-vnr" secondAttribute="bottom" constant="78" id="Eow-BN-TIi"/>
+                            <constraint firstItem="gSg-8a-Nid" firstAttribute="leading" secondItem="Mzq-V2-vnr" secondAttribute="leading" id="H8f-YP-eWd"/>
+                            <constraint firstItem="gSg-8a-Nid" firstAttribute="trailing" secondItem="Mzq-V2-vnr" secondAttribute="trailing" id="NBY-Ws-t5f"/>
+                            <constraint firstItem="gSg-8a-Nid" firstAttribute="top" secondItem="pKe-XL-AtD" secondAttribute="top" id="k3T-VI-gOy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Mzq-V2-vnr"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z3a-m4-EHS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="178" y="-639"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gFi-Hf-Ouy">
@@ -763,6 +813,6 @@
         <image name="plusIconGray" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oND-4v-5BH"/>
+        <segue reference="hyX-TW-1rF"/>
     </inferredMetricsTieBreakers>
 </document>

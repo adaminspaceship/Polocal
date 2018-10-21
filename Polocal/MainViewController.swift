@@ -34,24 +34,78 @@ class MainViewController: UIViewController {
     @IBOutlet weak var trueLabel: UILabel!
     @IBOutlet weak var falseLabel: UILabel!
 	@IBOutlet weak var timeAgoLabel: UILabel!
+	var gotitall = 0
+	
 	
     var Posts = [Post]()
     var postCount = -1
-	var unfilteredPosts = [String]()
+	var readPosts = [String]()
+	var totalPosts = [String]()
+	var currentPost = [Post]()
+	
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-		print(UserDefaults.standard.string(forKey: "userID"))
+//		print(UserDefaults.standard.string(forKey: "userID"))
 		trueLabel.adjustsFontSizeToFitWidth = true
 		falseLabel.adjustsFontSizeToFitWidth = true
 		trueLabel.lineBreakMode = .byTruncatingTail
 		falseLabel.lineBreakMode = .byTruncatingTail
-//		self.falseLabel.font.withSize(CGFloat(30))
 		
 		let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
 		swipeLeft.direction = .left
 		self.view.addGestureRecognizer(swipeLeft)
         falsePercentageLabel.isHidden = true
         truePercentageLabel.isHidden = true
+		
+		getAllPosts()
+		getReadPosts()
+		
+
+		
+    } //end of viewdidload()
+	
+	
+	
+	func getReadPosts() {
+		let userid = UserDefaults.standard.string(forKey: "userID")
+		let ref = Database.database().reference().child(userid!).child("readPosts")
+		ref.observeSingleEvent(of: .value) { (snapshot) in
+			let enumerator = snapshot.children
+			let childCount = snapshot.childrenCount
+			var count = 0
+			while let rest = enumerator.nextObject() as? DataSnapshot {
+				count += 1
+				let json = JSON(rest.value!)
+				let postID = json.stringValue
+				if self.totalPosts.contains(postID) {
+					if let index = self.totalPosts.index(of: postID) {
+						self.totalPosts.remove(at: index)
+					}
+				} else {
+					continue
+					print("not yet answered, continuing...")
+				}
+				if childCount == count {
+					self.checkRead()
+				}
+			}
+		}
+	}
+	
+	func getAllPosts() {
+		let queryRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
+		queryRef.observeSingleEvent(of: .value) { (snapshot) in
+			if let result = snapshot.children.allObjects as? [DataSnapshot] {
+				for child in result {
+					let postUID = child.key
+					self.totalPosts.append(postUID)
+				}
+			}
+		}
+	}
+	
+	func oldGetPosts() {
 		let userid = UserDefaults.standard.string(forKey: "userID")
 		let ref = Database.database().reference().child(userid!).child("readPosts")
 		let queryRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
@@ -59,6 +113,7 @@ class MainViewController: UIViewController {
 		queryRef.observeSingleEvent(of: .value) { (snapshot) in
 			print("started")
 			let enumerator = snapshot.children
+			
 			while let rest = enumerator.nextObject() as? DataSnapshot {
 				let json = JSON(rest.value!)
 				let question = json["question"].stringValue
@@ -67,8 +122,8 @@ class MainViewController: UIViewController {
 				let trueAnswer = json["trueAnswer"].stringValue
 				let falseAnswer = json["falseAnswer"].stringValue
 				let timestamp = json["timestamp"].intValue
-				print("trueAnswer: \(trueAnswer), falseAnswer: \(falseAnswer)")
-				ref.observeSingleEvent(of: .value, with: { (snap) in
+				//print("trueAnswer: \(trueAnswer), falseAnswer: \(falseAnswer)")
+				ref.observeSingleEvent(of: .value) { (snap) in
 					if snap.hasChild(rest.key) {
 						print("already answered question: \(question)")
 					} else {
@@ -76,19 +131,26 @@ class MainViewController: UIViewController {
 						self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: rest.key, trueAnswer: trueAnswer, falseAnswer: falseAnswer, timestamp: timestamp))
 						self.postCount += 1
 						print(self.postCount)
+						if self.gotitall == self.postCount {
+							print("done1")
+						}
+						if 13 == self.postCount-1 {
+							print("done2")
+						}
 						self.checkRead(postID: self.Posts[self.postCount].postID)
 						
 					}
-					
-				})
-
+					print("check")
+				}
+				
 			}
-			print("done")
+			
+			
 			
 		}
 		
-		
-    }
+	}
+	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -101,7 +163,9 @@ class MainViewController: UIViewController {
 		}
 		
 	}
-    func checkRead(postID: String, greaterPerc: String? = "true" ,num: Double? = 0.0) {
+	
+	
+    func checkRead(postID: String? = "0000000", greaterPerc: String? = "true" ,num: Double? = 0.0) {
 		
         self.placeholderQuestion.isHidden = true
 		trueButton.isEnabled = true
@@ -128,23 +192,25 @@ class MainViewController: UIViewController {
                 }
             }
         }
+		let queryRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(totalPosts[totalPosts.count-1])
 		
-		let currentPost = self.Posts[self.postCount]
-		self.questionLabel.text = currentPost.question
-		print(currentPost.question)
-		self.trueLabel.text = currentPost.trueAnswer
-		self.falseLabel.text = currentPost.falseAnswer
-		let date = NSDate(timeIntervalSince1970: TimeInterval(currentPost.timestamp))
-		self.timeAgoLabel.text = date.shortTimeAgoSinceNow()
-		
-		if self.trueLabel.font.pointSize < self.falseLabel.font.pointSize {
-			self.falseLabel.font = UIFont(name: "almoni-neue-aaa-300.ttf", size: self.trueLabel.font.pointSize)
-		} else if self.falseLabel.font.pointSize < self.trueLabel.font.pointSize {
-			self.trueLabel.font = UIFont(name: "almoni-neue-aaa-300.ttf", size: self.falseLabel.font.pointSize)
-		} else {
-			
+		queryRef.observeSingleEvent(of: .value) { (snapshot) in
+			let json = JSON(snapshot.value!)
+			let question = json["question"].stringValue
+			let falseAnswers = json["answers"]["false"].intValue
+			let trueAnswers = json["answers"]["true"].intValue
+			let trueAnswer = json["trueAnswer"].stringValue
+			let falseAnswer = json["falseAnswer"].stringValue
+			let timestamp = json["timestamp"].intValue
+			self.currentPost.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: snapshot.key, trueAnswer: trueAnswer, falseAnswer: falseAnswer, timestamp: timestamp))
+			let current = self.currentPost[0]
+			self.questionLabel.text = current.question
+			//print(currentPost.question)
+			self.trueLabel.text = current.trueAnswer
+			self.falseLabel.text = current.falseAnswer
+			let date = NSDate(timeIntervalSince1970: TimeInterval(current.timestamp))
+			self.timeAgoLabel.text = date.shortTimeAgoSinceNow()
 		}
-		
 	}
     
 
@@ -181,45 +247,57 @@ class MainViewController: UIViewController {
 		self.timeAgoLabel.text = "n/a"
 		// make user create a new poll
 	}
+	
+	func calcPercentage(trueAnswers: Int, falseAnswers: Int, Added: Bool) -> (Int,Int) {
+		if Added == true {
+			let newTrueAnswers = trueAnswers+1
+			let sum = falseAnswers+newTrueAnswers
+			let truePercentage = Int((Double(newTrueAnswers)/Double(sum))*100)
+			let falsePercentage = Int(100-truePercentage)
+			return (falsePercentage,truePercentage)
+		} else {
+			let newFalseAnswers = falseAnswers+1
+			let sum = newFalseAnswers+trueAnswers
+			let falsePercentage = Int((Double(newFalseAnswers)/Double(sum))*100)
+			let truePercentage = Int(100-falsePercentage)
+			return (falsePercentage,truePercentage)
+		}
+	}
 
 	@IBAction func trueAnswerButtonTouched(_ sender: Any) {
 		trueButton.isEnabled = false
 		falseButton.isEnabled = false
-		let currentPost = Posts[postCount]
+		let currentPost = self.currentPost[0]
 		let trueAnswers = currentPost.trueAnswers
 		let newTrueAnswers = trueAnswers+1
 		ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
 		ref.child(currentPost.postID).child("answers").child("true").setValue(newTrueAnswers)
-		let sum = currentPost.falseAnswers+newTrueAnswers
-		let truePercentage = Int((Double(newTrueAnswers)/Double(sum))*100)
-		let falsePercentage = Int(100-truePercentage)
 		truePercentageLabel.isHidden = false
 		falsePercentageLabel.isHidden = false
+		let (falsePercentage, truePercentage) = calcPercentage(trueAnswers: currentPost.falseAnswers, falseAnswers: currentPost.falseAnswers, Added: true)
 		truePercentageLabel.text = "\(String(truePercentage))%"
 		falsePercentageLabel.text = "\(String(falsePercentage))%"
 		showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
 		didReadPost(postID: currentPost.postID, answer: "true")
-		postCount -= 1
+		self.totalPosts.removeLast()
 	}
 
 	@IBAction func falseAnswerButtonTapped(_ sender: Any) {
 		falseButton.isEnabled = false
 		trueButton.isEnabled = false
-		let currentPost = Posts[postCount]
+		let currentPost = self.currentPost[0]
 		let falseAnswers = currentPost.falseAnswers
 		let newFalseAnswers = falseAnswers+1
 		ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
 		ref.child(currentPost.postID).child("answers").child("false").setValue(newFalseAnswers)
-		let sum = newFalseAnswers+currentPost.trueAnswers
-		let falsePercentage = Int((Double(newFalseAnswers)/Double(sum))*100)
-		let truePercentage = Int(100-falsePercentage)
+		let (falsePercentage, truePercentage) = calcPercentage(trueAnswers: currentPost.falseAnswers, falseAnswers: currentPost.falseAnswers, Added: false)
 		falsePercentageLabel.isHidden = false
 		truePercentageLabel.isHidden = false
 		truePercentageLabel.text = "\(String(truePercentage))%"
 		falsePercentageLabel.text = "\(String(falsePercentage))%"
 		showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
 		didReadPost(postID: currentPost.postID, answer: "false")
-		postCount -= 1
+		self.totalPosts.removeLast()
 	}
 	
 	
@@ -227,7 +305,6 @@ class MainViewController: UIViewController {
 	func didReadPost(postID: String, answer: String) {
 		ref = Database.database().reference()
 		ref.child(UserDefaults.standard.string(forKey: "userID")!).child("readPosts").child(postID).setValue(postID)
-	// ref.child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(postID).child("usersRead").child((UserDefaults.standard.string(forKey: "userID")!)).setValue(UserDefaults.standard.string(forKey: "userID")!)
 	}
 	
 	func showPercentage(falsePercentage: Int, truePercentage: Int) {
@@ -302,7 +379,6 @@ class MainViewController: UIViewController {
 			
 		}
 	}
-    
 }
 
 
