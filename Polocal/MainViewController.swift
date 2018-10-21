@@ -46,7 +46,7 @@ class MainViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-//		print(UserDefaults.standard.string(forKey: "userID"))
+		print(UserDefaults.standard.string(forKey: "userID"))
 		trueLabel.adjustsFontSizeToFitWidth = true
 		falseLabel.adjustsFontSizeToFitWidth = true
 		trueLabel.lineBreakMode = .byTruncatingTail
@@ -202,6 +202,7 @@ class MainViewController: UIViewController {
 			let trueAnswer = json["trueAnswer"].stringValue
 			let falseAnswer = json["falseAnswer"].stringValue
 			let timestamp = json["timestamp"].intValue
+			self.currentPost.removeAll()
 			self.currentPost.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: snapshot.key, trueAnswer: trueAnswer, falseAnswer: falseAnswer, timestamp: timestamp))
 			let current = self.currentPost[0]
 			self.questionLabel.text = current.question
@@ -316,18 +317,15 @@ class MainViewController: UIViewController {
                 sleep(2)
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
-                if self.Posts.count == 0 {
-                    self.placeholderQuestion.isHidden = false
-                    self.falseLabel.textColor = .lightGray
-                    self.trueLabel.textColor = .lightGray
-                } else {
-					if self.postCount > -1 {
-						let currentPost = self.Posts[self.postCount]
-						self.checkRead(postID: currentPost.postID, greaterPerc: "false", num: num)
-					} else {
-						self.noMorePosts(greaterPerc: "false")
-					}
-                }
+				self.checkRead(greaterPerc: "false", num: num)
+//                if self.Posts.count == 0 {
+//                    self.placeholderQuestion.isHidden = false
+//                    self.falseLabel.textColor = .lightGray
+//                    self.trueLabel.textColor = .lightGray
+//                } else {
+//					self.checkRead(greaterPerc: "false", num: num)
+//					//self.noMorePosts(greaterPerc: "false")
+//                }
 			}
 		} else if truePercentage>falsePercentage {
 			let num = Double(self.answerView.frame.width)/(100/Double(truePercentage))
@@ -340,18 +338,8 @@ class MainViewController: UIViewController {
                 sleep(2)
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
-                if self.Posts.count == 0 {
-                    self.placeholderQuestion.isHidden = false
-                    self.falseLabel.textColor = .lightGray
-                    self.trueLabel.textColor = .lightGray
-                } else {
-					if self.postCount > -1 {
-						let currentPost = self.Posts[self.postCount]
-						self.checkRead(postID: currentPost.postID, greaterPerc: "true", num: num)
-					} else {
-						self.noMorePosts(greaterPerc: "true", num: num)
-					}
-                }
+				self.checkRead(greaterPerc: "true", num: num)
+				
 			}
 		} else {
 			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
@@ -363,18 +351,8 @@ class MainViewController: UIViewController {
                 sleep(2)
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
-                if self.Posts.count == 0 {
-                    self.placeholderQuestion.isHidden = false
-                    self.falseLabel.textColor = .lightGray
-                    self.trueLabel.textColor = .lightGray
-                } else {
-					if self.postCount > -1 {
-						let currentPost = self.Posts[self.postCount]
-						self.checkRead(postID: currentPost.postID, greaterPerc: "equals")
-					} else {
-						self.noMorePosts(greaterPerc: "equals")
-					}
-                }
+				self.checkRead(greaterPerc: "equals")
+				
 			}
 			
 		}
