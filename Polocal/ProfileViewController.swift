@@ -25,6 +25,8 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "questionCell") as! QuestionTableViewCell
         let currentPost = Posts[indexPath.row]
         cell.questionLabel.text = currentPost.question
+		
+		
         cell.backgroundColor = .clear
         let sum = currentPost.falseAnswers+currentPost.trueAnswers
         if sum == 0 {
@@ -58,8 +60,10 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     var finalJSON = JSON(querySnapShot.value)
                     let falseAnswers = finalJSON["answers"]["false"].intValue
                     let trueAnswers = finalJSON["answers"]["true"].intValue
+					let trueAnswer = finalJSON["trueAnswer"].stringValue
+					let falseAnswer = finalJSON["falseAnswer"].stringValue
                     let question = finalJSON["question"].stringValue
-					self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: postUID as! String, trueAnswer: nil, falseAnswer: nil, timestamp: nil))
+					self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: postUID as! String, trueAnswer: trueAnswer, falseAnswer: falseAnswer, timestamp: nil))
                     self.tableView.reloadData()
                 })
             }
