@@ -201,7 +201,7 @@ class MainViewController: UIViewController {
         }
 		
 		if totalPosts.count == 0 {
-			
+			noMorePosts()
 		} else {
 			let queryRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(totalPosts[totalPosts.count-1])
 			

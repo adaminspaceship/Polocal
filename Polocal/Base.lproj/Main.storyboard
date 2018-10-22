@@ -166,17 +166,6 @@
                                                         <color key="textColor" red="0.84313725490196079" green="0.84313725490196079" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdv-O6-nb7">
-                                                        <rect key="frame" x="8" y="8" width="20" height="20"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="20" id="KaQ-To-nkf"/>
-                                                            <constraint firstAttribute="width" constant="20" id="Y6s-bn-H8z"/>
-                                                        </constraints>
-                                                        <state key="normal" image="moreIcon"/>
-                                                        <connections>
-                                                            <segue destination="HSQ-8p-eNk" kind="presentation" identifier="toSideMenu" id="QSR-Oz-dYi"/>
-                                                        </connections>
-                                                    </button>
                                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Qa2-oK-MUo">
                                                         <rect key="frame" x="130" y="92" width="20" height="20"/>
                                                         <color key="color" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -193,12 +182,10 @@
                                                     <constraint firstItem="nOS-20-Q83" firstAttribute="leading" secondItem="hrN-6w-V47" secondAttribute="leading" constant="18" id="Inx-tP-AK8"/>
                                                     <constraint firstItem="MKQ-cJ-CCk" firstAttribute="centerY" secondItem="hrN-6w-V47" secondAttribute="centerY" constant="8.5" id="R7o-2N-Zl9"/>
                                                     <constraint firstItem="MKQ-cJ-CCk" firstAttribute="centerY" secondItem="nOS-20-Q83" secondAttribute="centerY" constant="8.5" id="SRD-gQ-b9d"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Mdv-O6-nb7" secondAttribute="trailing" constant="252" id="d3H-8u-c6c"/>
                                                     <constraint firstItem="Qa2-oK-MUo" firstAttribute="top" secondItem="hrN-6w-V47" secondAttribute="top" constant="92" id="dOc-4n-Ik3"/>
                                                     <constraint firstItem="h9L-2b-fmG" firstAttribute="trailing" secondItem="hrN-6w-V47" secondAttribute="trailingMargin" id="eRy-c5-7Qp"/>
                                                     <constraint firstItem="MKQ-cJ-CCk" firstAttribute="top" secondItem="hrN-6w-V47" secondAttribute="top" constant="25" id="h56-nb-wPb"/>
                                                     <constraint firstItem="nOS-20-Q83" firstAttribute="top" secondItem="hrN-6w-V47" secondAttribute="top" constant="72" id="lrh-jC-734"/>
-                                                    <constraint firstItem="Mdv-O6-nb7" firstAttribute="top" secondItem="hrN-6w-V47" secondAttribute="topMargin" id="nji-b6-izf"/>
                                                     <constraint firstItem="MKQ-cJ-CCk" firstAttribute="centerX" secondItem="nOS-20-Q83" secondAttribute="centerX" id="pm8-qp-3bh"/>
                                                     <constraint firstItem="Qa2-oK-MUo" firstAttribute="leading" secondItem="hrN-6w-V47" secondAttribute="leading" constant="130" id="t6o-NJ-IhK"/>
                                                     <constraint firstAttribute="width" constant="280" id="tod-9B-24Y"/>
@@ -822,7 +809,6 @@
         <image name="QuestionIcon" width="25" height="25"/>
         <image name="homeIcon" width="26" height="23"/>
         <image name="homeIconGray" width="26" height="23"/>
-        <image name="moreIcon" width="25" height="25"/>
         <image name="plusIcon" width="25" height="25"/>
         <image name="plusIconGray" width="25" height="25"/>
     </resources>
