@@ -192,25 +192,30 @@ class MainViewController: UIViewController {
                 }
             }
         }
-		let queryRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(totalPosts[totalPosts.count-1])
 		
-		queryRef.observeSingleEvent(of: .value) { (snapshot) in
-			let json = JSON(snapshot.value!)
-			let question = json["question"].stringValue
-			let falseAnswers = json["answers"]["false"].intValue
-			let trueAnswers = json["answers"]["true"].intValue
-			let trueAnswer = json["trueAnswer"].stringValue
-			let falseAnswer = json["falseAnswer"].stringValue
-			let timestamp = json["timestamp"].intValue
-			self.currentPost.removeAll()
-			self.currentPost.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: snapshot.key, trueAnswer: trueAnswer, falseAnswer: falseAnswer, timestamp: timestamp))
-			let current = self.currentPost[0]
-			self.questionLabel.text = current.question
-			//print(currentPost.question)
-			self.trueLabel.text = current.trueAnswer
-			self.falseLabel.text = current.falseAnswer
-			let date = NSDate(timeIntervalSince1970: TimeInterval(current.timestamp))
-			self.timeAgoLabel.text = date.shortTimeAgoSinceNow()
+		if totalPosts.count == 0 {
+			
+		} else {
+			let queryRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(totalPosts[totalPosts.count-1])
+			
+			queryRef.observeSingleEvent(of: .value) { (snapshot) in
+				let json = JSON(snapshot.value!)
+				let question = json["question"].stringValue
+				let falseAnswers = json["answers"]["false"].intValue
+				let trueAnswers = json["answers"]["true"].intValue
+				let trueAnswer = json["trueAnswer"].stringValue
+				let falseAnswer = json["falseAnswer"].stringValue
+				let timestamp = json["timestamp"].intValue
+				self.currentPost.removeAll()
+				self.currentPost.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: snapshot.key, trueAnswer: trueAnswer, falseAnswer: falseAnswer, timestamp: timestamp))
+				let current = self.currentPost[0]
+				self.questionLabel.text = current.question
+				//print(currentPost.question)
+				self.trueLabel.text = current.trueAnswer
+				self.falseLabel.text = current.falseAnswer
+				let date = NSDate(timeIntervalSince1970: TimeInterval(current.timestamp))
+				self.timeAgoLabel.text = date.shortTimeAgoSinceNow()
+			}
 		}
 	}
     
@@ -358,6 +363,3 @@ class MainViewController: UIViewController {
 		}
 	}
 }
-
-
-
