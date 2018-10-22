@@ -177,6 +177,11 @@
                                                             <segue destination="HSQ-8p-eNk" kind="presentation" identifier="toSideMenu" id="QSR-Oz-dYi"/>
                                                         </connections>
                                                     </button>
+                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Qa2-oK-MUo">
+                                                        <rect key="frame" x="130" y="92" width="20" height="20"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="color" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </activityIndicatorView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -335,6 +340,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="homeIconGray" selectedImage="homeIcon" id="I4p-rG-1uV"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Qa2-oK-MUo" id="QBe-TZ-kLp"/>
                         <outlet property="answerView" destination="4bp-tY-STs" id="6rk-Qn-xbd"/>
                         <outlet property="falseButton" destination="uoM-S4-VJb" id="Rau-Z2-6TD"/>
                         <outlet property="falseLabel" destination="YR7-Td-pej" id="CRe-3U-SY5"/>

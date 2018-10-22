@@ -14,6 +14,9 @@
 //						break
 //					}
 //let queryRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).queryOrdered(byChild: "usersRead/\(userid ?? "")").queryEqual(toValue: "\(userid ?? "")")
+
+
+
 import UIKit
 import FirebaseDatabase
 import SwiftyJSON
@@ -35,6 +38,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var falseLabel: UILabel!
 	@IBOutlet weak var timeAgoLabel: UILabel!
 	var gotitall = 0
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	
 	
     var Posts = [Post]()
@@ -46,7 +50,7 @@ class MainViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		print(UserDefaults.standard.string(forKey: "userID"))
+		//print(UserDefaults.standard.string(forKey: "userID"))
 		trueLabel.adjustsFontSizeToFitWidth = true
 		falseLabel.adjustsFontSizeToFitWidth = true
 		trueLabel.lineBreakMode = .byTruncatingTail
@@ -58,6 +62,8 @@ class MainViewController: UIViewController {
         falsePercentageLabel.isHidden = true
         truePercentageLabel.isHidden = true
 		
+		activityIndicator.isHidden = false
+		activityIndicator.startAnimating()
 		getAllPosts()
 		getReadPosts()
 		
@@ -84,9 +90,10 @@ class MainViewController: UIViewController {
 					}
 				} else {
 					continue
-					print("not yet answered, continuing...")
 				}
 				if childCount == count {
+					self.activityIndicator.stopAnimating()
+					self.activityIndicator.isHidden = true
 					self.checkRead()
 				}
 			}
@@ -357,7 +364,6 @@ class MainViewController: UIViewController {
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
 				self.checkRead(greaterPerc: "equals")
-				
 			}
 			
 		}
