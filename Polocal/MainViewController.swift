@@ -37,13 +37,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var trueLabel: UILabel!
     @IBOutlet weak var falseLabel: UILabel!
 	@IBOutlet weak var timeAgoLabel: UILabel!
-	var gotitall = 0
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	
-	
-    var Posts = [Post]()
-    var postCount = -1
-	var readPosts = [String]()
 	var totalPosts = [String]()
 	var currentPost = [Post]()
 	
@@ -80,83 +75,74 @@ class MainViewController: UIViewController {
 			let enumerator = snapshot.children
 			let childCount = snapshot.childrenCount
 			var count = 0
-			while let rest = enumerator.nextObject() as? DataSnapshot {
-				count += 1
-				let json = JSON(rest.value!)
-				let postID = json.stringValue
-				if self.totalPosts.contains(postID) {
-					if let index = self.totalPosts.index(of: postID) {
-						self.totalPosts.remove(at: index)
+			if childCount == 0 {
+				self.activityIndicator.stopAnimating()
+				self.checkRead()
+			} else {
+				while let rest = enumerator.nextObject() as? DataSnapshot {
+					count += 1
+					let json = JSON(rest.value!)
+					let postID = json.stringValue
+					if self.totalPosts.contains(postID) {
+						if let index = self.totalPosts.index(of: postID) {
+							self.totalPosts.remove(at: index)
+						}
+					} else {
+						continue
 					}
-				} else {
-					continue
-				}
-				if childCount == count {
-					self.activityIndicator.stopAnimating()
-					self.activityIndicator.isHidden = true
-					self.checkRead()
+					if childCount == count {
+						self.activityIndicator.stopAnimating()
+						self.checkRead()
+					}
 				}
 			}
 		}
 	}
+
 	
 	func getAllPosts() {
-		let queryRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
-		queryRef.observeSingleEvent(of: .value) { (snapshot) in
+		let ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
+		let defaultQuestionRef = Database.database().reference().child("defaultQuestions")
+		ref.observeSingleEvent(of: .value) { (snapshot) in
 			if let result = snapshot.children.allObjects as? [DataSnapshot] {
-				for child in result {
-					let postUID = child.key
-					self.totalPosts.append(postUID)
+				if snapshot.childrenCount == 0 {
+					defaultQuestionRef.observeSingleEvent(of: .value) { (snap) in
+						let enumerator = snap.children
+						var count = 0
+						while let rest = enumerator.nextObject() as? DataSnapshot {
+							let json = JSON(rest.value!)
+							let falseAnswer = json["falseAnswer"].stringValue
+							let trueAnswer = json["trueAnswer"].stringValue
+							let falseAnswers = json["answers"]["false"].intValue
+							let trueAnswers = json["answers"]["true"].intValue
+							let question = json["question"].stringValue
+							let time = count
+							count += 1
+							let moreRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(String(time))
+							let defaultQuestion = ["answers":["false":falseAnswers,"true":trueAnswers],"question":question,"trueAnswer":trueAnswer,"falseAnswer":falseAnswer,"timestamp":time] as [String : Any]
+							moreRef.setValue(defaultQuestion){
+								(error:Error?, ref:DatabaseReference) in
+								if let error = error {
+									print("Data could not be saved: \(error).")
+								} else {
+									print("Data saved successfully!")
+									self.getReadPosts()
+								}
+							}
+						}
+					}
+				} else {
+					for child in result {
+						let postUID = child.key
+						self.totalPosts.append(postUID)
+					}
 				}
 			}
 		}
 	}
 	
-	func oldGetPosts() {
-		let userid = UserDefaults.standard.string(forKey: "userID")
-		let ref = Database.database().reference().child(userid!).child("readPosts")
-		let queryRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
-		
-		queryRef.observeSingleEvent(of: .value) { (snapshot) in
-			print("started")
-			let enumerator = snapshot.children
-			
-			while let rest = enumerator.nextObject() as? DataSnapshot {
-				let json = JSON(rest.value!)
-				let question = json["question"].stringValue
-				let falseAnswers = json["answers"]["false"].intValue
-				let trueAnswers = json["answers"]["true"].intValue
-				let trueAnswer = json["trueAnswer"].stringValue
-				let falseAnswer = json["falseAnswer"].stringValue
-				let timestamp = json["timestamp"].intValue
-				//print("trueAnswer: \(trueAnswer), falseAnswer: \(falseAnswer)")
-				ref.observeSingleEvent(of: .value) { (snap) in
-					if snap.hasChild(rest.key) {
-						print("already answered question: \(question)")
-					} else {
-						print("not yet answered, adding question: \(question) to Posts")
-						self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: rest.key, trueAnswer: trueAnswer, falseAnswer: falseAnswer, timestamp: timestamp))
-						self.postCount += 1
-						print(self.postCount)
-						if self.gotitall == self.postCount {
-							print("done1")
-						}
-						if 13 == self.postCount-1 {
-							print("done2")
-						}
-						self.checkRead(postID: self.Posts[self.postCount].postID)
-						
-					}
-					print("check")
-				}
-				
-			}
-			
-			
-			
-		}
-		
-	}
+
+	
 	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -173,7 +159,7 @@ class MainViewController: UIViewController {
 	
 	
     func checkRead(postID: String? = "0000000", greaterPerc: String? = "true" ,num: Double? = 0.0) {
-		
+		self.activityIndicator.startAnimating()
         self.placeholderQuestion.isHidden = true
 		trueButton.isEnabled = true
 		falseButton.isEnabled = true
@@ -202,6 +188,8 @@ class MainViewController: UIViewController {
 		
 		if totalPosts.count == 0 {
 			noMorePosts()
+			self.activityIndicator.stopAnimating()
+			self.activityIndicator.isHidden = true
 		} else {
 			let queryRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(totalPosts[totalPosts.count-1])
 			
@@ -222,6 +210,8 @@ class MainViewController: UIViewController {
 				self.falseLabel.text = current.falseAnswer
 				let date = NSDate(timeIntervalSince1970: TimeInterval(current.timestamp))
 				self.timeAgoLabel.text = date.shortTimeAgoSinceNow()
+				self.activityIndicator.stopAnimating()
+				self.activityIndicator.isHidden = true
 			}
 		}
 	}
