@@ -30,6 +30,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
     }
     override func viewDidAppear(_ animated: Bool) {
 //        self.questionTextView.becomeFirstResponder()
+		share()
         
     }
 
@@ -46,7 +47,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 			self.questionView.shake()
 		}
 		else {
-			share()
+			
 			let postRef = ref.child("Posts").child(userDefaults.string(forKey: "schoolSemel")!).child(String(time))
 			postRef.child("answers").child("false").setValue(0)
 			postRef.child("answers").child("true").setValue(0)

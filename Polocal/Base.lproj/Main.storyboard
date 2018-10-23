@@ -482,10 +482,10 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCW-Ti-R43">
-                                        <rect key="frame" x="40" y="167" width="294" height="150"/>
+                                        <rect key="frame" x="40" y="140" width="294" height="200"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="כתוב שאלה" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Udo-XD-rm8">
-                                                <rect key="frame" x="25" y="10" width="244" height="130"/>
+                                                <rect key="frame" x="25" y="10" width="244" height="180"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="39"/>
@@ -497,6 +497,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="DtB-Nf-s80"/>
                                             <constraint firstAttribute="bottom" secondItem="Udo-XD-rm8" secondAttribute="bottom" constant="10" id="G5t-9T-k9I"/>
                                             <constraint firstAttribute="width" constant="294" id="fhj-J2-vh1"/>
                                             <constraint firstAttribute="trailing" secondItem="Udo-XD-rm8" secondAttribute="trailing" constant="25" id="mDg-sr-pb9"/>
@@ -513,15 +514,15 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="li4-wJ-GAf" firstAttribute="top" secondItem="MCW-Ti-R43" secondAttribute="bottom" constant="15" id="1jC-hr-TeU"/>
                                     <constraint firstItem="MCW-Ti-R43" firstAttribute="centerX" secondItem="li4-wJ-GAf" secondAttribute="centerX" id="53R-27-KNP"/>
                                     <constraint firstItem="li4-wJ-GAf" firstAttribute="leading" secondItem="uwW-XB-ThT" secondAttribute="leading" constant="32" id="5R8-aC-7Qh"/>
                                     <constraint firstAttribute="bottom" secondItem="uRu-R0-a2X" secondAttribute="bottom" constant="155" id="B4C-ja-yvJ"/>
                                     <constraint firstAttribute="trailing" secondItem="li4-wJ-GAf" secondAttribute="trailing" constant="33" id="BC6-v7-63A"/>
-                                    <constraint firstItem="li4-wJ-GAf" firstAttribute="top" secondItem="MCW-Ti-R43" secondAttribute="bottom" constant="38" id="MKd-Mn-UJV"/>
                                     <constraint firstItem="MCW-Ti-R43" firstAttribute="leading" secondItem="uwW-XB-ThT" secondAttribute="leading" constant="40" id="N18-Nb-Ea8"/>
                                     <constraint firstItem="uRu-R0-a2X" firstAttribute="centerX" secondItem="uwW-XB-ThT" secondAttribute="centerX" id="cgm-va-osF"/>
                                     <constraint firstItem="poO-cz-yi4" firstAttribute="top" secondItem="uwW-XB-ThT" secondAttribute="top" constant="40" id="f9i-vR-ajZ"/>
-                                    <constraint firstItem="MCW-Ti-R43" firstAttribute="top" secondItem="poO-cz-yi4" secondAttribute="bottom" constant="79" id="lbS-tg-OSW"/>
+                                    <constraint firstItem="MCW-Ti-R43" firstAttribute="top" secondItem="poO-cz-yi4" secondAttribute="bottom" constant="52" id="lbS-tg-OSW"/>
                                     <constraint firstItem="poO-cz-yi4" firstAttribute="centerX" secondItem="uwW-XB-ThT" secondAttribute="centerX" id="ngC-QI-kIg"/>
                                     <constraint firstItem="uRu-R0-a2X" firstAttribute="top" secondItem="li4-wJ-GAf" secondAttribute="bottom" constant="31" id="pcZ-JX-xnz"/>
                                 </constraints>
@@ -814,6 +815,6 @@
         <image name="profileIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hyX-TW-1rF"/>
+        <segue reference="oND-4v-5BH"/>
     </inferredMetricsTieBreakers>
 </document>
