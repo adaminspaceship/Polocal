@@ -111,6 +111,7 @@
                     <connections>
                         <outlet property="schoolSearchBar" destination="PYr-S7-l0t" id="Mjk-Ig-2ve"/>
                         <outlet property="schoolTextField" destination="JQo-io-eMU" id="qdw-CI-q9E"/>
+                        <outlet property="startButton" destination="Hh0-v2-mR4" id="4hz-36-c6c"/>
                         <segue destination="4kx-cW-ior" kind="show" identifier="toMain" animates="NO" id="hyX-TW-1rF"/>
                     </connections>
                 </viewController>
@@ -118,7 +119,7 @@
             </objects>
             <point key="canvasLocation" x="178.40000000000001" y="132.26600985221674"/>
         </scene>
-        <!--Home-->
+        <!--Main View Controller-->
         <scene sceneID="2kR-3h-hEZ">
             <objects>
                 <viewController id="giN-7n-CL4" customClass="MainViewController" customModule="Polocal" customModuleProvider="target" sceneMemberID="viewController">
@@ -328,7 +329,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="taK-UK-5Xk"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="homeIconGray" selectedImage="homeIcon" id="I4p-rG-1uV"/>
+                    <tabBarItem key="tabBarItem" title="" image="homeIcon" id="I4p-rG-1uV"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Qa2-oK-MUo" id="QBe-TZ-kLp"/>
                         <outlet property="answerView" destination="4bp-tY-STs" id="6rk-Qn-xbd"/>
@@ -412,7 +413,7 @@
             </objects>
             <point key="canvasLocation" x="4636" y="-639.13043478260875"/>
         </scene>
-        <!--Add-->
+        <!--Add Post View Controller-->
         <scene sceneID="u3h-ZU-BI2">
             <objects>
                 <viewController id="3BQ-Ue-jRW" customClass="AddPostViewController" customModule="Polocal" customModuleProvider="target" sceneMemberID="viewController">
@@ -549,7 +550,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mrl-oL-YHP"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Add" image="plusIconGray" selectedImage="plusIcon" id="KH8-fQ-8U6"/>
+                    <tabBarItem key="tabBarItem" title="" image="plusIcon" id="KH8-fQ-8U6"/>
                     <connections>
                         <outlet property="falseAnswerField" destination="Ckn-br-4s7" id="WLr-Og-G4i"/>
                         <outlet property="questionTextView" destination="Udo-XD-rm8" id="A7z-8c-dmG"/>
@@ -562,7 +563,7 @@
             </objects>
             <point key="canvasLocation" x="2061.5999999999999" y="132.68365817091455"/>
         </scene>
-        <!--My Questions-->
+        <!--Profile View Controller-->
         <scene sceneID="vND-hh-5jm">
             <objects>
                 <viewController id="bIg-ML-WDh" customClass="ProfileViewController" customModule="Polocal" customModuleProvider="target" sceneMemberID="viewController">
@@ -713,7 +714,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Zb9-XL-7ep"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Questions" image="QuestionIcon" id="mLa-hI-gpB"/>
+                    <tabBarItem key="tabBarItem" title="" image="profileIcon" id="mLa-hI-gpB"/>
                     <connections>
                         <outlet property="tableView" destination="wQX-ez-rWZ" id="Ler-r9-cyV"/>
                     </connections>
@@ -793,6 +794,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="giN-7n-CL4" kind="relationship" relationship="viewControllers" id="QXi-Ib-bd0"/>
@@ -806,11 +809,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="QuestionIcon" width="25" height="25"/>
-        <image name="homeIcon" width="26" height="23"/>
-        <image name="homeIconGray" width="26" height="23"/>
+        <image name="homeIcon" width="25" height="25"/>
         <image name="plusIcon" width="25" height="25"/>
-        <image name="plusIconGray" width="25" height="25"/>
+        <image name="profileIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="hyX-TW-1rF"/>

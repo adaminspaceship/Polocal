@@ -304,7 +304,6 @@ class MainViewController: UIViewController {
 	}
 	
 	
-	
 	func didReadPost(postID: String, answer: String) {
 		ref = Database.database().reference()
 		ref.child(UserDefaults.standard.string(forKey: "userID")!).child("readPosts").child(postID).setValue(postID)
@@ -320,14 +319,6 @@ class MainViewController: UIViewController {
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
 				self.checkRead(greaterPerc: "false", num: num)
-//                if self.Posts.count == 0 {
-//                    self.placeholderQuestion.isHidden = false
-//                    self.falseLabel.textColor = .lightGray
-//                    self.trueLabel.textColor = .lightGray
-//                } else {
-//					self.checkRead(greaterPerc: "false", num: num)
-//					//self.noMorePosts(greaterPerc: "false")
-//                }
 			}
 		} else if truePercentage>falsePercentage {
 			let num = Double(self.answerView.frame.width)/(100/Double(truePercentage))
