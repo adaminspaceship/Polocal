@@ -31,8 +31,13 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
 //        self.questionTextView.becomeFirstResponder()
 //		share()
-		
+		trueAnswerField.adjustsFontSizeToFitWidth = true
     }
+	@IBAction func trueAnswerTapped(_ sender: Any) {
+//		UIView.animate(withDuration: 0.3) {
+//			self.trueAnswerField.frame = CGRect(x: 0, y: 0, width: self.trueAnswerField.frame.width, height: self.trueAnswerField.frame.height)
+//		}
+	}
 	
 //	func textField(_ textField: UITextView, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 //		let maxLength = 39

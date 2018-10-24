@@ -456,36 +456,10 @@
                                             <action selector="signUpButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eDT-b0-zbV"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="li4-wJ-GAf">
-                                        <rect key="frame" x="32" y="355" width="310" height="70"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="תשובה 2" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ckn-br-4s7">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="70"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="70" id="1P5-mt-KJa"/>
-                                                    <constraint firstAttribute="width" constant="150" id="rl5-G2-fbg"/>
-                                                </constraints>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="38"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="תשובה 1" textAlignment="right" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="ajn-CK-Jx1">
-                                                <rect key="frame" x="160" y="0.0" width="150" height="70"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="38"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="Ckn-br-4s7" firstAttribute="leading" secondItem="li4-wJ-GAf" secondAttribute="leading" id="Dx4-kG-xPz"/>
-                                            <constraint firstAttribute="bottom" secondItem="Ckn-br-4s7" secondAttribute="bottom" id="G1c-gG-qdN"/>
-                                            <constraint firstItem="Ckn-br-4s7" firstAttribute="top" secondItem="li4-wJ-GAf" secondAttribute="top" id="MmD-XS-xXS"/>
-                                        </constraints>
-                                    </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCW-Ti-R43">
                                         <rect key="frame" x="40" y="140" width="294" height="200"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="כתוב שאלה" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Udo-XD-rm8">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="כתוב שאלה" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Udo-XD-rm8">
                                                 <rect key="frame" x="25" y="10" width="244" height="180"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -518,21 +492,43 @@
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="תשובה 2" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ckn-br-4s7">
+                                        <rect key="frame" x="32" y="392" width="150" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="1P5-mt-KJa"/>
+                                            <constraint firstAttribute="width" constant="150" id="rl5-G2-fbg"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="38"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="תשובה 1" textAlignment="right" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="ajn-CK-Jx1">
+                                        <rect key="frame" x="200" y="392" width="150" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="HfM-pt-Ywc"/>
+                                            <constraint firstAttribute="width" constant="150" id="fef-Jh-hda"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="38"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <action selector="trueAnswerTapped:" destination="3BQ-Ue-jRW" eventType="editingDidBegin" id="YBn-ZI-qj6"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="li4-wJ-GAf" firstAttribute="top" secondItem="MCW-Ti-R43" secondAttribute="bottom" constant="15" id="1jC-hr-TeU"/>
-                                    <constraint firstItem="MCW-Ti-R43" firstAttribute="centerX" secondItem="li4-wJ-GAf" secondAttribute="centerX" id="53R-27-KNP"/>
-                                    <constraint firstItem="li4-wJ-GAf" firstAttribute="leading" secondItem="uwW-XB-ThT" secondAttribute="leading" constant="32" id="5R8-aC-7Qh"/>
+                                    <constraint firstAttribute="trailing" secondItem="ajn-CK-Jx1" secondAttribute="trailing" constant="25" id="2v8-Ve-Pod"/>
+                                    <constraint firstItem="ajn-CK-Jx1" firstAttribute="baseline" secondItem="Ckn-br-4s7" secondAttribute="baseline" id="636-WD-fUM"/>
                                     <constraint firstAttribute="bottom" secondItem="uRu-R0-a2X" secondAttribute="bottom" constant="155" id="B4C-ja-yvJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="li4-wJ-GAf" secondAttribute="trailing" constant="33" id="BC6-v7-63A"/>
+                                    <constraint firstItem="ajn-CK-Jx1" firstAttribute="leading" secondItem="Ckn-br-4s7" secondAttribute="trailing" constant="18" id="HLe-nF-c3a"/>
                                     <constraint firstItem="MCW-Ti-R43" firstAttribute="leading" secondItem="uwW-XB-ThT" secondAttribute="leading" constant="40" id="N18-Nb-Ea8"/>
                                     <constraint firstItem="Igc-Ni-5FB" firstAttribute="top" secondItem="MCW-Ti-R43" secondAttribute="bottom" constant="5" id="VMs-ow-p4b"/>
+                                    <constraint firstItem="ajn-CK-Jx1" firstAttribute="top" secondItem="Igc-Ni-5FB" secondAttribute="bottom" constant="24" id="W2M-uZ-8YC"/>
                                     <constraint firstItem="uRu-R0-a2X" firstAttribute="centerX" secondItem="uwW-XB-ThT" secondAttribute="centerX" id="cgm-va-osF"/>
                                     <constraint firstItem="poO-cz-yi4" firstAttribute="top" secondItem="uwW-XB-ThT" secondAttribute="top" constant="40" id="f9i-vR-ajZ"/>
                                     <constraint firstItem="MCW-Ti-R43" firstAttribute="top" secondItem="poO-cz-yi4" secondAttribute="bottom" constant="52" id="lbS-tg-OSW"/>
                                     <constraint firstItem="poO-cz-yi4" firstAttribute="centerX" secondItem="uwW-XB-ThT" secondAttribute="centerX" id="ngC-QI-kIg"/>
-                                    <constraint firstItem="uRu-R0-a2X" firstAttribute="top" secondItem="li4-wJ-GAf" secondAttribute="bottom" constant="31" id="pcZ-JX-xnz"/>
                                     <constraint firstItem="Igc-Ni-5FB" firstAttribute="trailing" secondItem="MCW-Ti-R43" secondAttribute="trailing" id="rl5-Hh-Ylz"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -825,6 +821,6 @@
         <image name="profileIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hyX-TW-1rF"/>
+        <segue reference="oND-4v-5BH"/>
     </inferredMetricsTieBreakers>
 </document>
