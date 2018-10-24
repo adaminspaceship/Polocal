@@ -63,7 +63,8 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
 					let trueAnswer = finalJSON["trueAnswer"].stringValue
 					let falseAnswer = finalJSON["falseAnswer"].stringValue
                     let question = finalJSON["question"].stringValue
-					self.Posts.append(Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: postUID as! String, trueAnswer: trueAnswer, falseAnswer: falseAnswer, timestamp: nil))
+					let post = Post(question: question, falseAnswers: falseAnswers, trueAnswers: trueAnswers, postID: postUID as! String, trueAnswer: trueAnswer, falseAnswer: falseAnswer, timestamp: nil)
+					self.Posts.insert(post, at: 0)
                     self.tableView.reloadData()
                 })
             }

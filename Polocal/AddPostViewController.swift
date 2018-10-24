@@ -15,24 +15,48 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 	@IBOutlet weak var questionTextView: UITextView!
 	var ref: DatabaseReference!
 	
+	@IBOutlet weak var maxCharLimit: UILabel!
 	@IBOutlet weak var questionView: UIView!
 	@IBOutlet weak var falseAnswerField: UITextField!
 	@IBOutlet weak var trueAnswerField: UITextField!
 	override func viewDidLoad() {
         super.viewDidLoad()
+		maxCharLimit.isHidden = true
 		ref = Database.database().reference()
 		questionTextView.delegate = self
 		questionTextView.text = "כתוב שאלה"
 		questionTextView.textColor = UIColor.lightGray
         // Do any additional setup after loading the view.
-		
-		
     }
     override func viewDidAppear(_ animated: Bool) {
 //        self.questionTextView.becomeFirstResponder()
-		share()
-        
+//		share()
+		
     }
+	
+//	func textField(_ textField: UITextView, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//		let maxLength = 39
+//		let currentString: NSString = textField.text! as NSString
+//		let newString: NSString =
+//			currentString.replacingCharacters(in: range, with: string) as NSString
+//		if newString.length == maxLength {
+//			self.maxCharLimit.isHidden = false
+//		} else {
+//			self.maxCharLimit.isHidden = true
+//		}
+//		return newString.length <= maxLength
+//	}
+//	
+	func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+		let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+		if newText.count == 39 {
+			self.maxCharLimit.isHidden = false
+		} else {
+			self.maxCharLimit.isHidden = true
+		}
+		let numberOfChars = newText.count
+		return numberOfChars < 39    // 10 Limit Value
+	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

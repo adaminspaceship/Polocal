@@ -32,8 +32,8 @@
                                         <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="PYr-S7-l0t" customClass="ModernSearchBar" customModule="ModernSearchBar">
-                                        <rect key="frame" x="0.0" y="316.5" width="375" height="56"/>
+                                    <searchBar contentMode="redraw" misplaced="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="PYr-S7-l0t" customClass="ModernSearchBar" customModule="ModernSearchBar">
+                                        <rect key="frame" x="-1" y="316.5" width="375" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="הכנס בית ספר" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALZ-jz-hWl">
@@ -167,7 +167,7 @@
                                                         <color key="textColor" red="0.84313725490196079" green="0.84313725490196079" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Qa2-oK-MUo">
+                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Qa2-oK-MUo">
                                                         <rect key="frame" x="130" y="92" width="20" height="20"/>
                                                         <color key="color" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     </activityIndicatorView>
@@ -459,7 +459,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="li4-wJ-GAf">
                                         <rect key="frame" x="32" y="355" width="310" height="70"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="תשובה 2" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ckn-br-4s7">
+                                            <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="תשובה 2" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ckn-br-4s7">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="1P5-mt-KJa"/>
@@ -469,17 +469,18 @@
                                                 <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="38"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" placeholder="תשובה 1" textAlignment="right" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ajn-CK-Jx1">
+                                            <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="תשובה 1" textAlignment="right" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="ajn-CK-Jx1">
                                                 <rect key="frame" x="160" y="0.0" width="150" height="70"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="fhI-Jx-wNc"/>
-                                                    <constraint firstAttribute="height" constant="70" id="w65-LW-vx3"/>
-                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="38"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Ckn-br-4s7" firstAttribute="leading" secondItem="li4-wJ-GAf" secondAttribute="leading" id="Dx4-kG-xPz"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ckn-br-4s7" secondAttribute="bottom" id="G1c-gG-qdN"/>
+                                            <constraint firstItem="Ckn-br-4s7" firstAttribute="top" secondItem="li4-wJ-GAf" secondAttribute="top" id="MmD-XS-xXS"/>
+                                        </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCW-Ti-R43">
                                         <rect key="frame" x="40" y="140" width="294" height="200"/>
@@ -511,6 +512,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="מגבלת תווים מקסימלית" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Igc-Ni-5FB">
+                                        <rect key="frame" x="174" y="345" width="160" height="23"/>
+                                        <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="19"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -520,11 +527,13 @@
                                     <constraint firstAttribute="bottom" secondItem="uRu-R0-a2X" secondAttribute="bottom" constant="155" id="B4C-ja-yvJ"/>
                                     <constraint firstAttribute="trailing" secondItem="li4-wJ-GAf" secondAttribute="trailing" constant="33" id="BC6-v7-63A"/>
                                     <constraint firstItem="MCW-Ti-R43" firstAttribute="leading" secondItem="uwW-XB-ThT" secondAttribute="leading" constant="40" id="N18-Nb-Ea8"/>
+                                    <constraint firstItem="Igc-Ni-5FB" firstAttribute="top" secondItem="MCW-Ti-R43" secondAttribute="bottom" constant="5" id="VMs-ow-p4b"/>
                                     <constraint firstItem="uRu-R0-a2X" firstAttribute="centerX" secondItem="uwW-XB-ThT" secondAttribute="centerX" id="cgm-va-osF"/>
                                     <constraint firstItem="poO-cz-yi4" firstAttribute="top" secondItem="uwW-XB-ThT" secondAttribute="top" constant="40" id="f9i-vR-ajZ"/>
                                     <constraint firstItem="MCW-Ti-R43" firstAttribute="top" secondItem="poO-cz-yi4" secondAttribute="bottom" constant="52" id="lbS-tg-OSW"/>
                                     <constraint firstItem="poO-cz-yi4" firstAttribute="centerX" secondItem="uwW-XB-ThT" secondAttribute="centerX" id="ngC-QI-kIg"/>
                                     <constraint firstItem="uRu-R0-a2X" firstAttribute="top" secondItem="li4-wJ-GAf" secondAttribute="bottom" constant="31" id="pcZ-JX-xnz"/>
+                                    <constraint firstItem="Igc-Ni-5FB" firstAttribute="trailing" secondItem="MCW-Ti-R43" secondAttribute="trailing" id="rl5-Hh-Ylz"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -554,6 +563,7 @@
                     <tabBarItem key="tabBarItem" title="" image="plusIcon" id="KH8-fQ-8U6"/>
                     <connections>
                         <outlet property="falseAnswerField" destination="Ckn-br-4s7" id="WLr-Og-G4i"/>
+                        <outlet property="maxCharLimit" destination="Igc-Ni-5FB" id="1xs-rB-Er5"/>
                         <outlet property="questionTextView" destination="Udo-XD-rm8" id="A7z-8c-dmG"/>
                         <outlet property="questionView" destination="MCW-Ti-R43" id="K2M-gY-Twc"/>
                         <outlet property="trueAnswerField" destination="ajn-CK-Jx1" id="cNS-P1-Ya6"/>
@@ -815,6 +825,6 @@
         <image name="profileIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oND-4v-5BH"/>
+        <segue reference="hyX-TW-1rF"/>
     </inferredMetricsTieBreakers>
 </document>
