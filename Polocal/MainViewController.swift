@@ -38,6 +38,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var falseLabel: UILabel!
 	@IBOutlet weak var timeAgoLabel: UILabel!
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+	@IBOutlet weak var midView: UIView!
 	
 	var totalPosts = [String]()
 	var currentPost = [Post]()
@@ -50,18 +51,17 @@ class MainViewController: UIViewController {
 		falseLabel.adjustsFontSizeToFitWidth = true
 		trueLabel.lineBreakMode = .byTruncatingTail
 		falseLabel.lineBreakMode = .byTruncatingTail
-		
-		let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
-		swipeLeft.direction = .left
-		self.view.addGestureRecognizer(swipeLeft)
         falsePercentageLabel.isHidden = true
         truePercentageLabel.isHidden = true
-		
 		activityIndicator.isHidden = false
 		activityIndicator.startAnimating()
 		getAllPosts()
 		getReadPosts()
-		
+		let greyColor = UIColor(red:0.86, green:0.86, blue:0.86, alpha:0.8)
+		falseButton.setBackgroundColor(color: greyColor, forState: .highlighted)
+		trueButton.setBackgroundColor(color: greyColor, forState: .highlighted)
+		falseButton.setTitleColor(.white, for: .highlighted)
+		trueButton.setTitleColor(.white, for: .highlighted)
 
 		
     } //end of viewdidload()
@@ -149,14 +149,6 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-	@objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
-		if gesture.direction == UISwipeGestureRecognizerDirection.left {
-			print("Swipe Left")
-			performSegue(withIdentifier: "toSideMenu", sender: self)
-		}
-		
-	}
-	
 	
     func checkRead(postID: String? = "0000000", greaterPerc: String? = "true" ,num: Double? = 0.0) {
 		self.activityIndicator.startAnimating()
@@ -220,23 +212,23 @@ class MainViewController: UIViewController {
 	func noMorePosts(greaterPerc: String? = "false", num: Double? = 0.0) {
 		
 		if greaterPerc == "true" {
-			UIView.animate(withDuration: 0.5) {
+			UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
 				for _ in 0...Int(num!) {
 					self.trueView.center = CGPoint(x: self.trueView.center.x+1, y: self.trueView.center.y)
 				}
-			}
+			})
 		} else if greaterPerc == "false" {
-			UIView.animate(withDuration: 0.5) {
+			UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
 				self.falseView.frame.size.width = 0
-			}
+			})
 		} else if greaterPerc == "equals"{
-			UIView.animate(withDuration: 0.5) {
+			UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
 				self.falseView.frame.size.width = 0
 				let half = self.answerView.frame.size.width/2
 				for _ in 0...Int(half)  {
 					self.trueView.center = CGPoint(x: self.trueView.center.x+1, y: self.trueView.center.y)
 				}
-			}
+			})
 		}
 		
 		print("error, no more polls")
@@ -268,8 +260,11 @@ class MainViewController: UIViewController {
 	}
 
 	@IBAction func trueAnswerButtonTouched(_ sender: Any) {
-		trueButton.isEnabled = false
 		falseButton.isEnabled = false
+	}
+
+	@IBAction func trueAnswerButtonReleased(_ sender: Any) {
+		trueButton.isEnabled = false
 		let currentPost = self.currentPost[0]
 		let trueAnswers = currentPost.trueAnswers
 		let newTrueAnswers = trueAnswers+1
@@ -284,10 +279,11 @@ class MainViewController: UIViewController {
 		didReadPost(postID: currentPost.postID, answer: "true")
 		self.totalPosts.removeLast()
 	}
-
 	@IBAction func falseAnswerButtonTapped(_ sender: Any) {
-		falseButton.isEnabled = false
 		trueButton.isEnabled = false
+	}
+	@IBAction func falseAnswerButtonReleased(_ sender: Any) {
+		falseButton.isEnabled = false
 		let currentPost = self.currentPost[0]
 		let falseAnswers = currentPost.falseAnswers
 		let newFalseAnswers = falseAnswers+1
@@ -311,11 +307,11 @@ class MainViewController: UIViewController {
 	
 	func showPercentage(falsePercentage: Int, truePercentage: Int) {
 		if falsePercentage>truePercentage {
-			let num = Double(self.answerView.frame.width)/(100/Double(falsePercentage))
-			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
+			let num = Double(self.answerView.frame.width)/(100/Double(falsePercentage))+1
+			UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseOut, animations: {
 				self.falseView.frame.size.width = CGFloat(num)
 			}) { (complete) in
-                sleep(2)
+                sleep(1)
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
 				self.checkRead(greaterPerc: "false", num: num)
@@ -323,25 +319,25 @@ class MainViewController: UIViewController {
 		} else if truePercentage>falsePercentage {
 			let num = Double(self.answerView.frame.width)/(100/Double(truePercentage))
 			self.trueView.isHidden = false
-			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
+			UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseOut, animations: {
 				for _ in 0...Int(num) {
                     self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
 				}
 			}) { (complete) in
-                sleep(2)
+                sleep(1)
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
 				self.checkRead(greaterPerc: "true", num: num)
 				
 			}
 		} else {
-			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
+			UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseOut, animations: {
 				self.falseView.frame.size.width = CGFloat(self.answerView.frame.size.width/2)
 				for _ in 0...Int(self.answerView.frame.width/2) {
 					self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
 				}
 			}) { (complete) in
-                sleep(2)
+                sleep(1)
                 self.truePercentageLabel.isHidden = true
                 self.falsePercentageLabel.isHidden = true
 				self.checkRead(greaterPerc: "equals")
@@ -349,4 +345,18 @@ class MainViewController: UIViewController {
 			
 		}
 	}
+	@IBAction func goToSettings(_ sender: Any) {
+		self.performSegue(withIdentifier: "toSettings", sender: self)
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "toSettings" {
+			let destinationVC = segue.destination as! SettingsTableViewController
+			destinationVC.postID = currentPost[0].postID
+		}
+		
+	}
+
+	
+	
 }

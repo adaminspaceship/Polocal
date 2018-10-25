@@ -31,7 +31,8 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 	}
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+		let greyColor = UIColor(red:0.86, green:0.86, blue:0.86, alpha:0.8)
+		startButton.setBackgroundColor(color: greyColor, forState: .highlighted)
         // Do any additional setup after loading the view, typically from a nib.
         ref = Database.database().reference()
 		self.schoolSearchBar.delegateModernSearchBar = self
@@ -43,6 +44,8 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 		
 		//Modify the default icon of suggestionsView's rows
 		self.schoolSearchBar.searchImage = UIImage(named: "school")
+		self.schoolSearchBar.shadowView_alpha = 0.0
+		self.schoolSearchBar.suggestionsView_separatorStyle = .none
 		//Modify properties of the searchLabel
 		self.schoolSearchBar.searchLabel_font = UIFont(name: "almoni-neue-aaa-300.ttf", size: 30)
 		self.schoolSearchBar.searchLabel_textColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)

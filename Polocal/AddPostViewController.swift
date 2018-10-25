@@ -15,13 +15,15 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 	@IBOutlet weak var questionTextView: UITextView!
 	var ref: DatabaseReference!
 	
+	@IBOutlet weak var addPostButton: UIButton!
 	@IBOutlet weak var maxCharLimit: UILabel!
 	@IBOutlet weak var questionView: UIView!
 	@IBOutlet weak var falseAnswerField: UITextField!
 	@IBOutlet weak var trueAnswerField: UITextField!
 	override func viewDidLoad() {
         super.viewDidLoad()
-		maxCharLimit.isHidden = true
+		addPostButton.setBackgroundColor(color: .lightGray, forState: .highlighted)
+		addPostButton.setTitleColor(.white, for: .highlighted)
 		ref = Database.database().reference()
 		questionTextView.delegate = self
 		questionTextView.text = "כתוב שאלה"
@@ -31,7 +33,6 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
 //        self.questionTextView.becomeFirstResponder()
 //		share()
-		trueAnswerField.adjustsFontSizeToFitWidth = true
     }
 	@IBAction func trueAnswerTapped(_ sender: Any) {
 //		UIView.animate(withDuration: 0.3) {
@@ -51,22 +52,43 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 //		}
 //		return newString.length <= maxLength
 //	}
-//	
+//
+	
 	func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+		checkRemainingChars()
 		let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
-		if newText.count == 39 {
-			self.maxCharLimit.isHidden = false
-		} else {
-			self.maxCharLimit.isHidden = true
-		}
 		let numberOfChars = newText.count
-		return numberOfChars < 39    // 10 Limit Value
+		return numberOfChars < 40    // 40 Limit Value
+	}
+	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
+	}
+	
+	func checkRemainingChars() {
+		
+		let allowedChars = 39
+		
+		let charsInTextView = -questionTextView.text.count
+		
+		let remainingChars = allowedChars + charsInTextView
+		
+		if remainingChars >= 5 {
+			maxCharLimit.textColor = .lightGray
+		}
+		
+		if remainingChars <= 5 {
+			maxCharLimit.textColor = .red
+		}
+		
+		
+		maxCharLimit.text = String(remainingChars)
+		
+		
 	}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     
 	@IBAction func doneButtonTapped(_ sender: Any) {
 		let userDefaults = UserDefaults.standard
@@ -178,3 +200,15 @@ public extension UIView {
 		layer.add(animation, forKey: "shake")
 	}
 }
+
+
+extension UIButton {
+	func setBackgroundColor(color: UIColor, forState: UIControlState) {
+		UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+		UIGraphicsGetCurrentContext()!.setFillColor(color.cgColor)
+		UIGraphicsGetCurrentContext()!.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
+		let colorImage = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		self.setBackgroundImage(colorImage, for: forState)
+	}}
