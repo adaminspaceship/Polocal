@@ -10,7 +10,7 @@ import UIKit
 import FirebaseDatabase
 import Malert
 
-class AddPostViewController: UIViewController, UITextViewDelegate {
+class AddPostViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 
 	@IBOutlet weak var questionTextView: UITextView!
 	var ref: DatabaseReference!
@@ -60,6 +60,13 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 		let numberOfChars = newText.count
 		return numberOfChars < 40    // 40 Limit Value
 	}
+	
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+		let numberOfChars = newText.count
+		return numberOfChars < 9    // 10 Limit Value
+	}
+	
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()

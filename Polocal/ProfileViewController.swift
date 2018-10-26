@@ -9,13 +9,12 @@
 import UIKit
 import FirebaseDatabase
 import SwiftyJSON
-import Malert
-//import PeekPop
 
 class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     var ref: DatabaseReference!
     var Posts = [Post]()
+	@IBOutlet weak var popView: UIView!
 	
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Posts.count
@@ -25,7 +24,6 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "questionCell") as! QuestionTableViewCell
         let currentPost = Posts[indexPath.row]
         cell.questionLabel.text = currentPost.question
-		
 		
         cell.backgroundColor = .clear
         let sum = currentPost.falseAnswers+currentPost.trueAnswers
@@ -45,6 +43,8 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		trueAnswerLabel.adjustsFontSizeToFitWidth = true
+		falseAnswerLabel.adjustsFontSizeToFitWidth = true
         // Do any additional setup after loading the view.
 		
     }
@@ -58,7 +58,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
             for rest in snapshot.children.allObjects as! [DataSnapshot] {
                 let postUID = rest.value
                 self.ref.child("Posts").child(schoolSemel).child(postUID as! String).observeSingleEvent(of: .value, with: { (querySnapShot) in
-                    var finalJSON = JSON(querySnapShot.value)
+					var finalJSON = JSON(querySnapShot.value!)
                     let falseAnswers = finalJSON["answers"]["false"].intValue
                     let trueAnswers = finalJSON["answers"]["true"].intValue
 					let trueAnswer = finalJSON["trueAnswer"].stringValue
@@ -71,36 +71,65 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
             }
         }
     }
-//
-//	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//	let example8View = PopSelectedQuestion.instantiateFromNib()
-//
-//	let alert = Malert(customView: example8View)
-//	alert.margin = 30
-//
-//	alert.animationType = .fadeIn
-//	alert.backgroundColor = UIColor(red:0.36, green:0.86, blue:0.84, alpha:1.0)
-//	alert.cornerRadius = 20
-//
-//	present(alert, animated: true)
-//
-////	previewViewController.falseAnswerLabel?.text = Posts[indexPath.row].falseAnswer
-////	previewViewController.trueAnswerLabel?.text = Posts[indexPath.row].trueAnswer
-////	previewViewController.questionLabel?.text = Posts[indexPath.row].question
-////	let currentPost = Posts[indexPath.row]
-////	let sum = currentPost.falseAnswers+currentPost.trueAnswers
-////	if sum == 0 {
-////		previewViewController.falsePercentageLabel?.text = "0%"
-////		previewViewController.truePercentageLabel?.text = "0%"
-////	} else {
-////		let falsePercentage = Int((Double(currentPost.falseAnswers)/Double(sum))*100)
-////		let truePercentage = Int(100-falsePercentage)
-////		previewViewController.falsePercentageLabel?.text =  "\(falsePercentage)%"
-////		previewViewController.truePercentageLabel?.text = "\(truePercentage)%"
-////	}
-//
-//	}
+	
+	@IBOutlet weak var questionLabel: UILabel!
+	@IBOutlet weak var trueAnswerLabel: UILabel!
+	@IBOutlet weak var falseAnswerLabel: UILabel!
+	@IBOutlet weak var truePercentageLabel: UILabel!
+	@IBOutlet weak var falsePercentageLabel: UILabel!
+	
+	var selectedPostIndex = IndexPath()
+	
+	func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+		let currentPost = Posts[indexPath.row]
+		questionLabel.text = currentPost.question
+		trueAnswerLabel.text = currentPost.trueAnswer
+		falseAnswerLabel.text = currentPost.falseAnswer
+		selectedPostIndex = indexPath
+		let (falsePerc,truePerc) = calcPercentage(trueAnswers: currentPost.trueAnswers, falseAnswers: currentPost.falseAnswers)
+		falsePercentageLabel.text = "\(String(falsePerc))%"
+		truePercentageLabel.text = "\(String(truePerc))%"
+		bgChange(isAlready: false)
+	}
 
-
+	func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+		bgChange(isAlready: true)
+	}
+	
+	func bgChange(isAlready: Bool) {
+		//changing alpha
+		if isAlready {
+			UIView.transition(with: view, duration: 0.2, options: .transitionCrossDissolve, animations: {
+				self.popView.isHidden = true
+			})
+			tableView.alpha = 1
+		} else {
+			UIView.transition(with: view, duration: 0.2, options: .transitionCrossDissolve, animations: {
+				self.popView.isHidden = false
+			})
+			tableView.alpha = 0.25
+		}
+		
+	}
+	@IBAction func deletePostButtonTapped(_ sender: Any) {
+		bgChange(isAlready: true)
+		let selectedPost = Posts[selectedPostIndex.row]
+		let userRef = Database.database().reference().child(UserDefaults.standard.string(forKey: "userID")!).child("Posts")
+		let postRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
+		userRef.child(selectedPost.postID).removeValue()
+		postRef.child(selectedPost.postID).removeValue()
+		Posts.remove(at: selectedPostIndex.row)
+		tableView.reloadData()
+	}
+	
+	func calcPercentage(trueAnswers: Int, falseAnswers: Int) -> (Int,Int) {
+		let sum = falseAnswers+trueAnswers
+		if sum == 0 {
+			return (0,0)
+		} else {
+			let truePercentage = Int((Double(trueAnswers)/Double(sum))*100)
+			let falsePercentage = Int(100-truePercentage)
+			return (falsePercentage,truePercentage)
+		}
+	}
 }
