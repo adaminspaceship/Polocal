@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Polocal</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_add">Add</string>
+    <string name="title_myQuests">My Questions</string>
+    <string name="action_settings">settings</string>
+</resources>
