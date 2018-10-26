@@ -39,8 +39,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<String> allQuests = new ArrayList<>();
     private ArrayList<String> readQuests= new ArrayList<>();
     private View grayScale;
-    private TextView rightAns,leftAns;
+    private ProgressBar loading;
+    private TextView rightAns,leftAns,rightPer,leftPer,sent;
     private int btnDis;
+    private boolean noQuest = false;
+    BottomNavigationView navigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -53,9 +56,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     chooseT.setVisibility(View.VISIBLE);
                     chooseF.setVisibility(View.VISIBLE);
                     send.setVisibility(View.GONE);
+                    sent.setVisibility(View.GONE);
                     falseAns.setVisibility(View.GONE);
                     trueAns.setVisibility(View.GONE);
                     question.setVisibility(View.GONE);
+                    rightAns.setVisibility(View.VISIBLE);
+                    leftAns.setVisibility(View.VISIBLE);
+                    if(noQuest)changeQuest();
 
                     return true;
                 case R.id.navigation_dashboard:
@@ -66,8 +73,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     question.setVisibility(View.VISIBLE);
                     chooseT.setVisibility(View.GONE);
                     chooseF.setVisibility(View.GONE);
+                    rightAns.setVisibility(View.GONE);
+                    leftAns.setVisibility(View.GONE);
+                    grayScale.setVisibility(View.GONE);
+                    leftPer.setVisibility(View.GONE);
+                    rightPer.setVisibility(View.GONE);
                     return true;
                 case R.id.navigation_myQuests:
+                    sent.setVisibility(View.GONE);
                     questionView.setVisibility(View.GONE);
                     send.setVisibility(View.GONE);
                     falseAns.setVisibility(View.GONE);
@@ -75,6 +88,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     question.setVisibility(View.GONE);
                     chooseT.setVisibility(View.GONE);
                     chooseF.setVisibility(View.GONE);
+                    rightAns.setVisibility(View.GONE);
+                    leftAns.setVisibility(View.GONE);
+                    grayScale.setVisibility(View.GONE);
+                    leftPer.setVisibility(View.GONE);
+                    rightPer.setVisibility(View.GONE);
                     return true;
             }
             return false;
@@ -102,13 +120,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         send.setVisibility(View.GONE);
         falseAns.setVisibility(View.GONE);
         trueAns.setVisibility(View.GONE);
-        //pb.setVisibility(View.GONE);
+        sent = findViewById(R.id.sent);
+        loading = findViewById(R.id.loadinganim);
         question.setVisibility(View.GONE);
         chooseF.setOnClickListener(this);
         chooseT.setOnClickListener(this);
         rightAns = findViewById(R.id.rightAns);
         leftAns = findViewById(R.id.leftAns);
-
+        rightPer = findViewById(R.id.rightpercent);
+        leftPer= findViewById(R.id.leftpercent);
+        grayScale.setVisibility(View.GONE);
+        leftPer.setVisibility(View.GONE);
+        rightPer.setVisibility(View.GONE);
+        sent.setVisibility(View.GONE);
+        loading.setVisibility(View.GONE);
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,10 +143,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         changeQuest();
 
+        navigation.setClickable(false);
 
 
 
@@ -141,8 +167,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         postRef.child(getUnix()+"").child("trueAnswer").setValue(trueAns);
         postRef.child(getUnix()+"").child("question").setValue(question);
         postRef.child(getUnix()+"").child("timestamp").setValue(getUnix()+"");
+        postRef.child(getUnix()+"").child("answers").child("false").setValue(0+"");
+        postRef.child(getUnix()+"").child("answers").child("true").setValue(0+"");
+        sent.setVisibility(View.VISIBLE);
+        this.trueAns.setText("תשובה 1");
+        this.question.setText("כתוב שאלה");
+        this.falseAns.setText("תשובה 2");
+
     }
     private void ansQuest(final boolean ans){
+
+
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference("Posts").child(semel).child(currentQuestTS).child("answers");
 
@@ -160,7 +195,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     ref.child("false").setValue(++falseAnswers+"");
                 }
                 showAns(trueAnswers,falseAnswers);
-                changeQuest();
+
+
             }
 
             @Override
@@ -171,6 +207,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
     private void changeQuest(){
+        loading.setVisibility(View.VISIBLE);
+        chooseF.setClickable(false);
+        chooseT.setClickable(false);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference();
@@ -189,8 +228,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         ref.child(uuid).child("readPosts").child(currentQuestTS).setValue(currentQuestTS);
                         leftAns.setText(allPosts.child("falseAnswer").getValue().toString());
                         rightAns.setText(allPosts.child("trueAnswer").getValue().toString());
+                        chooseF.setClickable(true);
+                        chooseT.setClickable(true);
+                        noQuest=false;
+                        loading.setVisibility(View.GONE);
                         break;
                     }
+                    leftAns.setText("באסה");
+                    rightAns.setText("איזה");
+                    questionView.setText("אין יותר שאלות");
+                    loading.setVisibility(View.GONE);
+                    noQuest = true;
 
 
 
@@ -220,9 +268,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             System.out.println(btnDis*f/(f+t));
 
         int maxValue=0;
-        if(f>t){ maxValue= btnDis*f/(f+t) ;}
+        if(f>=t){ maxValue= btnDis*f/(f+t) ;}
         if(t>f){ maxValue= btnDis*t/(f+t) ;}
-        //grayScale.setVisibility(View.VISIBLE);
+        grayScale.setVisibility(View.VISIBLE);
+
         ValueAnimator animator = ValueAnimator.ofInt(10,maxValue );
         animator.setDuration(3000);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -241,14 +290,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                // start your activity here
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                grayScale.setVisibility(View.GONE);
+                leftPer.setVisibility(View.GONE);
+                rightPer.setVisibility(View.GONE);
+                questionView.setText("");
+                leftAns.setText("");
+                rightAns.setText("");
+                navigation.setClickable(true);
+                changeQuest();
             }
         });
        animator.start();
+        rightPer.setVisibility(View.VISIBLE);
+        leftPer.setVisibility(View.VISIBLE);
+       leftPer.setText(100*f/(f+t)+"%");
+        rightPer.setText((100-100*f/(f+t))+"%");
 
 
 
 
-        }
+    }
     }
 
