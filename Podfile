@@ -14,7 +14,6 @@ pod 'SideMenu'
 pod 'DateTools'
 pod 'Malert'
 pod 'paper-onboarding'
-pod 'PeekPop', '~> 1.0'
 
 target 'PolocalTests' do
     inherit! :search_paths

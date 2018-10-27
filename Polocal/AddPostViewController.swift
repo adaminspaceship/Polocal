@@ -10,7 +10,7 @@ import UIKit
 import FirebaseDatabase
 import Malert
 
-class AddPostViewController: UIViewController, UITextViewDelegate {
+class AddPostViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 
 	@IBOutlet weak var questionTextView: UITextView!
 	var ref: DatabaseReference!
@@ -61,6 +61,13 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 		return numberOfChars < 40    // 40 Limit Value
 	}
 	
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+		let numberOfChars = newText.count
+		return numberOfChars < 9    // 10 Limit Value
+	}
+	
+	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
@@ -88,14 +95,25 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 		
 	}
 
-
+	func shake(view: UIView, for duration: TimeInterval = 0.5, withTranslation translation: CGFloat = 10) {
+		let propertyAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.3) {
+			view.transform = CGAffineTransform(translationX: translation, y: 0)
+		}
+		
+		propertyAnimator.addAnimations({
+			view.transform = CGAffineTransform(translationX: 0, y: 0)
+		}, delayFactor: 0.2)
+		
+		propertyAnimator.startAnimation()
+	}
     
 	@IBAction func doneButtonTapped(_ sender: Any) {
 		let userDefaults = UserDefaults.standard
 		let userID = userDefaults.string(forKey: "userID")
 		let time = Int(Date().timeIntervalSince1970)
 		if questionTextView.text == "כתוב שאלה" {
-			self.questionView.shake()
+			self.shake(view: self.questionView)
+//			self.questionTextView.isUserInteractionEnabled = true
 		}
 		else {
 			
@@ -184,21 +202,6 @@ class AddPostViewController: UIViewController, UITextViewDelegate {
 		}
 	}
 
-}
-
-public extension UIView {
-	
-	func shake(count : Float = 4,for duration : TimeInterval = 0.5,withTranslation translation : Float = 5) {
-		
-		let animation : CABasicAnimation = CABasicAnimation(keyPath: "transform.translation.x")
-		animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-		animation.repeatCount = count
-		animation.duration = duration/TimeInterval(animation.repeatCount)
-		animation.autoreverses = true
-		animation.fromValue = NSValue(cgPoint: CGPoint(x: CGFloat(-translation), y: self.center.y))
-		animation.toValue = NSValue(cgPoint: CGPoint(x: CGFloat(translation), y: self.center.y))
-		layer.add(animation, forKey: "shake")
-	}
 }
 
 

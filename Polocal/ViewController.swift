@@ -17,7 +17,6 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
     var ref: DatabaseReference!
 	@IBOutlet weak var startButton: UIButton!
 	
-    @IBOutlet var schoolTextField: UITextField!
 	@IBOutlet weak var schoolSearchBar: ModernSearchBar!
 	
 	func isKeyPresentInUserDefaults(key: String) -> Bool {
@@ -31,6 +30,8 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 	}
     override func viewDidLoad() {
         super.viewDidLoad()
+		schoolSearchBar.suggestionsView_searchIcon_isRound = true
+		
 		let greyColor = UIColor(red:0.86, green:0.86, blue:0.86, alpha:0.8)
 		startButton.setBackgroundColor(color: greyColor, forState: .highlighted)
         // Do any additional setup after loading the view, typically from a nib.
@@ -51,7 +52,6 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 		self.schoolSearchBar.searchLabel_textColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
 		self.schoolSearchBar.searchLabel_backgroundColor = UIColor.white
 		self.schoolSearchBar.setTextColor(color: .white)
-		self.schoolSearchBar.suggestionsView_searchIcon_isRound = false
 		
 		if let path = Bundle.main.path(forResource: "data", ofType: "json") {
 			do {
@@ -76,7 +76,7 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
         let userDefaults = UserDefaults.standard
         let uuid = UUID().uuidString
 		if self.schoolSearchBar.text == "" {
-			self.startButton.shake()
+			self.shake(view: self.startButton)
 			
 		} else {
 			if let path = Bundle.main.path(forResource: "data", ofType: "json") {
@@ -91,7 +91,7 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 							userDefaults.set(uuid, forKey: "userID")
 							performSegue(withIdentifier: "toMain", sender: self)
 						} else {
-							self.startButton.shake()
+							self.shake(view: self.startButton)
 						}
 					}
 					
@@ -105,6 +105,18 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 		}
 		
     }
+	
+	func shake(view: UIView, for duration: TimeInterval = 0.5, withTranslation translation: CGFloat = 10) {
+		let propertyAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.3) {
+			view.transform = CGAffineTransform(translationX: translation, y: 0)
+		}
+		
+		propertyAnimator.addAnimations({
+			view.transform = CGAffineTransform(translationX: 0, y: 0)
+		}, delayFactor: 0.2)
+		
+		propertyAnimator.startAnimation()
+	}
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

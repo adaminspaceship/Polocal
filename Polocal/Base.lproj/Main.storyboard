@@ -26,27 +26,25 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJx-J5-03q" customClass="GradientView" customModule="Polocal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="701"/>
                                 <subviews>
-                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQo-io-eMU">
-                                        <rect key="frame" x="169.5" y="329" width="27" height="31"/>
-                                        <color key="textColor" red="0.0039215686269999999" green="0.60392156860000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <searchBar contentMode="redraw" misplaced="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="PYr-S7-l0t" customClass="ModernSearchBar" customModule="ModernSearchBar">
-                                        <rect key="frame" x="-1" y="316.5" width="375" height="56"/>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="PYr-S7-l0t" customClass="ModernSearchBar" customModule="ModernSearchBar">
+                                        <rect key="frame" x="-1" y="317" width="375" height="56"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="הכנס בית ספר" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALZ-jz-hWl">
                                         <rect key="frame" x="23" y="232" width="320" height="86"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="86" id="0vm-SW-le2"/>
+                                            <constraint firstAttribute="width" constant="320" id="9Bd-Wg-2cg"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="86" id="RHb-jP-V5H"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="60"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hh0-v2-mR4">
-                                        <rect key="frame" x="121" y="456.5" width="124" height="56"/>
+                                        <rect key="frame" x="121" y="457" width="124" height="56"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="124" id="HCd-Cv-ySA"/>
@@ -69,15 +67,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" id="2JS-1w-ZsT"/>
+                                    <constraint firstItem="Hh0-v2-mR4" firstAttribute="centerX" secondItem="ALZ-jz-hWl" secondAttribute="centerX" id="4Yv-Rk-yct"/>
                                     <constraint firstItem="ALZ-jz-hWl" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" constant="23" id="6Ru-LB-ofA"/>
-                                    <constraint firstItem="Hh0-v2-mR4" firstAttribute="top" secondItem="PYr-S7-l0t" secondAttribute="bottom" constant="84" id="7BW-0W-yDy"/>
-                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="centerY" secondItem="JQo-io-eMU" secondAttribute="centerY" id="9kN-R1-HFb"/>
+                                    <constraint firstAttribute="trailing" secondItem="ALZ-jz-hWl" secondAttribute="trailing" constant="32" id="DAv-Qh-SGw"/>
                                     <constraint firstItem="ALZ-jz-hWl" firstAttribute="top" secondItem="UJx-J5-03q" secondAttribute="top" constant="232" id="OMv-8Q-vwM"/>
-                                    <constraint firstAttribute="trailing" secondItem="PYr-S7-l0t" secondAttribute="trailing" id="PLl-L0-w4P"/>
-                                    <constraint firstItem="JQo-io-eMU" firstAttribute="top" secondItem="ALZ-jz-hWl" secondAttribute="bottom" constant="11" id="TP7-C3-fRc"/>
-                                    <constraint firstItem="Hh0-v2-mR4" firstAttribute="centerX" secondItem="JQo-io-eMU" secondAttribute="centerX" id="ftx-Jb-pLN"/>
-                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="centerX" secondItem="JQo-io-eMU" secondAttribute="centerX" id="thd-aJ-Z11"/>
+                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="top" secondItem="UJx-J5-03q" secondAttribute="top" constant="317" id="gc9-6L-0to"/>
+                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" constant="-1" id="gjG-Dl-huc"/>
+                                    <constraint firstItem="Hh0-v2-mR4" firstAttribute="top" secondItem="PYr-S7-l0t" secondAttribute="bottom" constant="84" id="hRj-bl-ilt"/>
+                                    <constraint firstAttribute="trailing" secondItem="PYr-S7-l0t" secondAttribute="trailing" constant="1" id="qrS-no-irb"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -110,14 +107,13 @@
                     </view>
                     <connections>
                         <outlet property="schoolSearchBar" destination="PYr-S7-l0t" id="Mjk-Ig-2ve"/>
-                        <outlet property="schoolTextField" destination="JQo-io-eMU" id="qdw-CI-q9E"/>
                         <outlet property="startButton" destination="Hh0-v2-mR4" id="4hz-36-c6c"/>
                         <segue destination="4kx-cW-ior" kind="show" identifier="toMain" animates="NO" id="hyX-TW-1rF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="178.40000000000001" y="132.26600985221674"/>
+            <point key="canvasLocation" x="178.40000000000001" y="131.78410794602701"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="2kR-3h-hEZ">
@@ -420,7 +416,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="דווח על השאלה הזאת" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v79-nF-TkE">
-                                                    <rect key="frame" x="182" y="8" width="177" height="27"/>
+                                                    <rect key="frame" x="182.5" y="8.5" width="176.5" height="26.5"/>
                                                     <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -445,7 +441,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="דרג את האפלקציה" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8RU-ij-eDg">
-                                                    <rect key="frame" x="209" y="8" width="150" height="27"/>
+                                                    <rect key="frame" x="209" y="8.5" width="150" height="26.5"/>
                                                     <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -466,7 +462,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="שלח לנו אימייל" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUi-Yb-8Uy">
-                                                    <rect key="frame" x="242" y="8" width="117" height="27"/>
+                                                    <rect key="frame" x="242.5" y="8.5" width="116.5" height="26.5"/>
                                                     <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -487,7 +483,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWQ-rP-fFU">
-                                                    <rect key="frame" x="129" y="8.5" width="117.5" height="27"/>
+                                                    <rect key="frame" x="129" y="9" width="117.5" height="26"/>
                                                     <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -507,7 +503,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms Of Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ck-6X-XXf">
-                                                    <rect key="frame" x="115" y="8.5" width="145" height="27"/>
+                                                    <rect key="frame" x="115.5" y="9" width="144.5" height="26"/>
                                                     <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -571,10 +567,10 @@
                                             <color key="titleColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="doneButtonTapped:" destination="3BQ-Ue-jRW" eventType="touchUpInside" id="rdg-GI-dcl"/>
@@ -582,10 +578,11 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCW-Ti-R43">
-                                        <rect key="frame" x="40" y="140" width="294" height="200"/>
+                                        <rect key="frame" x="40.5" y="140" width="294" height="200"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="כתוב שאלה" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Udo-XD-rm8">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="כתוב שאלה" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Udo-XD-rm8">
                                                 <rect key="frame" x="24" y="10" width="246" height="180"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="39"/>
@@ -594,8 +591,9 @@
                                                     <outlet property="delegate" destination="3BQ-Ue-jRW" id="WMA-By-SPp"/>
                                                 </connections>
                                             </textView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Igc-Ni-5FB">
-                                                <rect key="frame" x="266.5" y="171" width="19.5" height="23"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="40" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Igc-Ni-5FB">
+                                                <rect key="frame" x="267" y="171" width="20" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="19"/>
                                                 <color key="textColor" red="0.84313725490000002" green="0.84313725490000002" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -603,14 +601,8 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="Igc-Ni-5FB" secondAttribute="bottom" constant="6" id="57g-7M-sd9"/>
-                                            <constraint firstAttribute="height" constant="200" id="DtB-Nf-s80"/>
-                                            <constraint firstAttribute="bottom" secondItem="Udo-XD-rm8" secondAttribute="bottom" constant="10" id="G5t-9T-k9I"/>
-                                            <constraint firstAttribute="trailing" secondItem="Igc-Ni-5FB" secondAttribute="trailing" constant="8" id="Veu-ZP-jWU"/>
-                                            <constraint firstAttribute="width" constant="294" id="fhj-J2-vh1"/>
-                                            <constraint firstAttribute="trailing" secondItem="Udo-XD-rm8" secondAttribute="trailing" constant="24" id="mDg-sr-pb9"/>
-                                            <constraint firstItem="Udo-XD-rm8" firstAttribute="top" secondItem="MCW-Ti-R43" secondAttribute="top" constant="10" id="nEq-OI-2Jy"/>
-                                            <constraint firstItem="Udo-XD-rm8" firstAttribute="leading" secondItem="MCW-Ti-R43" secondAttribute="leading" constant="24" id="nmq-DZ-I4T"/>
+                                            <constraint firstAttribute="height" constant="200" id="3A7-o6-ueH"/>
+                                            <constraint firstAttribute="width" constant="294" id="IkW-fE-Rgg"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -620,41 +612,45 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="תשובה 2" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ckn-br-4s7">
-                                        <rect key="frame" x="32" y="392" width="150" height="70"/>
+                                        <rect key="frame" x="25" y="392" width="150" height="70"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="1P5-mt-KJa"/>
-                                            <constraint firstAttribute="width" constant="150" id="rl5-G2-fbg"/>
+                                            <constraint firstAttribute="width" constant="150" id="KeP-Nm-Gjo"/>
+                                            <constraint firstAttribute="height" constant="70" id="ZBo-lm-qQX"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="38"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="3BQ-Ue-jRW" id="GA2-Nn-l31"/>
+                                        </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="תשובה 1" textAlignment="right" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="ajn-CK-Jx1">
+                                    <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="תשובה 1" textAlignment="right" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="ajn-CK-Jx1">
                                         <rect key="frame" x="200" y="392" width="150" height="70"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="HfM-pt-Ywc"/>
-                                            <constraint firstAttribute="width" constant="150" id="fef-Jh-hda"/>
+                                            <constraint firstAttribute="width" constant="150" id="NMp-uv-TTq"/>
+                                            <constraint firstAttribute="height" constant="70" id="r6z-b4-2kh"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="38"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="trueAnswerTapped:" destination="3BQ-Ue-jRW" eventType="editingDidBegin" id="YBn-ZI-qj6"/>
+                                            <outlet property="delegate" destination="3BQ-Ue-jRW" id="VoD-se-ix2"/>
                                         </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ajn-CK-Jx1" secondAttribute="trailing" constant="25" id="2v8-Ve-Pod"/>
-                                    <constraint firstItem="ajn-CK-Jx1" firstAttribute="baseline" secondItem="Ckn-br-4s7" secondAttribute="baseline" id="636-WD-fUM"/>
                                     <constraint firstAttribute="bottom" secondItem="uRu-R0-a2X" secondAttribute="bottom" constant="155" id="B4C-ja-yvJ"/>
-                                    <constraint firstItem="ajn-CK-Jx1" firstAttribute="leading" secondItem="Ckn-br-4s7" secondAttribute="trailing" constant="18" id="HLe-nF-c3a"/>
-                                    <constraint firstItem="ajn-CK-Jx1" firstAttribute="top" secondItem="MCW-Ti-R43" secondAttribute="bottom" constant="52" id="KKA-0s-WqI"/>
-                                    <constraint firstItem="MCW-Ti-R43" firstAttribute="leading" secondItem="uwW-XB-ThT" secondAttribute="leading" constant="40" id="N18-Nb-Ea8"/>
+                                    <constraint firstAttribute="trailing" secondItem="ajn-CK-Jx1" secondAttribute="trailing" constant="25" id="KQp-VY-KGw"/>
+                                    <constraint firstItem="Ckn-br-4s7" firstAttribute="leading" secondItem="uwW-XB-ThT" secondAttribute="leading" constant="25" id="VUm-kr-9uh"/>
                                     <constraint firstItem="uRu-R0-a2X" firstAttribute="centerX" secondItem="uwW-XB-ThT" secondAttribute="centerX" id="cgm-va-osF"/>
                                     <constraint firstItem="poO-cz-yi4" firstAttribute="top" secondItem="uwW-XB-ThT" secondAttribute="top" constant="40" id="f9i-vR-ajZ"/>
-                                    <constraint firstItem="MCW-Ti-R43" firstAttribute="top" secondItem="poO-cz-yi4" secondAttribute="bottom" constant="52" id="lbS-tg-OSW"/>
+                                    <constraint firstItem="MCW-Ti-R43" firstAttribute="centerX" secondItem="uwW-XB-ThT" secondAttribute="centerX" id="gpf-Q7-d3U"/>
+                                    <constraint firstItem="MCW-Ti-R43" firstAttribute="top" secondItem="poO-cz-yi4" secondAttribute="bottom" constant="52" id="h9s-ps-7cY"/>
                                     <constraint firstItem="poO-cz-yi4" firstAttribute="centerX" secondItem="uwW-XB-ThT" secondAttribute="centerX" id="ngC-QI-kIg"/>
+                                    <constraint firstItem="ajn-CK-Jx1" firstAttribute="top" secondItem="MCW-Ti-R43" secondAttribute="bottom" constant="52" id="pTm-Wt-KRN"/>
+                                    <constraint firstItem="Ckn-br-4s7" firstAttribute="top" secondItem="MCW-Ti-R43" secondAttribute="bottom" constant="52" id="vYc-JF-JGx"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -805,6 +801,124 @@
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fjg-be-VNX">
+                                        <rect key="frame" x="37.5" y="158.5" width="300" height="350"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="השאלה שלך" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="28" translatesAutoresizingMaskIntoConstraints="NO" id="OqY-OE-Tz6">
+                                                <rect key="frame" x="51.5" y="8" width="197" height="115"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="115" id="eOE-AZ-pj1"/>
+                                                    <constraint firstAttribute="width" constant="197" id="jmG-yK-PDF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="36"/>
+                                                <color key="textColor" red="0.0" green="0.7725490196" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="תשובה 1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="FUA-Sg-HlJ">
+                                                <rect key="frame" x="199" y="160" width="82" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="82" id="GXX-gb-VeW"/>
+                                                    <constraint firstAttribute="height" constant="50" id="hsg-aT-6uJ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="26"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="תשובה 2" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="DJh-ul-ix8">
+                                                <rect key="frame" x="19" y="159.5" width="87" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="87" id="Kv6-y8-wvo"/>
+                                                    <constraint firstAttribute="height" constant="50" id="nFI-wz-h7Z"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="26"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apb-09-bP0">
+                                                <rect key="frame" x="236" y="314" width="56" height="28"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="0yZ-w2-m8E"/>
+                                                    <constraint firstAttribute="width" constant="56" id="GgO-R0-2xm"/>
+                                                    <constraint firstAttribute="height" constant="28" id="bqY-fA-BtT"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="56" id="xkc-Np-PpU"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="26"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtS-M5-onS">
+                                                <rect key="frame" x="8" y="314" width="56" height="28"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="56" id="I5m-Wg-tAE"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="nqb-HS-mdE"/>
+                                                    <constraint firstAttribute="width" constant="56" id="rj1-yN-6tx"/>
+                                                    <constraint firstAttribute="height" constant="28" id="xpM-pe-qBE"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="26"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ByW-Me-hVN">
+                                                <rect key="frame" x="117" y="306" width="66" height="36"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="66" id="0bl-Rd-a1a"/>
+                                                    <constraint firstAttribute="height" constant="36" id="Wv0-ef-xPf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="20"/>
+                                                <state key="normal" title="מחק">
+                                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deletePostButtonTapped:" destination="bIg-ML-WDh" eventType="touchUpInside" id="Hqj-80-WdE"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gYm-9r-6HC">
+                                                <rect key="frame" x="255" y="15" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="D8b-JL-XOb"/>
+                                                    <constraint firstAttribute="width" constant="30" id="mhX-mi-kdB"/>
+                                                </constraints>
+                                                <state key="normal" image="closeButton"/>
+                                                <connections>
+                                                    <action selector="closeButtonTapped:" destination="bIg-ML-WDh" eventType="touchUpInside" id="XjR-TC-OQz"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="MtS-M5-onS" firstAttribute="baseline" secondItem="apb-09-bP0" secondAttribute="baseline" id="2OE-dq-XHB"/>
+                                            <constraint firstAttribute="trailing" secondItem="apb-09-bP0" secondAttribute="trailing" constant="8" id="5df-Km-6gK"/>
+                                            <constraint firstItem="apb-09-bP0" firstAttribute="centerX" secondItem="FUA-Sg-HlJ" secondAttribute="centerX" constant="24" id="6yC-0a-zFd"/>
+                                            <constraint firstItem="apb-09-bP0" firstAttribute="top" secondItem="FUA-Sg-HlJ" secondAttribute="bottom" constant="104" id="7Jn-ur-7tx"/>
+                                            <constraint firstItem="apb-09-bP0" firstAttribute="leading" secondItem="ByW-Me-hVN" secondAttribute="trailing" constant="53" id="81R-rp-RRV"/>
+                                            <constraint firstAttribute="trailing" secondItem="apb-09-bP0" secondAttribute="trailing" constant="8" id="8cE-XV-BNo"/>
+                                            <constraint firstItem="OqY-OE-Tz6" firstAttribute="top" secondItem="Fjg-be-VNX" secondAttribute="top" constant="8" id="8uw-xW-Kwu"/>
+                                            <constraint firstAttribute="height" constant="350" id="9Rw-8z-I2Y"/>
+                                            <constraint firstAttribute="trailing" secondItem="gYm-9r-6HC" secondAttribute="trailing" constant="15" id="DvQ-HL-auK"/>
+                                            <constraint firstItem="DJh-ul-ix8" firstAttribute="leading" secondItem="Fjg-be-VNX" secondAttribute="leading" constant="19" id="HHh-Dz-wcG"/>
+                                            <constraint firstItem="ByW-Me-hVN" firstAttribute="centerX" secondItem="Fjg-be-VNX" secondAttribute="centerX" id="JBb-MV-hkE"/>
+                                            <constraint firstItem="DJh-ul-ix8" firstAttribute="centerY" secondItem="Fjg-be-VNX" secondAttribute="centerY" constant="9.5" id="L4U-LV-RGQ"/>
+                                            <constraint firstItem="gYm-9r-6HC" firstAttribute="top" secondItem="Fjg-be-VNX" secondAttribute="top" constant="15" id="N32-by-kxh"/>
+                                            <constraint firstAttribute="trailing" secondItem="FUA-Sg-HlJ" secondAttribute="trailing" constant="19" id="TA5-z3-MIr"/>
+                                            <constraint firstAttribute="bottom" secondItem="ByW-Me-hVN" secondAttribute="bottom" constant="8" id="UQj-RW-hZH"/>
+                                            <constraint firstItem="OqY-OE-Tz6" firstAttribute="centerX" secondItem="Fjg-be-VNX" secondAttribute="centerX" id="WJx-b7-8eZ"/>
+                                            <constraint firstItem="MtS-M5-onS" firstAttribute="top" secondItem="DJh-ul-ix8" secondAttribute="bottom" constant="104.5" id="gjN-gp-oNA"/>
+                                            <constraint firstItem="MtS-M5-onS" firstAttribute="leading" secondItem="Fjg-be-VNX" secondAttribute="leading" constant="8" id="h9g-Dc-gDu"/>
+                                            <constraint firstItem="FUA-Sg-HlJ" firstAttribute="centerY" secondItem="Fjg-be-VNX" secondAttribute="centerY" constant="10" id="lJt-Y5-GEw"/>
+                                            <constraint firstItem="MtS-M5-onS" firstAttribute="centerX" secondItem="DJh-ul-ix8" secondAttribute="centerX" constant="-26.5" id="mO9-3k-NVw"/>
+                                            <constraint firstAttribute="bottom" secondItem="MtS-M5-onS" secondAttribute="bottom" constant="8" id="ngH-Ja-Zeb"/>
+                                            <constraint firstItem="ByW-Me-hVN" firstAttribute="leading" secondItem="MtS-M5-onS" secondAttribute="trailing" constant="53" id="p94-we-QNi"/>
+                                            <constraint firstAttribute="width" constant="300" id="vfx-jV-Nvs"/>
+                                            <constraint firstItem="OqY-OE-Tz6" firstAttribute="centerX" secondItem="Fjg-be-VNX" secondAttribute="centerX" id="wdv-ps-bfv"/>
+                                            <constraint firstItem="MtS-M5-onS" firstAttribute="top" secondItem="OqY-OE-Tz6" secondAttribute="bottom" constant="191" id="zBG-ZI-5qV"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -813,11 +927,13 @@
                                     <constraint firstAttribute="trailing" secondItem="wQX-ez-rWZ" secondAttribute="trailing" id="D9c-Ik-UXP"/>
                                     <constraint firstItem="wQX-ez-rWZ" firstAttribute="leading" secondItem="t3t-hL-ExL" secondAttribute="leading" id="DfO-2H-Jje"/>
                                     <constraint firstItem="rPS-Sm-0sb" firstAttribute="centerX" secondItem="t3t-hL-ExL" secondAttribute="centerX" id="Eu5-8V-ewo"/>
+                                    <constraint firstItem="Fjg-be-VNX" firstAttribute="centerX" secondItem="t3t-hL-ExL" secondAttribute="centerX" id="EuP-3I-Qh1"/>
                                     <constraint firstAttribute="trailing" secondItem="wQX-ez-rWZ" secondAttribute="trailing" id="L5y-k9-AdQ"/>
                                     <constraint firstItem="wQX-ez-rWZ" firstAttribute="leading" secondItem="t3t-hL-ExL" secondAttribute="leading" id="L6z-L5-3Dt"/>
                                     <constraint firstAttribute="bottom" secondItem="wQX-ez-rWZ" secondAttribute="bottom" id="LaX-hY-rj9"/>
                                     <constraint firstItem="wQX-ez-rWZ" firstAttribute="centerX" secondItem="t3t-hL-ExL" secondAttribute="centerX" id="UNn-jf-Fpm"/>
                                     <constraint firstItem="rPS-Sm-0sb" firstAttribute="top" secondItem="t3t-hL-ExL" secondAttribute="top" constant="40" id="Yg2-Kd-05k"/>
+                                    <constraint firstItem="Fjg-be-VNX" firstAttribute="centerY" secondItem="t3t-hL-ExL" secondAttribute="centerY" id="Ykj-Rh-0Oc"/>
                                     <constraint firstItem="wQX-ez-rWZ" firstAttribute="leading" secondItem="t3t-hL-ExL" secondAttribute="leading" id="dev-9F-Cue"/>
                                     <constraint firstAttribute="bottom" secondItem="wQX-ez-rWZ" secondAttribute="bottom" constant="47" id="fGR-bi-2aX"/>
                                     <constraint firstItem="wQX-ez-rWZ" firstAttribute="top" secondItem="t3t-hL-ExL" secondAttribute="top" constant="89" id="hOb-cl-X8r"/>
@@ -849,7 +965,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="profileIcon" id="mLa-hI-gpB"/>
                     <connections>
+                        <outlet property="falseAnswerLabel" destination="DJh-ul-ix8" id="w2g-N0-Ayt"/>
+                        <outlet property="falsePercentageLabel" destination="MtS-M5-onS" id="IOt-W2-wsQ"/>
+                        <outlet property="popView" destination="Fjg-be-VNX" id="G8i-V5-w0i"/>
+                        <outlet property="questionLabel" destination="OqY-OE-Tz6" id="I90-k2-0x7"/>
                         <outlet property="tableView" destination="wQX-ez-rWZ" id="Ler-r9-cyV"/>
+                        <outlet property="trueAnswerLabel" destination="FUA-Sg-HlJ" id="PYh-YF-FOD"/>
+                        <outlet property="truePercentageLabel" destination="apb-09-bP0" id="44D-fc-L68"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="McF-yp-1Nt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -921,13 +1043,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="closeButton" width="512" height="512"/>
         <image name="homeIcon" width="25" height="25"/>
         <image name="moreIcon" width="50" height="50"/>
         <image name="plusIcon" width="25" height="25"/>
         <image name="profileIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2Jg-hF-tyI"/>
-        <segue reference="MYG-Y0-cxX"/>
+        <segue reference="oND-4v-5BH"/>
     </inferredMetricsTieBreakers>
 </document>

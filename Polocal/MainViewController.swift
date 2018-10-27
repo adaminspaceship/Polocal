@@ -42,7 +42,7 @@ class MainViewController: UIViewController {
 	
 	var totalPosts = [String]()
 	var currentPost = [Post]()
-	
+	var readPosts = [String]()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,14 +55,18 @@ class MainViewController: UIViewController {
         truePercentageLabel.isHidden = true
 		activityIndicator.isHidden = false
 		activityIndicator.startAnimating()
-		getAllPosts()
+//		getAllPosts()
 		getReadPosts()
 		let greyColor = UIColor(red:0.86, green:0.86, blue:0.86, alpha:0.8)
 		falseButton.setBackgroundColor(color: greyColor, forState: .highlighted)
 		trueButton.setBackgroundColor(color: greyColor, forState: .highlighted)
 		falseButton.setTitleColor(.white, for: .highlighted)
 		trueButton.setTitleColor(.white, for: .highlighted)
-
+//		for i in 1...999{
+//			let ref = Database.database().reference().child("Posts").child("540211")
+//			let new = ["answers":["false":4,"true":1],"falseAnswer":"לא","question":"מימ?","timestamp":1540469825,"trueAnswer":"כן"] as [String : Any]
+//			ref.child(String(i)).setValue(new)
+//		}
 		
     } //end of viewdidload()
 	
@@ -76,23 +80,15 @@ class MainViewController: UIViewController {
 			let childCount = snapshot.childrenCount
 			var count = 0
 			if childCount == 0 {
-				self.activityIndicator.stopAnimating()
-				self.checkRead()
+				self.getAllPosts()
 			} else {
 				while let rest = enumerator.nextObject() as? DataSnapshot {
 					count += 1
 					let json = JSON(rest.value!)
 					let postID = json.stringValue
-					if self.totalPosts.contains(postID) {
-						if let index = self.totalPosts.index(of: postID) {
-							self.totalPosts.remove(at: index)
-						}
-					} else {
-						continue
-					}
+					self.readPosts.append(postID)
 					if childCount == count {
-						self.activityIndicator.stopAnimating()
-						self.checkRead()
+						self.getAllPosts()
 					}
 				}
 			}
@@ -101,48 +97,57 @@ class MainViewController: UIViewController {
 
 	
 	func getAllPosts() {
-		let ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
-		let defaultQuestionRef = Database.database().reference().child("defaultQuestions")
+		let ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).queryLimited(toLast: 200) // change according to android version
 		ref.observeSingleEvent(of: .value) { (snapshot) in
 			if let result = snapshot.children.allObjects as? [DataSnapshot] {
 				if snapshot.childrenCount == 0 {
-					defaultQuestionRef.observeSingleEvent(of: .value) { (snap) in
-						let enumerator = snap.children
-						var count = 0
-						while let rest = enumerator.nextObject() as? DataSnapshot {
-							let json = JSON(rest.value!)
-							let falseAnswer = json["falseAnswer"].stringValue
-							let trueAnswer = json["trueAnswer"].stringValue
-							let falseAnswers = json["answers"]["false"].intValue
-							let trueAnswers = json["answers"]["true"].intValue
-							let question = json["question"].stringValue
-							let time = count
-							count += 1
-							let moreRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(String(time))
-							let defaultQuestion = ["answers":["false":falseAnswers,"true":trueAnswers],"question":question,"trueAnswer":trueAnswer,"falseAnswer":falseAnswer,"timestamp":time] as [String : Any]
-							moreRef.setValue(defaultQuestion){
-								(error:Error?, ref:DatabaseReference) in
-								if let error = error {
-									print("Data could not be saved: \(error).")
-								} else {
-									print("Data saved successfully!")
-									self.getReadPosts()
-								}
-							}
+					self.defaultQuestion()
+				} else {
+					var counter = 0
+					for child in result {
+						counter += 1
+						if !self.readPosts.contains(child.key) {
+							self.totalPosts.append(child.key)
+						}
+						if counter == snapshot.childrenCount {
+							self.checkRead()
 						}
 					}
-				} else {
-					for child in result {
-						let postUID = child.key
-						self.totalPosts.append(postUID)
-					}
+					
 				}
 			}
 		}
 	}
 	
 
-	
+	func defaultQuestion() {
+		let defaultQuestionRef = Database.database().reference().child("defaultQuestions")
+		defaultQuestionRef.observeSingleEvent(of: .value) { (snap) in
+			let enumerator = snap.children
+			var count = 0
+			while let rest = enumerator.nextObject() as? DataSnapshot {
+				let json = JSON(rest.value!)
+				let falseAnswer = json["falseAnswer"].stringValue
+				let trueAnswer = json["trueAnswer"].stringValue
+				let falseAnswers = json["answers"]["false"].intValue
+				let trueAnswers = json["answers"]["true"].intValue
+				let question = json["question"].stringValue
+				let time = count
+				count += 1
+				let moreRef = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(String(time))
+				let defaultQuestion = ["answers":["false":falseAnswers,"true":trueAnswers],"question":question,"trueAnswer":trueAnswer,"falseAnswer":falseAnswer,"timestamp":time] as [String : Any]
+				moreRef.setValue(defaultQuestion){
+					(error:Error?, ref:DatabaseReference) in
+					if let error = error {
+						print("Data could not be saved: \(error).")
+					} else {
+						print("Data saved successfully!")
+						self.checkRead()
+					}
+				}
+			}
+		}
+	}
 	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -272,7 +277,7 @@ class MainViewController: UIViewController {
 		ref.child(currentPost.postID).child("answers").child("true").setValue(newTrueAnswers)
 		truePercentageLabel.isHidden = false
 		falsePercentageLabel.isHidden = false
-		let (falsePercentage, truePercentage) = calcPercentage(trueAnswers: currentPost.falseAnswers, falseAnswers: currentPost.falseAnswers, Added: true)
+		let (falsePercentage, truePercentage) = calcPercentage(trueAnswers: newTrueAnswers, falseAnswers: currentPost.falseAnswers, Added: true)
 		truePercentageLabel.text = "\(String(truePercentage))%"
 		falsePercentageLabel.text = "\(String(falsePercentage))%"
 		showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
@@ -289,7 +294,7 @@ class MainViewController: UIViewController {
 		let newFalseAnswers = falseAnswers+1
 		ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
 		ref.child(currentPost.postID).child("answers").child("false").setValue(newFalseAnswers)
-		let (falsePercentage, truePercentage) = calcPercentage(trueAnswers: currentPost.falseAnswers, falseAnswers: currentPost.falseAnswers, Added: false)
+		let (falsePercentage, truePercentage) = calcPercentage(trueAnswers: currentPost.falseAnswers, falseAnswers: newFalseAnswers, Added: false)
 		falsePercentageLabel.isHidden = false
 		truePercentageLabel.isHidden = false
 		truePercentageLabel.text = "\(String(truePercentage))%"
@@ -308,7 +313,7 @@ class MainViewController: UIViewController {
 	func showPercentage(falsePercentage: Int, truePercentage: Int) {
 		if falsePercentage>truePercentage {
 			let num = Double(self.answerView.frame.width)/(100/Double(falsePercentage))+1
-			UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseOut, animations: {
+			UIView.animate(withDuration: 1.5, delay: 0, options: .curveLinear, animations: {
 				self.falseView.frame.size.width = CGFloat(num)
 			}) { (complete) in
                 sleep(1)
@@ -319,7 +324,7 @@ class MainViewController: UIViewController {
 		} else if truePercentage>falsePercentage {
 			let num = Double(self.answerView.frame.width)/(100/Double(truePercentage))
 			self.trueView.isHidden = false
-			UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseOut, animations: {
+			UIView.animate(withDuration: 1.5, delay: 0, options: .curveLinear, animations: {
 				for _ in 0...Int(num) {
                     self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
 				}
@@ -331,7 +336,7 @@ class MainViewController: UIViewController {
 				
 			}
 		} else {
-			UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseOut, animations: {
+			UIView.animate(withDuration: 1.5, delay: 0, options: .curveLinear, animations: {
 				self.falseView.frame.size.width = CGFloat(self.answerView.frame.size.width/2)
 				for _ in 0...Int(self.answerView.frame.width/2) {
 					self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)

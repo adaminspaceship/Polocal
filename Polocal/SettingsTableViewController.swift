@@ -65,7 +65,7 @@ class SettingsTableViewController: UITableViewController {
 
 	
 	
-	let privacyPolicy = """
+	let TOS = """
 						\n
 						Polocal built the Polocal app as a Free app. This SERVICE is provided by Polocal at no cost and is intended for use as is.
 
@@ -125,7 +125,7 @@ class SettingsTableViewController: UITableViewController {
 
 						"""
 	
-	let TOS = """
+	let privacyPolicy = """
 			\n
 			Privacy Policy of Polocal
 			In order to receive information about your Personal Data, the purposes and the parties the Data is shared with, contact the Owner.
