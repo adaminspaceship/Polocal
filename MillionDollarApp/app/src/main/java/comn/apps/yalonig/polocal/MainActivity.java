@@ -17,9 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -33,16 +36,23 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button send,chooseF,chooseT;
+    private Button send,chooseF,chooseT,exitmy;
     private EditText question,falseAns,trueAns,questionView;
     private String semel,uuid,currentQuestTS;
-    private ArrayList<String> allQuests = new ArrayList<>();
+    private ArrayList<String> myQuestsTS = new ArrayList<>();
+    private ArrayList<String> myQuests = new ArrayList<>();
     private ArrayList<String> readQuests= new ArrayList<>();
     private View grayScale;
     private ProgressBar loading;
-    private TextView rightAns,leftAns,rightPer,leftPer,sent;
+    private TextView rightAns,leftAns,rightPer,leftPer,sent,myquestAR,myquestAL,myquestPR,myquestPL,myquest;
     private int btnDis;
     private boolean noQuest = false;
+    private boolean onGoingAnim = false;
+    private boolean posted = true;
+    private ListView listi;
+    private ArrayAdapter ari;
+
+
     BottomNavigationView navigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -50,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            if(onGoingAnim)
+                return false;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     questionView.setVisibility(View.VISIBLE);
@@ -62,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     question.setVisibility(View.GONE);
                     rightAns.setVisibility(View.VISIBLE);
                     leftAns.setVisibility(View.VISIBLE);
+                    listi.setVisibility(View.GONE);
+                    myQuestVis(false);
                     if(noQuest)changeQuest();
 
                     return true;
@@ -78,8 +92,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     grayScale.setVisibility(View.GONE);
                     leftPer.setVisibility(View.GONE);
                     rightPer.setVisibility(View.GONE);
+                    listi.setVisibility(View.GONE);
+                    myQuestVis(false);
                     return true;
                 case R.id.navigation_myQuests:
+                    listi.setVisibility(View.VISIBLE);
                     sent.setVisibility(View.GONE);
                     questionView.setVisibility(View.GONE);
                     send.setVisibility(View.GONE);
@@ -93,6 +110,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     grayScale.setVisibility(View.GONE);
                     leftPer.setVisibility(View.GONE);
                     rightPer.setVisibility(View.GONE);
+                    myQuestVis(false);
+                    System.out.println(listi.getVisibility());
+
+
+
                     return true;
             }
             return false;
@@ -129,11 +151,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         leftAns = findViewById(R.id.leftAns);
         rightPer = findViewById(R.id.rightpercent);
         leftPer= findViewById(R.id.leftpercent);
+        myquest = findViewById(R.id.myquestion);
+        myquest.setClickable(false);
+        myquest.setFocusable(false);
+        myquestAL = findViewById(R.id.myansAL);
+        myquestAR = findViewById(R.id.myansAR);
+        myquestPL = findViewById(R.id.myansperL);
+        myquestPR = findViewById(R.id.myansperR);
+        exitmy= findViewById(R.id.exit);
         grayScale.setVisibility(View.GONE);
         leftPer.setVisibility(View.GONE);
         rightPer.setVisibility(View.GONE);
         sent.setVisibility(View.GONE);
         loading.setVisibility(View.GONE);
+        listi = findViewById(R.id.listi);
+        myQuestVis(false);
+        listi.setVisibility(View.GONE);
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        exitmy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myQuestVis(false);
+                listi.setVisibility(View.VISIBLE);
+            }
+        });
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,12 +185,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        ari = new ArrayAdapter<String>(this, R.layout.table, R.id.btn,myQuests);
+        listi.setAdapter(ari);
+        loadMyQuests();
+        listi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                System.out.println("hi");
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference ref = database.getReference("Posts").child(semel).child(myQuestsTS.get(i).toString());
 
-        navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        myquestAL.setText(dataSnapshot.child("falseAnswer").getValue().toString());
+                        myquestAR.setText(dataSnapshot.child("trueAnswer").getValue().toString());
+                        myquest.setText(dataSnapshot.child("question").getValue().toString());
+                        int  trueAnswers = Integer.parseInt(dataSnapshot.child("answers").child("true").getValue().toString());
+                        int  falseAnswers = Integer.parseInt(dataSnapshot.child("answers").child("false").getValue().toString());
+                        int Rpercent =0;
+                        if(trueAnswers+falseAnswers!=0)
+                            Rpercent = 100*trueAnswers/(trueAnswers+falseAnswers);
+                        else if(trueAnswers==0)
+                            Rpercent=0;
+                        else if(falseAnswers!=0)
+                            Rpercent=100;
+
+
+                        myquestPR.setText(Rpercent+"%");
+                        myquestPL.setText(100-Rpercent+"%");
+                        myQuestVis(true);
+                        listi.setVisibility(View.GONE);
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+        });
+
+
         changeQuest();
 
-        navigation.setClickable(false);
+
+
+
+
+
 
 
 
@@ -157,27 +245,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private long getUnix(){return System.currentTimeMillis()/1000;}
     private void postAPost(){
+        posted=true;
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference postRef = database.getReference("Posts").child(semel);
+        DatabaseReference userRef = database.getReference(uuid);
         String falseAns,trueAns,question;
         falseAns = this.falseAns.getText().toString();
         trueAns= this.trueAns.getText().toString();
         question = this.question.getText().toString();
-        postRef.child(getUnix()+"").child("falseAnswer").setValue(falseAns);
-        postRef.child(getUnix()+"").child("trueAnswer").setValue(trueAns);
-        postRef.child(getUnix()+"").child("question").setValue(question);
-        postRef.child(getUnix()+"").child("timestamp").setValue(getUnix()+"");
-        postRef.child(getUnix()+"").child("answers").child("false").setValue(0+"");
-        postRef.child(getUnix()+"").child("answers").child("true").setValue(0+"");
+        String unix = getUnix()+"";
+        userRef.child("Posts").child(getUnix()+"").setValue(getUnix()+"");
+        postRef.child(unix).child("falseAnswer").setValue(falseAns);
+        postRef.child(unix).child("trueAnswer").setValue(trueAns);
+        postRef.child(unix).child("question").setValue(question);
+        postRef.child(unix).child("timestamp").setValue(getUnix()+"");
+        postRef.child(unix).child("answers").child("false").setValue(0+"");
+        postRef.child(unix).child("answers").child("true").setValue(0+"");
         sent.setVisibility(View.VISIBLE);
         this.trueAns.setText("תשובה 1");
         this.question.setText("כתוב שאלה");
         this.falseAns.setText("תשובה 2");
+        myQuests.add(question);
+        myQuestsTS.add(unix);
 
     }
     private void ansQuest(final boolean ans){
 
-
+        onGoingAnim =true;
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference("Posts").child(semel).child(currentQuestTS).child("answers");
 
@@ -207,6 +301,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
     private void changeQuest(){
+
         loading.setVisibility(View.VISIBLE);
         chooseF.setClickable(false);
         chooseT.setClickable(false);
@@ -232,8 +327,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         chooseT.setClickable(true);
                         noQuest=false;
                         loading.setVisibility(View.GONE);
+                        onGoingAnim =false;
                         break;
                     }
+                    onGoingAnim =false;
+
                     leftAns.setText("באסה");
                     rightAns.setText("איזה");
                     questionView.setText("אין יותר שאלות");
@@ -302,6 +400,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 leftAns.setText("");
                 rightAns.setText("");
                 navigation.setClickable(true);
+                onGoingAnim =true;
                 changeQuest();
             }
         });
@@ -315,5 +414,69 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+
+    private void loadMyQuests(){
+
+        myQuestsTS.clear();
+        myQuests.clear();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference ref = database.getReference();
+
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot myPosts : dataSnapshot.child(uuid).child("Posts").getChildren()) {
+                    myQuestsTS.add(myPosts.getValue().toString());
+
+                }
+
+                for (DataSnapshot searchAll : dataSnapshot.child("Posts").child(semel).getChildren()) {
+
+                    if (myQuestsTS.contains(searchAll.getKey().toString())) {
+
+                        myQuests.add(searchAll.child("question").getValue().toString());
+                    }
+                }
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        ari.notifyDataSetChanged();
+
+
+    }
+    private void myQuestVis(boolean b){
+        if(b) {
+            myquest.setVisibility(View.VISIBLE);
+            myquestAL.setVisibility(View.VISIBLE);
+            myquestAR.setVisibility(View.VISIBLE);
+            myquestPL.setVisibility(View.VISIBLE);
+            myquestPR.setVisibility(View.VISIBLE);
+            exitmy.setVisibility(View.VISIBLE);
+            listi.setVisibility(View.GONE);
+
+
+        }
+        else{
+
+            myquest.setVisibility(View.GONE);
+            myquestAL.setVisibility(View.GONE);
+            myquestAR.setVisibility(View.GONE);
+            myquestPL.setVisibility(View.GONE);
+            myquestPR.setVisibility(View.GONE);
+            exitmy.setVisibility(View.GONE);
+
+        }
+
+    }
+
+
     }
 
