@@ -76,7 +76,7 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
         let userDefaults = UserDefaults.standard
         let uuid = UUID().uuidString
 		if self.schoolSearchBar.text == "" {
-			self.startButton.shake()
+			self.shake(view: self.startButton)
 			
 		} else {
 			if let path = Bundle.main.path(forResource: "data", ofType: "json") {
@@ -91,7 +91,7 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 							userDefaults.set(uuid, forKey: "userID")
 							performSegue(withIdentifier: "toMain", sender: self)
 						} else {
-							self.startButton.shake()
+							self.shake(view: self.startButton)
 						}
 					}
 					
@@ -105,6 +105,18 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 		}
 		
     }
+	
+	func shake(view: UIView, for duration: TimeInterval = 0.5, withTranslation translation: CGFloat = 10) {
+		let propertyAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.3) {
+			view.transform = CGAffineTransform(translationX: translation, y: 0)
+		}
+		
+		propertyAnimator.addAnimations({
+			view.transform = CGAffineTransform(translationX: 0, y: 0)
+		}, delayFactor: 0.2)
+		
+		propertyAnimator.startAnimation()
+	}
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

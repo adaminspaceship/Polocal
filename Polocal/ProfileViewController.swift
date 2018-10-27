@@ -45,6 +45,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
         super.viewDidLoad()
 		trueAnswerLabel.adjustsFontSizeToFitWidth = true
 		falseAnswerLabel.adjustsFontSizeToFitWidth = true
+
         // Do any additional setup after loading the view.
 		
     }
@@ -80,21 +81,29 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
 	
 	var selectedPostIndex = IndexPath()
 	
-	func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-		let currentPost = Posts[indexPath.row]
-		questionLabel.text = currentPost.question
-		trueAnswerLabel.text = currentPost.trueAnswer
-		falseAnswerLabel.text = currentPost.falseAnswer
-		selectedPostIndex = indexPath
-		let (falsePerc,truePerc) = calcPercentage(trueAnswers: currentPost.trueAnswers, falseAnswers: currentPost.falseAnswers)
-		falsePercentageLabel.text = "\(String(falsePerc))%"
-		truePercentageLabel.text = "\(String(truePerc))%"
-		bgChange(isAlready: false)
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if Posts.count == 0 {
+			print("no posts for user")
+		} else {
+			let currentPost = Posts[indexPath.row]
+			questionLabel.text = currentPost.question
+			trueAnswerLabel.text = currentPost.trueAnswer
+			falseAnswerLabel.text = currentPost.falseAnswer
+			selectedPostIndex = indexPath
+			let (falsePerc,truePerc) = calcPercentage(trueAnswers: currentPost.trueAnswers, falseAnswers: currentPost.falseAnswers)
+			falsePercentageLabel.text = "\(String(falsePerc))%"
+			truePercentageLabel.text = "\(String(truePerc))%"
+			bgChange(isAlready: false)
+		}
 	}
 
-	func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+//	func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+//		bgChange(isAlready: true)
+//	}
+	@IBAction func closeButtonTapped(_ sender: Any) {
 		bgChange(isAlready: true)
 	}
+	
 	
 	func bgChange(isAlready: Bool) {
 		//changing alpha
@@ -131,5 +140,13 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
 			let falsePercentage = Int(100-truePercentage)
 			return (falsePercentage,truePercentage)
 		}
+	}
+}
+
+extension ProfileViewController: UIGestureRecognizerDelegate {
+	
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+						   shouldReceive touch: UITouch) -> Bool {
+		return (touch.view === self.view)
 	}
 }
