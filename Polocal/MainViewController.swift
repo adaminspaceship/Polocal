@@ -97,7 +97,7 @@ class MainViewController: UIViewController {
 
 	
 	func getAllPosts() {
-		let ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
+		let ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).queryLimited(toLast: 200) // change according to android version
 		ref.observeSingleEvent(of: .value) { (snapshot) in
 			if let result = snapshot.children.allObjects as? [DataSnapshot] {
 				if snapshot.childrenCount == 0 {

@@ -26,27 +26,25 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJx-J5-03q" customClass="GradientView" customModule="Polocal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="701"/>
                                 <subviews>
-                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQo-io-eMU">
-                                        <rect key="frame" x="169.5" y="329" width="27" height="31"/>
-                                        <color key="textColor" red="0.0039215686269999999" green="0.60392156860000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <searchBar contentMode="redraw" misplaced="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="PYr-S7-l0t" customClass="ModernSearchBar" customModule="ModernSearchBar">
-                                        <rect key="frame" x="-1" y="316.5" width="375" height="56"/>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="PYr-S7-l0t" customClass="ModernSearchBar" customModule="ModernSearchBar">
+                                        <rect key="frame" x="-1" y="317" width="375" height="56"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="הכנס בית ספר" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALZ-jz-hWl">
                                         <rect key="frame" x="23" y="232" width="320" height="86"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="86" id="0vm-SW-le2"/>
+                                            <constraint firstAttribute="width" constant="320" id="9Bd-Wg-2cg"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="86" id="RHb-jP-V5H"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="60"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hh0-v2-mR4">
-                                        <rect key="frame" x="121" y="456.5" width="124" height="56"/>
+                                        <rect key="frame" x="121" y="457" width="124" height="56"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="124" id="HCd-Cv-ySA"/>
@@ -69,15 +67,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" id="2JS-1w-ZsT"/>
+                                    <constraint firstItem="Hh0-v2-mR4" firstAttribute="centerX" secondItem="ALZ-jz-hWl" secondAttribute="centerX" id="4Yv-Rk-yct"/>
                                     <constraint firstItem="ALZ-jz-hWl" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" constant="23" id="6Ru-LB-ofA"/>
-                                    <constraint firstItem="Hh0-v2-mR4" firstAttribute="top" secondItem="PYr-S7-l0t" secondAttribute="bottom" constant="84" id="7BW-0W-yDy"/>
-                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="centerY" secondItem="JQo-io-eMU" secondAttribute="centerY" id="9kN-R1-HFb"/>
+                                    <constraint firstAttribute="trailing" secondItem="ALZ-jz-hWl" secondAttribute="trailing" constant="32" id="DAv-Qh-SGw"/>
                                     <constraint firstItem="ALZ-jz-hWl" firstAttribute="top" secondItem="UJx-J5-03q" secondAttribute="top" constant="232" id="OMv-8Q-vwM"/>
-                                    <constraint firstAttribute="trailing" secondItem="PYr-S7-l0t" secondAttribute="trailing" id="PLl-L0-w4P"/>
-                                    <constraint firstItem="JQo-io-eMU" firstAttribute="top" secondItem="ALZ-jz-hWl" secondAttribute="bottom" constant="11" id="TP7-C3-fRc"/>
-                                    <constraint firstItem="Hh0-v2-mR4" firstAttribute="centerX" secondItem="JQo-io-eMU" secondAttribute="centerX" id="ftx-Jb-pLN"/>
-                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="centerX" secondItem="JQo-io-eMU" secondAttribute="centerX" id="thd-aJ-Z11"/>
+                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="top" secondItem="UJx-J5-03q" secondAttribute="top" constant="317" id="gc9-6L-0to"/>
+                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" constant="-1" id="gjG-Dl-huc"/>
+                                    <constraint firstItem="Hh0-v2-mR4" firstAttribute="top" secondItem="PYr-S7-l0t" secondAttribute="bottom" constant="84" id="hRj-bl-ilt"/>
+                                    <constraint firstAttribute="trailing" secondItem="PYr-S7-l0t" secondAttribute="trailing" constant="1" id="qrS-no-irb"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -110,14 +107,13 @@
                     </view>
                     <connections>
                         <outlet property="schoolSearchBar" destination="PYr-S7-l0t" id="Mjk-Ig-2ve"/>
-                        <outlet property="schoolTextField" destination="JQo-io-eMU" id="qdw-CI-q9E"/>
                         <outlet property="startButton" destination="Hh0-v2-mR4" id="4hz-36-c6c"/>
                         <segue destination="4kx-cW-ior" kind="show" identifier="toMain" animates="NO" id="hyX-TW-1rF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="178.40000000000001" y="132.26600985221674"/>
+            <point key="canvasLocation" x="178.40000000000001" y="131.78410794602701"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="2kR-3h-hEZ">
@@ -420,7 +416,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="דווח על השאלה הזאת" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v79-nF-TkE">
-                                                    <rect key="frame" x="182" y="8.5" width="177" height="26.5"/>
+                                                    <rect key="frame" x="182.5" y="8.5" width="176.5" height="26.5"/>
                                                     <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -466,7 +462,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="שלח לנו אימייל" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUi-Yb-8Uy">
-                                                    <rect key="frame" x="242" y="8.5" width="117" height="26.5"/>
+                                                    <rect key="frame" x="242.5" y="8.5" width="116.5" height="26.5"/>
                                                     <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -487,7 +483,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWQ-rP-fFU">
-                                                    <rect key="frame" x="129" y="8.5" width="117.5" height="27"/>
+                                                    <rect key="frame" x="129" y="9" width="117.5" height="26"/>
                                                     <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -507,7 +503,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms Of Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ck-6X-XXf">
-                                                    <rect key="frame" x="115" y="8.5" width="145" height="27"/>
+                                                    <rect key="frame" x="115.5" y="9" width="144.5" height="26"/>
                                                     <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1040,6 +1036,6 @@
         <image name="profileIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oND-4v-5BH"/>
+        <segue reference="hyX-TW-1rF"/>
     </inferredMetricsTieBreakers>
 </document>
