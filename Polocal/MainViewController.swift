@@ -113,7 +113,6 @@ class MainViewController: UIViewController {
 							self.checkRead()
 						}
 					}
-					
 				}
 			}
 		}
@@ -303,7 +302,7 @@ class MainViewController: UIViewController {
 			let newFalseAnswers = falseAnswers+1
 			ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
 			ref.child(currentPost.postID).child("answers").child("false").setValue(newFalseAnswers)
-			let (falsePercentage, truePercentage) = calcPercentage(trueAnswers: currentPost.falseAnswers, falseAnswers: newFalseAnswers, Added: false)
+			let (falsePercentage, truePercentage) = calcPercentage(trueAnswers: currentPost.trueAnswers, falseAnswers: newFalseAnswers, Added: false)
 			falsePercentageLabel.isHidden = false
 			truePercentageLabel.isHidden = false
 			truePercentageLabel.text = "\(String(truePercentage))%"
