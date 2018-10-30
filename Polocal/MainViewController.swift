@@ -46,6 +46,9 @@ class MainViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+//		var newFrame = trueView.frame
+//		newFrame.size.width = answerView.frame.width
+//		trueView.frame = newFrame
 		//print(UserDefaults.standard.string(forKey: "userID"))
 		trueLabel.adjustsFontSizeToFitWidth = true
 		falseLabel.adjustsFontSizeToFitWidth = true
@@ -253,13 +256,13 @@ class MainViewController: UIViewController {
 			let sum = falseAnswers+trueAnswers
 			let truePercentage = Int((Double(trueAnswers)/Double(sum))*100)
 			let falsePercentage = Int(100-truePercentage)
-			showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
+//			showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
 			return (falsePercentage,truePercentage)
 		} else {
 			let sum = falseAnswers+trueAnswers
 			let falsePercentage = Int((Double(falseAnswers)/Double(sum))*100)
 			let truePercentage = Int(100-falsePercentage)
-			showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
+//			showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
 			return (falsePercentage,truePercentage)
 		}
 	}
@@ -283,7 +286,7 @@ class MainViewController: UIViewController {
 			let (falsePercentage, truePercentage) = calcPercentage(trueAnswers: newTrueAnswers, falseAnswers: currentPost.falseAnswers, Added: true)
 			truePercentageLabel.text = "\(String(truePercentage))%"
 			falsePercentageLabel.text = "\(String(falsePercentage))%"
-			
+			showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
 			didReadPost(postID: currentPost.postID, answer: "true")
 			self.totalPosts.removeLast()
 		}
@@ -311,7 +314,6 @@ class MainViewController: UIViewController {
 			didReadPost(postID: currentPost.postID, answer: "false")
 			self.totalPosts.removeLast()
 		}
-		
 	}
 	
 	
@@ -322,39 +324,39 @@ class MainViewController: UIViewController {
 	
 	func showPercentage(falsePercentage: Int, truePercentage: Int) {
 		if falsePercentage>truePercentage {
-			let num = Double(self.answerView.frame.width)/(100/Double(falsePercentage))+1
-			UIView.animate(withDuration: 1.5, delay: 0, options: .curveLinear, animations: {
+			let num = Double(self.answerView.frame.width)/(100/Double(falsePercentage))
+			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
 				self.falseView.frame.size.width = CGFloat(num)
 			}) { (complete) in
-                sleep(1)
-                self.truePercentageLabel.isHidden = true
-                self.falsePercentageLabel.isHidden = true
+				sleep(2)
+				self.truePercentageLabel.isHidden = true
+				self.falsePercentageLabel.isHidden = true
 				self.checkRead(greaterPerc: "false", num: num)
 			}
 		} else if truePercentage>falsePercentage {
 			let num = Double(self.answerView.frame.width)/(100/Double(truePercentage))
 			self.trueView.isHidden = false
-			UIView.animate(withDuration: 1.5, delay: 0, options: .curveLinear, animations: {
+			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
 				for _ in 0...Int(num) {
-                    self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
+					self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
 				}
 			}) { (complete) in
-                sleep(1)
-                self.truePercentageLabel.isHidden = true
-                self.falsePercentageLabel.isHidden = true
+				sleep(2)
+				self.truePercentageLabel.isHidden = true
+				self.falsePercentageLabel.isHidden = true
 				self.checkRead(greaterPerc: "true", num: num)
 				
 			}
 		} else {
-			UIView.animate(withDuration: 1.5, delay: 0, options: .curveLinear, animations: {
-				self.falseView.frame.size.width = CGFloat(self.answerView.frame.size.width/2)
+			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
+				self.falseView.frame.size.width = CGFloat(self.answerView.frame.width/2)
 				for _ in 0...Int(self.answerView.frame.width/2) {
 					self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
 				}
 			}) { (complete) in
-                sleep(1)
-                self.truePercentageLabel.isHidden = true
-                self.falsePercentageLabel.isHidden = true
+				sleep(2)
+				self.truePercentageLabel.isHidden = true
+				self.falsePercentageLabel.isHidden = true
 				self.checkRead(greaterPerc: "equals")
 			}
 			
