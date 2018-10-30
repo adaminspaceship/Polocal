@@ -40,20 +40,6 @@ class AddPostViewController: UIViewController, UITextViewDelegate, UITextFieldDe
 //		}
 	}
 	
-//	func textField(_ textField: UITextView, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//		let maxLength = 39
-//		let currentString: NSString = textField.text! as NSString
-//		let newString: NSString =
-//			currentString.replacingCharacters(in: range, with: string) as NSString
-//		if newString.length == maxLength {
-//			self.maxCharLimit.isHidden = false
-//		} else {
-//			self.maxCharLimit.isHidden = true
-//		}
-//		return newString.length <= maxLength
-//	}
-//
-	
 	func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
 		checkRemainingChars()
 		let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
@@ -116,7 +102,9 @@ class AddPostViewController: UIViewController, UITextViewDelegate, UITextFieldDe
 //			self.questionTextView.isUserInteractionEnabled = true
 		}
 		else {
-			
+//			let currentTime = time
+//			let lastPostTime = UserDefaults.standard.integer(forKey: "lastPostTime")
+//			if currentTime-lastPostTime >= 900 {} limit users
 			let postRef = ref.child("Posts").child(userDefaults.string(forKey: "schoolSemel")!).child(String(time))
 			postRef.child("answers").child("false").setValue(0)
 			postRef.child("answers").child("true").setValue(0)
@@ -134,6 +122,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate, UITextFieldDe
 			}
 			postRef.child("timestamp").setValue(time)
 			ref.child(userID!).child("Posts").child(String(time)).setValue(String(time))
+			UserDefaults.standard.set(time, forKey: "lastPostTime")
 			performSegue(withIdentifier: "toMain", sender: self)
 		}
 	}

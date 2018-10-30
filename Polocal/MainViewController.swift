@@ -97,7 +97,7 @@ class MainViewController: UIViewController {
 
 	
 	func getAllPosts() {
-		let ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!) // change according to android version
+		let ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).queryLimited(toLast: 200)
 		ref.observeSingleEvent(of: .value) { (snapshot) in
 			if let result = snapshot.children.allObjects as? [DataSnapshot] {
 				if snapshot.childrenCount == 0 {
@@ -245,7 +245,7 @@ class MainViewController: UIViewController {
 		self.trueButton.isEnabled = false
 		self.falseLabel.text = "לא"
 		self.trueLabel.text = "כן"
-		self.timeAgoLabel.text = "n/a"
+		self.timeAgoLabel.text = ""
 		// make user create a new poll
 	}
 	
@@ -254,11 +254,13 @@ class MainViewController: UIViewController {
 			let sum = falseAnswers+trueAnswers
 			let truePercentage = Int((Double(trueAnswers)/Double(sum))*100)
 			let falsePercentage = Int(100-truePercentage)
+			showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
 			return (falsePercentage,truePercentage)
 		} else {
 			let sum = falseAnswers+trueAnswers
 			let falsePercentage = Int((Double(falseAnswers)/Double(sum))*100)
 			let truePercentage = Int(100-falsePercentage)
+			showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
 			return (falsePercentage,truePercentage)
 		}
 	}
@@ -282,7 +284,7 @@ class MainViewController: UIViewController {
 			let (falsePercentage, truePercentage) = calcPercentage(trueAnswers: newTrueAnswers, falseAnswers: currentPost.falseAnswers, Added: true)
 			truePercentageLabel.text = "\(String(truePercentage))%"
 			falsePercentageLabel.text = "\(String(falsePercentage))%"
-			showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
+			
 			didReadPost(postID: currentPost.postID, answer: "true")
 			self.totalPosts.removeLast()
 		}
@@ -366,7 +368,12 @@ class MainViewController: UIViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "toSettings" {
 			let destinationVC = segue.destination as! SettingsTableViewController
-			destinationVC.postID = currentPost[0].postID
+			if currentPost.count != 0{
+				destinationVC.postID = currentPost[0].postID
+			} else {
+				destinationVC.postID = "1"
+			}
+			
 		}
 		
 	}

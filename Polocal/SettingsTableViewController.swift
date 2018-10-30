@@ -28,7 +28,6 @@ class SettingsTableViewController: UITableViewController {
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
 		if indexPath.section == 0 && indexPath.row == 0 {
-			
 			print("user reported the post: \(self.postID)")
 			let ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).child(self.postID).child("reportCount").child(UserDefaults.standard.string(forKey: "userID")!)
 			ref.setValue(UserDefaults.standard.string(forKey: "userID")!)
