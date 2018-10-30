@@ -59,7 +59,6 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 				for (key,value) in jsonObj {
 					let schoolName = value.stringValue
 					suggestionList.append(schoolName)
-					
 				}
 				self.schoolSearchBar.setDatas(datas: suggestionList)
 				
@@ -75,7 +74,7 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 		let userDefaults = UserDefaults.standard
 		let uuid = UUID().uuidString
 		if self.schoolSearchBar.text == "" {
-			//self.shake(view: self.startButton)
+			self.shake(view: self.startButton)
 		} else {
 			if let path = Bundle.main.path(forResource: "data", ofType: "json") {
 				do {

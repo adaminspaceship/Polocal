@@ -142,7 +142,8 @@ class MainViewController: UIViewController {
 						print("Data could not be saved: \(error).")
 					} else {
 						print("Data saved successfully!")
-						self.checkRead()
+						sleep(1)
+						self.getReadPosts()
 					}
 				}
 			}
@@ -250,15 +251,13 @@ class MainViewController: UIViewController {
 	
 	func calcPercentage(trueAnswers: Int, falseAnswers: Int, Added: Bool) -> (Int,Int) {
 		if Added == true {
-			let newTrueAnswers = trueAnswers+1
-			let sum = falseAnswers+newTrueAnswers
-			let truePercentage = Int((Double(newTrueAnswers)/Double(sum))*100)
+			let sum = falseAnswers+trueAnswers
+			let truePercentage = Int((Double(trueAnswers)/Double(sum))*100)
 			let falsePercentage = Int(100-truePercentage)
 			return (falsePercentage,truePercentage)
 		} else {
-			let newFalseAnswers = falseAnswers+1
-			let sum = newFalseAnswers+trueAnswers
-			let falsePercentage = Int((Double(newFalseAnswers)/Double(sum))*100)
+			let sum = falseAnswers+trueAnswers
+			let falsePercentage = Int((Double(falseAnswers)/Double(sum))*100)
 			let truePercentage = Int(100-falsePercentage)
 			return (falsePercentage,truePercentage)
 		}
