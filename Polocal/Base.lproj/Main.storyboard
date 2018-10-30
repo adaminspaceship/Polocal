@@ -27,13 +27,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="701"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="PYr-S7-l0t" customClass="ModernSearchBar" customModule="ModernSearchBar">
-                                        <rect key="frame" x="-1" y="317" width="375" height="56"/>
+                                        <rect key="frame" x="0.0" y="291" width="375" height="56"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="הכנס בית ספר" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALZ-jz-hWl">
-                                        <rect key="frame" x="23" y="232" width="320" height="86"/>
+                                        <rect key="frame" x="27" y="185" width="320" height="86"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="86" id="0vm-SW-le2"/>
                                             <constraint firstAttribute="width" constant="320" id="9Bd-Wg-2cg"/>
@@ -44,7 +43,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hh0-v2-mR4">
-                                        <rect key="frame" x="121" y="457" width="124" height="56"/>
+                                        <rect key="frame" x="125" y="396" width="124" height="56"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="124" id="HCd-Cv-ySA"/>
@@ -68,13 +67,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Hh0-v2-mR4" firstAttribute="centerX" secondItem="ALZ-jz-hWl" secondAttribute="centerX" id="4Yv-Rk-yct"/>
-                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" constant="23" id="6Ru-LB-ofA"/>
-                                    <constraint firstAttribute="trailing" secondItem="ALZ-jz-hWl" secondAttribute="trailing" constant="32" id="DAv-Qh-SGw"/>
-                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="top" secondItem="UJx-J5-03q" secondAttribute="top" constant="232" id="OMv-8Q-vwM"/>
-                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="top" secondItem="UJx-J5-03q" secondAttribute="top" constant="317" id="gc9-6L-0to"/>
-                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" constant="-1" id="gjG-Dl-huc"/>
-                                    <constraint firstItem="Hh0-v2-mR4" firstAttribute="top" secondItem="PYr-S7-l0t" secondAttribute="bottom" constant="84" id="hRj-bl-ilt"/>
-                                    <constraint firstAttribute="trailing" secondItem="PYr-S7-l0t" secondAttribute="trailing" constant="1" id="qrS-no-irb"/>
+                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" constant="27" id="6Ru-LB-ofA"/>
+                                    <constraint firstAttribute="trailing" secondItem="ALZ-jz-hWl" secondAttribute="trailing" constant="28" id="DAv-Qh-SGw"/>
+                                    <constraint firstItem="ALZ-jz-hWl" firstAttribute="top" secondItem="UJx-J5-03q" secondAttribute="top" constant="185" id="OMv-8Q-vwM"/>
+                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="top" secondItem="UJx-J5-03q" secondAttribute="top" constant="291" id="gc9-6L-0to"/>
+                                    <constraint firstItem="PYr-S7-l0t" firstAttribute="leading" secondItem="UJx-J5-03q" secondAttribute="leading" id="gjG-Dl-huc"/>
+                                    <constraint firstItem="Hh0-v2-mR4" firstAttribute="top" secondItem="PYr-S7-l0t" secondAttribute="bottom" constant="49" id="hRj-bl-ilt"/>
+                                    <constraint firstAttribute="trailing" secondItem="PYr-S7-l0t" secondAttribute="trailing" id="qrS-no-irb"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -115,7 +114,7 @@
             </objects>
             <point key="canvasLocation" x="178.40000000000001" y="131.78410794602701"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Home-->
         <scene sceneID="2kR-3h-hEZ">
             <objects>
                 <viewController id="giN-7n-CL4" customClass="MainViewController" customModule="Polocal" customModuleProvider="target" sceneMemberID="viewController">
@@ -352,7 +351,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="taK-UK-5Xk"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="homeIcon" id="I4p-rG-1uV"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="homeIcon" id="I4p-rG-1uV"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Qa2-oK-MUo" id="QBe-TZ-kLp"/>
                         <outlet property="answerView" destination="4bp-tY-STs" id="6rk-Qn-xbd"/>
@@ -483,7 +482,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWQ-rP-fFU">
-                                                    <rect key="frame" x="129" y="9" width="117.5" height="26"/>
+                                                    <rect key="frame" x="128.5" y="9" width="118" height="26"/>
                                                     <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -503,7 +502,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms Of Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ck-6X-XXf">
-                                                    <rect key="frame" x="115.5" y="9" width="144.5" height="26"/>
+                                                    <rect key="frame" x="115.5" y="9" width="144" height="26"/>
                                                     <fontDescription key="fontDescription" name="AlmoniNeueDL4.0AAA-Light" family="Almoni Neue DL 4.0 AAA" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -534,7 +533,7 @@
             </objects>
             <point key="canvasLocation" x="3201" y="-639"/>
         </scene>
-        <!--Add Post View Controller-->
+        <!--Add-->
         <scene sceneID="u3h-ZU-BI2">
             <objects>
                 <viewController id="3BQ-Ue-jRW" customClass="AddPostViewController" customModule="Polocal" customModuleProvider="target" sceneMemberID="viewController">
@@ -677,7 +676,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mrl-oL-YHP"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="plusIcon" id="KH8-fQ-8U6"/>
+                    <tabBarItem key="tabBarItem" title="Add" image="plusIcon" id="KH8-fQ-8U6"/>
                     <connections>
                         <outlet property="addPostButton" destination="uRu-R0-a2X" id="pdX-IQ-oaq"/>
                         <outlet property="falseAnswerField" destination="Ckn-br-4s7" id="WLr-Og-G4i"/>
@@ -692,7 +691,7 @@
             </objects>
             <point key="canvasLocation" x="2061.5999999999999" y="132.68365817091455"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--My Questions-->
         <scene sceneID="vND-hh-5jm">
             <objects>
                 <viewController id="bIg-ML-WDh" customClass="ProfileViewController" customModule="Polocal" customModuleProvider="target" sceneMemberID="viewController">
@@ -963,7 +962,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Zb9-XL-7ep"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="profileIcon" id="mLa-hI-gpB"/>
+                    <tabBarItem key="tabBarItem" title="My Questions" image="profileIcon" id="mLa-hI-gpB"/>
                     <connections>
                         <outlet property="falseAnswerLabel" destination="DJh-ul-ix8" id="w2g-N0-Ayt"/>
                         <outlet property="falsePercentageLabel" destination="MtS-M5-onS" id="IOt-W2-wsQ"/>
@@ -1050,6 +1049,6 @@
         <image name="profileIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oND-4v-5BH"/>
+        <segue reference="hyX-TW-1rF"/>
     </inferredMetricsTieBreakers>
 </document>

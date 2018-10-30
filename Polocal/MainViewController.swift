@@ -97,7 +97,7 @@ class MainViewController: UIViewController {
 
 	
 	func getAllPosts() {
-		let ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!).queryLimited(toLast: 200) // change according to android version
+		let ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!) // change according to android version
 		ref.observeSingleEvent(of: .value) { (snapshot) in
 			if let result = snapshot.children.allObjects as? [DataSnapshot] {
 				if snapshot.childrenCount == 0 {
@@ -270,38 +270,48 @@ class MainViewController: UIViewController {
 
 	@IBAction func trueAnswerButtonReleased(_ sender: Any) {
 		trueButton.isEnabled = false
-		let currentPost = self.currentPost[0]
-		let trueAnswers = currentPost.trueAnswers
-		let newTrueAnswers = trueAnswers+1
-		ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
-		ref.child(currentPost.postID).child("answers").child("true").setValue(newTrueAnswers)
-		truePercentageLabel.isHidden = false
-		falsePercentageLabel.isHidden = false
-		let (falsePercentage, truePercentage) = calcPercentage(trueAnswers: newTrueAnswers, falseAnswers: currentPost.falseAnswers, Added: true)
-		truePercentageLabel.text = "\(String(truePercentage))%"
-		falsePercentageLabel.text = "\(String(falsePercentage))%"
-		showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
-		didReadPost(postID: currentPost.postID, answer: "true")
-		self.totalPosts.removeLast()
+		if self.currentPost.count == 0 {
+			print("wait")
+		} else {
+			let currentPost = self.currentPost[0]
+			let trueAnswers = currentPost.trueAnswers
+			let newTrueAnswers = trueAnswers+1
+			ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
+			ref.child(currentPost.postID).child("answers").child("true").setValue(newTrueAnswers)
+			truePercentageLabel.isHidden = false
+			falsePercentageLabel.isHidden = false
+			let (falsePercentage, truePercentage) = calcPercentage(trueAnswers: newTrueAnswers, falseAnswers: currentPost.falseAnswers, Added: true)
+			truePercentageLabel.text = "\(String(truePercentage))%"
+			falsePercentageLabel.text = "\(String(falsePercentage))%"
+			showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
+			didReadPost(postID: currentPost.postID, answer: "true")
+			self.totalPosts.removeLast()
+		}
+		
 	}
 	@IBAction func falseAnswerButtonTapped(_ sender: Any) {
 		trueButton.isEnabled = false
 	}
 	@IBAction func falseAnswerButtonReleased(_ sender: Any) {
 		falseButton.isEnabled = false
-		let currentPost = self.currentPost[0]
-		let falseAnswers = currentPost.falseAnswers
-		let newFalseAnswers = falseAnswers+1
-		ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
-		ref.child(currentPost.postID).child("answers").child("false").setValue(newFalseAnswers)
-		let (falsePercentage, truePercentage) = calcPercentage(trueAnswers: currentPost.falseAnswers, falseAnswers: newFalseAnswers, Added: false)
-		falsePercentageLabel.isHidden = false
-		truePercentageLabel.isHidden = false
-		truePercentageLabel.text = "\(String(truePercentage))%"
-		falsePercentageLabel.text = "\(String(falsePercentage))%"
-		showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
-		didReadPost(postID: currentPost.postID, answer: "false")
-		self.totalPosts.removeLast()
+		if self.currentPost.count == 0 {
+			print("wait")
+		} else {
+			let currentPost = self.currentPost[0]
+			let falseAnswers = currentPost.falseAnswers
+			let newFalseAnswers = falseAnswers+1
+			ref = Database.database().reference().child("Posts").child(UserDefaults.standard.string(forKey: "schoolSemel")!)
+			ref.child(currentPost.postID).child("answers").child("false").setValue(newFalseAnswers)
+			let (falsePercentage, truePercentage) = calcPercentage(trueAnswers: currentPost.falseAnswers, falseAnswers: newFalseAnswers, Added: false)
+			falsePercentageLabel.isHidden = false
+			truePercentageLabel.isHidden = false
+			truePercentageLabel.text = "\(String(truePercentage))%"
+			falsePercentageLabel.text = "\(String(falsePercentage))%"
+			showPercentage(falsePercentage: falsePercentage, truePercentage: truePercentage)
+			didReadPost(postID: currentPost.postID, answer: "false")
+			self.totalPosts.removeLast()
+		}
+		
 	}
 	
 	

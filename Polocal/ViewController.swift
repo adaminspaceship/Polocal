@@ -13,8 +13,8 @@ import ModernSearchBar
 
 
 class ViewController: UIViewController, ModernSearchBarDelegate {
-    
-    var ref: DatabaseReference!
+	
+	var ref: DatabaseReference!
 	@IBOutlet weak var startButton: UIButton!
 	
 	@IBOutlet weak var schoolSearchBar: ModernSearchBar!
@@ -22,22 +22,20 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 	func isKeyPresentInUserDefaults(key: String) -> Bool {
 		return UserDefaults.standard.object(forKey: key) != nil
 	}
-
+	
 	override func viewDidAppear(_ animated: Bool) {
 		if isKeyPresentInUserDefaults(key: "userID") {
 			performSegue(withIdentifier: "toMain", sender: self)
 		}
 	}
-    override func viewDidLoad() {
-        super.viewDidLoad()
-		schoolSearchBar.suggestionsView_searchIcon_isRound = true
-		
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		let greyColor = UIColor(red:0.86, green:0.86, blue:0.86, alpha:0.8)
 		startButton.setBackgroundColor(color: greyColor, forState: .highlighted)
-        // Do any additional setup after loading the view, typically from a nib.
-        ref = Database.database().reference()
+		// Do any additional setup after loading the view, typically from a nib.
+		ref = Database.database().reference()
 		self.schoolSearchBar.delegateModernSearchBar = self
-//        schoolTextField.layer.cornerRadius = 15.0
+		//        schoolTextField.layer.cornerRadius = 15.0
 		var suggestionList = Array<String>()
 		
 		//Modify shadows alpha
@@ -52,6 +50,7 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 		self.schoolSearchBar.searchLabel_textColor = UIColor(red:0.00, green:0.77, blue:0.80, alpha:1.0)
 		self.schoolSearchBar.searchLabel_backgroundColor = UIColor.white
 		self.schoolSearchBar.setTextColor(color: .white)
+		self.schoolSearchBar.suggestionsView_searchIcon_isRound = false
 		
 		if let path = Bundle.main.path(forResource: "data", ofType: "json") {
 			do {
@@ -70,14 +69,13 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 		} else {
 			print("Invalid filename/path.")
 		}
-        
-    }
-    @IBAction func signUpButtonTapped(_ sender: Any) {
-        let userDefaults = UserDefaults.standard
-        let uuid = UUID().uuidString
+		
+	}
+	@IBAction func signUpButtonTapped(_ sender: Any) {
+		let userDefaults = UserDefaults.standard
+		let uuid = UUID().uuidString
 		if self.schoolSearchBar.text == "" {
-			self.shake(view: self.startButton)
-			
+			//self.shake(view: self.startButton)
 		} else {
 			if let path = Bundle.main.path(forResource: "data", ofType: "json") {
 				do {
@@ -91,7 +89,7 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 							userDefaults.set(uuid, forKey: "userID")
 							performSegue(withIdentifier: "toMain", sender: self)
 						} else {
-							self.shake(view: self.startButton)
+							//self.shake(view: self.startButton)
 						}
 					}
 					
@@ -104,7 +102,12 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 			
 		}
 		
-    }
+	}
+	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
+	}
 	
 	func shake(view: UIView, for duration: TimeInterval = 0.5, withTranslation translation: CGFloat = 10) {
 		let propertyAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.3) {
@@ -117,11 +120,6 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 		
 		propertyAnimator.startAnimation()
 	}
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 	
 	var selectedSchool = String()
 	
@@ -132,10 +130,10 @@ class ViewController: UIViewController, ModernSearchBarDelegate {
 		self.schoolSearchBar.text = item
 		selectedSchool = item
 	}
-
-
-
-
+	
+	
+	
+	
 }
 
 public extension ModernSearchBar {
@@ -146,4 +144,9 @@ public extension ModernSearchBar {
 		tf.textColor = color
 	}
 }
+
+
+
+
+
 
