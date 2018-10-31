@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                         else if(falseAnswers==0) {
                             Rpercent = 100;
-                            Lpercent=0; 
+                            Lpercent=0;
                         }
 
 
