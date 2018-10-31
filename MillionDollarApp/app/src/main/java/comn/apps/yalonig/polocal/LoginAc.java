@@ -42,9 +42,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.UUID;
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
@@ -52,8 +54,12 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 public class LoginAc extends AppCompatActivity {
     private EditText school;
     private ListView schoolist;
-    ArrayList<String> arrayList = new ArrayList<>();
-    public static final String EXTRA_MESSAGE= "hey";
+    private TextView fail;
+    ArrayList<String> items = new ArrayList<>();
+    ArrayList<String> currentitems = new ArrayList<>();
+    ArrayAdapter<String> adapter;
+
+    JSONObject jsonObject;
 
 
 
@@ -71,13 +77,19 @@ public class LoginAc extends AppCompatActivity {
        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         school = findViewById(R.id.school);
-
+        fail = findViewById(R.id.fail);
+        fail.setVisibility(View.GONE);
         enter = findViewById(R.id.start);
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String semel= getSemel(school.getText().toString());
+                if(semel==null){
+                    fail.setVisibility(View.VISIBLE);
+                    return;
+                }
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                prefs.edit().putString("semel",school.getText().toString()).apply();
+                prefs.edit().putString("semel",semel).apply();
                 prefs.edit().putString("uuid",UUID.randomUUID().toString()).apply();
                 startActivity(intent);
 
@@ -85,7 +97,7 @@ public class LoginAc extends AppCompatActivity {
         });
 
         schoolist = findViewById(R.id.schoolist);
-        schoolist.setVisibility(View.INVISIBLE);
+        schoolist.setVisibility(View.GONE);
         school.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -95,6 +107,14 @@ public class LoginAc extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 schoolist.setVisibility(View.VISIBLE);
+                currentitems = changeList( charSequence.toString());
+                adapter.notifyDataSetChanged();
+                for (String s:currentitems) {
+                    System.out.println(s);
+
+                }
+                adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, currentitems);
+                schoolist.setAdapter(adapter);
 
             }
 
@@ -119,12 +139,91 @@ public class LoginAc extends AppCompatActivity {
             }
         });
 
+        String jsonData = loadJsonFromAsset();
+       items = parseJson(jsonData);
+
+         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+
+        schoolist.setAdapter(adapter);
+
 
 
 
     }
 
+    private ArrayList parseJson(String jsonData) {
 
+        ArrayList<String> items = new ArrayList<>();
+        if (jsonData != null) {
+            try {
+                 jsonObject = new JSONObject(jsonData);
+                Iterator<String> keys = jsonObject.keys();
+
+                while(keys.hasNext()) {
+                    String key = keys.next();
+                    items.add(jsonObject.get(key).toString());
+                    if (jsonObject.get(key) instanceof JSONObject) {
+
+
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        return items;
+    }
+
+
+    private String loadJsonFromAsset() {
+        InputStream stream;
+        try {
+            stream = getBaseContext().getAssets().open("school.txt");
+            if (stream != null) {
+                int size = stream.available();
+                byte[] buffer = new byte[size];
+                stream.read(buffer);
+                stream.close();
+
+                if (buffer != null) {
+                    return new String(buffer);
+                }
+            }
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return "";
+    }
+    private String getSemel(String value) {
+        if (items.contains(value)) {
+            Iterator<String> keys = jsonObject.keys();
+
+            while (keys.hasNext()) {
+                String key = keys.next();
+                try {
+                    if (jsonObject.get(key).equals(value)) {
+                        System.out.println("key");
+                        return key;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }
+        return null;
+    }
+    private ArrayList changeList(String sub){
+        ArrayList<String> newList = new ArrayList<>();
+        for (String s:items) {
+            if(s.contains(sub))
+                newList.add(s);
+        }
+        return newList;
+    }
 
 }
 
