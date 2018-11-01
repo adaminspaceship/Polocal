@@ -15,6 +15,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var ref: DatabaseReference!
     var Posts = [Post]()
 	@IBOutlet weak var popView: UIView!
+	@IBOutlet weak var addQuestion: UIButton!
 	
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Posts.count
@@ -51,11 +52,15 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     override func viewDidAppear(_ animated: Bool) {
+		addQuestion.isHidden = true
         Posts = []
         let userID = UserDefaults.standard.string(forKey: "userID")!
         let schoolSemel = UserDefaults.standard.string(forKey: "schoolSemel")!
         ref = Database.database().reference()
         ref.child(userID).child("Posts").observeSingleEvent(of: .value) { (snapshot) in
+			if snapshot.childrenCount == 0 {
+				self.addQuestion.isHidden = false
+			}
             for rest in snapshot.children.allObjects as! [DataSnapshot] {
                 let postUID = rest.value
                 self.ref.child("Posts").child(schoolSemel).child(postUID as! String).observeSingleEvent(of: .value, with: { (querySnapShot) in
@@ -84,6 +89,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if Posts.count == 0 {
 			print("no posts for user")
+			addQuestion.isHidden = false
 		} else {
 			let currentPost = Posts[indexPath.row]
 			questionLabel.text = currentPost.question
@@ -104,6 +110,9 @@ class ProfileViewController: UIViewController,UITableViewDelegate,UITableViewDat
 		bgChange(isAlready: true)
 	}
 	
+	@IBAction func addQuestionTapped(_ sender: Any) {
+		tabBarController?.selectedIndex = 1
+	}
 	
 	func bgChange(isAlready: Bool) {
 		//changing alpha

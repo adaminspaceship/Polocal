@@ -39,6 +39,7 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var timeAgoLabel: UILabel!
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var midView: UIView!
+	@IBOutlet weak var addQuestionButton: UIButton!
 	
 	var totalPosts = [String]()
 	var currentPost = [Post]()
@@ -50,21 +51,7 @@ class MainViewController: UIViewController {
 //		newFrame.size.width = answerView.frame.width
 //		trueView.frame = newFrame
 		//print(UserDefaults.standard.string(forKey: "userID"))
-		trueLabel.adjustsFontSizeToFitWidth = true
-		falseLabel.adjustsFontSizeToFitWidth = true
-		trueLabel.lineBreakMode = .byTruncatingTail
-		falseLabel.lineBreakMode = .byTruncatingTail
-        falsePercentageLabel.isHidden = true
-        truePercentageLabel.isHidden = true
-		activityIndicator.isHidden = false
-		activityIndicator.startAnimating()
-//		getAllPosts()
-		getReadPosts()
-		let greyColor = UIColor(red:0.86, green:0.86, blue:0.86, alpha:0.8)
-		falseButton.setBackgroundColor(color: greyColor, forState: .highlighted)
-		trueButton.setBackgroundColor(color: greyColor, forState: .highlighted)
-		falseButton.setTitleColor(.white, for: .highlighted)
-		trueButton.setTitleColor(.white, for: .highlighted)
+		
 //		for i in 1...999{
 //			let ref = Database.database().reference().child("Posts").child("540211")
 //			let new = ["answers":["false":4,"true":1],"falseAnswer":"לא","question":"מימ?","timestamp":1540469825,"trueAnswer":"כן"] as [String : Any]
@@ -72,6 +59,23 @@ class MainViewController: UIViewController {
 //		}
 		
     } //end of viewdidload()
+	
+	override func viewDidAppear(_ animated: Bool) {
+		trueLabel.adjustsFontSizeToFitWidth = true
+		falseLabel.adjustsFontSizeToFitWidth = true
+		trueLabel.lineBreakMode = .byTruncatingTail
+		falseLabel.lineBreakMode = .byTruncatingTail
+		falsePercentageLabel.isHidden = true
+		truePercentageLabel.isHidden = true
+		activityIndicator.isHidden = false
+		activityIndicator.startAnimating()
+		getReadPosts()
+		let greyColor = UIColor(red:0.86, green:0.86, blue:0.86, alpha:0.8)
+		falseButton.setBackgroundColor(color: greyColor, forState: .highlighted)
+		trueButton.setBackgroundColor(color: greyColor, forState: .highlighted)
+		falseButton.setTitleColor(.white, for: .highlighted)
+		trueButton.setTitleColor(.white, for: .highlighted)
+	}
 	
 	
 	
@@ -206,11 +210,13 @@ class MainViewController: UIViewController {
 				let current = self.currentPost[0]
 				self.questionLabel.text = current.question
 				//print(currentPost.question)
+				self.questionLabel.isHidden = false
 				self.trueLabel.text = current.trueAnswer
 				self.falseLabel.text = current.falseAnswer
 				let date = NSDate(timeIntervalSince1970: TimeInterval(current.timestamp))
 				self.timeAgoLabel.text = date.shortTimeAgoSinceNow()
 				self.activityIndicator.stopAnimating()
+				self.addQuestionButton.isHidden = true
 				self.activityIndicator.isHidden = true
 			}
 		}
@@ -241,6 +247,8 @@ class MainViewController: UIViewController {
 		
 		print("error, no more polls")
 		self.placeholderQuestion.isHidden = false
+		self.questionLabel.isHidden = true
+		
 		self.falseLabel.textColor = .lightGray
 		self.trueLabel.textColor = .lightGray
 		self.falseButton.isEnabled = false
@@ -249,6 +257,10 @@ class MainViewController: UIViewController {
 		self.trueLabel.text = "כן"
 		self.timeAgoLabel.text = ""
 		// make user create a new poll
+		UIView.animate(withDuration: 0.2) {
+			self.addQuestionButton.isHidden = false
+		}
+		
 	}
 	
 	func calcPercentage(trueAnswers: Int, falseAnswers: Int, Added: Bool) -> (Int,Int) {
@@ -290,7 +302,6 @@ class MainViewController: UIViewController {
 			didReadPost(postID: currentPost.postID, answer: "true")
 			self.totalPosts.removeLast()
 		}
-		
 	}
 	@IBAction func falseAnswerButtonTapped(_ sender: Any) {
 		trueButton.isEnabled = false
@@ -316,6 +327,9 @@ class MainViewController: UIViewController {
 		}
 	}
 	
+	@IBAction func addQuestionButtonTapped(_ sender: Any) {
+		tabBarController?.selectedIndex = 1
+	}
 	
 	func didReadPost(postID: String, answer: String) {
 		ref = Database.database().reference()
@@ -325,7 +339,7 @@ class MainViewController: UIViewController {
 	func showPercentage(falsePercentage: Int, truePercentage: Int) {
 		if falsePercentage>truePercentage {
 			let num = Double(self.answerView.frame.width)/(100/Double(falsePercentage))
-			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
+			UIView.animate(withDuration: 1.3, delay: 0, options: .curveEaseIn, animations: {
 				self.falseView.frame.size.width = CGFloat(num)
 			}) { (complete) in
 				sleep(2)
@@ -336,25 +350,25 @@ class MainViewController: UIViewController {
 		} else if truePercentage>falsePercentage {
 			let num = Double(self.answerView.frame.width)/(100/Double(truePercentage))
 			self.trueView.isHidden = false
-			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
+			UIView.animate(withDuration: 1.3, delay: 0, options: .curveEaseIn, animations: {
 				for _ in 0...Int(num) {
 					self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
 				}
 			}) { (complete) in
-				sleep(2)
+				sleep(1)
 				self.truePercentageLabel.isHidden = true
 				self.falsePercentageLabel.isHidden = true
 				self.checkRead(greaterPerc: "true", num: num)
 				
 			}
 		} else {
-			UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
+			UIView.animate(withDuration: 1.3, delay: 0, options: .curveEaseIn, animations: {
 				self.falseView.frame.size.width = CGFloat(self.answerView.frame.width/2)
 				for _ in 0...Int(self.answerView.frame.width/2) {
 					self.trueView.center = CGPoint(x: self.trueView.center.x-1, y: self.trueView.center.y)
 				}
 			}) { (complete) in
-				sleep(2)
+				sleep(1)
 				self.truePercentageLabel.isHidden = true
 				self.falsePercentageLabel.isHidden = true
 				self.checkRead(greaterPerc: "equals")

@@ -26,7 +26,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate, UITextFieldDe
 		addPostButton.setTitleColor(.white, for: .highlighted)
 		ref = Database.database().reference()
 		questionTextView.delegate = self
-		questionTextView.text = "כתוב שאלה"
+		questionTextView.text = "                        כתוב שאלה"
 		questionTextView.textColor = UIColor.lightGray
         // Do any additional setup after loading the view.
     }
@@ -41,7 +41,8 @@ class AddPostViewController: UIViewController, UITextViewDelegate, UITextFieldDe
 	}
 	
 	func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-		checkRemainingChars()
+		maxCharLimit.text = String(questionTextView.text.count)
+//		checkRemainingChars()
 		let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
 		let numberOfChars = newText.count
 		return numberOfChars < 40    // 40 Limit Value
@@ -61,11 +62,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate, UITextFieldDe
 	
 	func checkRemainingChars() {
 		
-		let allowedChars = 39
-		
-		let charsInTextView = -questionTextView.text.count
-		
-		let remainingChars = allowedChars + charsInTextView
+		let remainingChars = 39-questionTextView.text.count
 		
 		if remainingChars >= 5 {
 			maxCharLimit.textColor = .lightGray
@@ -77,8 +74,6 @@ class AddPostViewController: UIViewController, UITextViewDelegate, UITextFieldDe
 		
 		
 		maxCharLimit.text = String(remainingChars)
-		
-		
 	}
 
 	func shake(view: UIView, for duration: TimeInterval = 0.5, withTranslation translation: CGFloat = 10) {
@@ -97,7 +92,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate, UITextFieldDe
 		let userDefaults = UserDefaults.standard
 		let userID = userDefaults.string(forKey: "userID")
 		let time = Int(Date().timeIntervalSince1970)
-		if questionTextView.text == "כתוב שאלה" {
+		if questionTextView.text == "                        כתוב שאלה" {
 			self.shake(view: self.questionView)
 //			self.questionTextView.isUserInteractionEnabled = true
 		}
@@ -186,7 +181,7 @@ class AddPostViewController: UIViewController, UITextViewDelegate, UITextFieldDe
 	}
 	func textViewDidEndEditing(_ questionTextView: UITextView) {
 		if questionTextView.text.isEmpty {
-			questionTextView.text = "כתוב שאלה"
+			questionTextView.text = "                        כתוב שאלה"
 			questionTextView.textColor = UIColor.lightGray
 		}
 	}
